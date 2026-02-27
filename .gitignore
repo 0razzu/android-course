@@ -1,0 +1,17 @@
+*.iml
+*.aab
+*.apk
+*.jks
+*.keystore
+*.log
+*.hprof
+
+.gradle
+.idea
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+output-metadata.json
+google-services.json

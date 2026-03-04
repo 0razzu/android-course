@@ -1,9 +1,10 @@
 package io.orazzu.android_course
 
-import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,8 +12,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -28,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.orazzu.android_course.ui.theme.AndroidCourseTheme
+import androidx.core.net.toUri
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidCourseTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SndActivityCaller(
+                    TextPasser(
                         modifier = Modifier.padding(innerPadding),
                     )
                 }
@@ -46,11 +46,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun SndActivityCaller(modifier: Modifier = Modifier) {
+fun TextPasser(modifier: Modifier = Modifier) {
     val ctx = LocalContext.current
-    var textForSndActivity by remember { mutableStateOf("Abc") }
+    var text by remember { mutableStateOf("Abc") }
 
-    Scaffold() { padding ->
+    Scaffold { padding ->
         Column(
             modifier = Modifier
                 .padding(padding)
@@ -59,28 +59,54 @@ fun SndActivityCaller(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             OutlinedTextField(
-                value = textForSndActivity,
-                onValueChange = { textForSndActivity = it },
-                label = { Text(stringResource(R.string.SndActivityCaller_textForSndActivity)) }
+                value = text,
+                onValueChange = { text = it },
+                label = { Text(stringResource(R.string.TextPasser_textForSndActivity)) }
             )
 
             Button(onClick = {
-                Log.i("SndActivityCallerButton", "Starting intent")
+                Log.d("SndActivityCallerButton", "Starting intent")
                 ctx.startActivity(
                     Intent(ctx, SndActivity::class.java)
                         .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
                         .putExtras(
                             Bundle().apply {
-                                putString("text", textForSndActivity)
+                                putString("text", text)
                             }
                         )
                 )
             }) {
-                Text(stringResource(R.string.SndActivityCaller_openSndActivity))
+                Text(stringResource(R.string.TextPasser_openSndActivity))
+            }
+
+            Button(onClick = {
+                if (text.isPhoneNumber) {
+                    val intent = Intent(Intent.ACTION_DIAL)
+                        .apply { data = "tel:{$text}".toUri() }
+
+                    if (intent.resolveActivity(ctx.packageManager) != null) {
+                        Log.d("CallFriendButton", "Starting intent")
+                        ctx.startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            ctx,
+                            ctx.getString(R.string.TextPasser_noDialer),
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(
+                        ctx,
+                        ctx.getString(R.string.TextPasser_isNotPhoneNumber).format(text),
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }) {
+                Text(stringResource(R.string.TextPasser_callFriend))
             }
 
             Button(onClick = {}) {
-                Text(stringResource(R.string.SndActivityCaller_shareText))
+                Text(stringResource(R.string.TextPasser_shareText))
             }
         }
     }
@@ -88,8 +114,8 @@ fun SndActivityCaller(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun SndActivityCallerPreview() {
+fun TextPasserPreview() {
     AndroidCourseTheme {
-        SndActivityCaller()
+        TextPasser()
     }
 }

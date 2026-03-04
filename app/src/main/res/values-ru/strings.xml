@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="SndActivityCaller_textForSndActivity">Текст для второй Activity</string>
-    <string name="SndActivityCaller_openSndActivity">Открыть вторую Activity</string>
-    <string name="SndActivityCaller_shareText">Поделиться текстом</string>
+    <string name="TextPasser_textForSndActivity">Текст для второй Activity</string>
+    <string name="TextPasser_openSndActivity">Открыть вторую Activity</string>
+    <string name="TextPasser_shareText">Поделиться текстом</string>
+    <string name="TextPasser_callFriend">Позвонить другу</string>
+    <string name="TextPasser_isNotPhoneNumber">%s — не номер телефона</string>
+    <string name="TextPasser_noDialer">Звонилки не найдены</string>
+
     <string name="IncomingTextContainer_gotNoText">Текст не получен</string>
 </resources>

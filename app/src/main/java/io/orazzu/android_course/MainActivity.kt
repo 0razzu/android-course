@@ -1,6 +1,7 @@
 package io.orazzu.android_course
 
 import android.content.Intent
+import android.content.Intent.createChooser
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -105,7 +106,16 @@ fun TextPasser(modifier: Modifier = Modifier) {
                 Text(stringResource(R.string.TextPasser_callFriend))
             }
 
-            Button(onClick = {}) {
+            Button(onClick = {
+                ctx.startActivity(
+                    createChooser(
+                        Intent(Intent.ACTION_SEND)
+                            .apply { type = "text/plain" }
+                            .putExtra(Intent.EXTRA_TEXT, text),
+                        ctx.getString(R.string.TextPasser_shareText),
+                    )
+                )
+            }) {
                 Text(stringResource(R.string.TextPasser_shareText))
             }
         }

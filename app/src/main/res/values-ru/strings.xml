@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="SndActivityCaller_textForSndActivity">Текст для второй Activity</string>
+    <string name="SndActivityCaller_openSndActivity">Открыть вторую Activity</string>
+    <string name="SndActivityCaller_shareText">Поделиться текстом</string>
+    <string name="IncomingTextContainer_gotNoText">Текст не получен</string>
+</resources>

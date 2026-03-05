@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Android Course</string>
+    <string name="app_name" translatable="false">Android Course</string>
+
+    <string name="TextPasser_textForSndActivity">Text for the 2nd activity</string>
+    <string name="TextPasser_openSndActivity">Open the 2nd activity</string>
+    <string name="TextPasser_blankText">Text cannot be blank</string>
+    <string name="TextPasser_shareText">Share the text</string>
+    <string name="TextPasser_callFriend">Call a friend</string>
+    <string name="TextPasser_isNotPhoneNumber">%s is not a phone number</string>
+    <string name="TextPasser_noDialer">Failed to find a dialer</string>
+
+    <string name="IncomingTextContainer_gotNoText">Got no text</string>
 </resources>

@@ -69,12 +69,7 @@ fun TextPasser(modifier: Modifier = Modifier) {
                 Log.d("SndActivityCallerButton", "Starting intent")
                 ctx.startActivity(
                     Intent(ctx, SndActivity::class.java)
-                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                        .putExtras(
-                            Bundle().apply {
-                                putString("text", text)
-                            }
-                        )
+                        .putExtra("text", text)
                 )
             }) {
                 Text(stringResource(R.string.TextPasser_openSndActivity))

@@ -79,6 +79,10 @@ fun TextPasser(modifier: Modifier = Modifier) {
         }
 
         Button(onClick = {
+            if (text.isBlank()) {
+                showToast(ctx, ctx.getString(R.string.TextPasser_blankText))
+                return@Button
+            }
             if (!text.isPhoneNumber) {
                 showToast(ctx, ctx.getString(R.string.TextPasser_isNotPhoneNumber).format(text))
                 return@Button
@@ -124,8 +128,4 @@ fun TextPasserPreview() {
     AndroidCourseTheme {
         TextPasser()
     }
-}
-
-fun showToast(ctx: Context, text: String) {
-    Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show()
 }

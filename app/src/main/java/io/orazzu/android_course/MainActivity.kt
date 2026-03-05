@@ -83,7 +83,7 @@ fun TextPasser(modifier: Modifier = Modifier) {
             Button(onClick = {
                 if (text.isPhoneNumber) {
                     val intent = Intent(Intent.ACTION_DIAL)
-                        .apply { data = "tel:{$text}".toUri() }
+                        .apply { data = "tel:$text".toUri() }
 
                     if (intent.resolveActivity(ctx.packageManager) != null) {
                         Log.d("CallFriendButton", "Starting intent")

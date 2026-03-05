@@ -36,16 +36,13 @@ class SndActivity : ComponentActivity() {
 
 @Composable
 fun IncomingTextContainer(modifier: Modifier = Modifier, text: String? = null) {
-    Scaffold { padding ->
-        Column(
-            modifier = Modifier
-                .padding(padding)
-                .padding(24.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Text(text = text ?: stringResource(R.string.IncomingTextContainer_gotNoText))
-        }
+    Column(
+        modifier = modifier
+            .padding(24.dp)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text(text = text ?: stringResource(R.string.IncomingTextContainer_gotNoText))
     }
 }
 

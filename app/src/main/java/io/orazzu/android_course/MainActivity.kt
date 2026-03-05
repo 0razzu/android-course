@@ -50,90 +50,87 @@ fun TextPasser(modifier: Modifier = Modifier) {
     val ctx = LocalContext.current
     var text by remember { mutableStateOf("Abc") }
 
-    Scaffold { padding ->
-        Column(
-            modifier = Modifier
-                .padding(padding)
-                .padding(24.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            OutlinedTextField(
-                value = text,
-                onValueChange = { text = it },
-                label = { Text(stringResource(R.string.TextPasser_textForSndActivity)) }
+    Column(
+        modifier = modifier
+            .padding(24.dp)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text(stringResource(R.string.TextPasser_textForSndActivity)) }
+        )
+
+        Button(onClick = {
+            if (text.isBlank()) {
+                Toast.makeText(
+                    ctx,
+                    ctx.getString(R.string.TextPasser_blankText),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                return@Button
+            }
+
+            Log.d("SndActivityCallerButton", "Starting intent")
+            ctx.startActivity(
+                Intent(ctx, SndActivity::class.java)
+                    .putExtra("text", text)
             )
+        }) {
+            Text(stringResource(R.string.TextPasser_openSndActivity))
+        }
 
-            Button(onClick = {
-                if (text.isBlank()) {
-                    Toast.makeText(
-                        ctx,
-                        ctx.getString(R.string.TextPasser_blankText),
-                        Toast.LENGTH_SHORT
-                    ).show()
+        Button(onClick = {
+            if (!text.isPhoneNumber) {
+                Toast.makeText(
+                    ctx,
+                    ctx.getString(R.string.TextPasser_isNotPhoneNumber).format(text),
+                    Toast.LENGTH_SHORT,
+                ).show()
 
-                    return@Button
-                }
+                return@Button
+            }
 
-                Log.d("SndActivityCallerButton", "Starting intent")
-                ctx.startActivity(
-                    Intent(ctx, SndActivity::class.java)
-                        .putExtra("text", text)
+            val intent = Intent(Intent.ACTION_DIAL)
+                .apply { data = "tel:$text".toUri() }
+
+            if (intent.resolveActivity(ctx.packageManager) != null) {
+                Log.d("CallFriendButton", "Starting intent")
+                ctx.startActivity(intent)
+            } else {
+                Toast.makeText(
+                    ctx,
+                    ctx.getString(R.string.TextPasser_noDialer),
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
+        }) {
+            Text(stringResource(R.string.TextPasser_callFriend))
+        }
+
+        Button(onClick = {
+            if (text.isBlank()) {
+                Toast.makeText(
+                    ctx,
+                    ctx.getString(R.string.TextPasser_blankText),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                return@Button
+            }
+
+            ctx.startActivity(
+                createChooser(
+                    Intent(Intent.ACTION_SEND)
+                        .apply { type = "text/plain" }
+                        .putExtra(Intent.EXTRA_TEXT, text),
+                    ctx.getString(R.string.TextPasser_shareText),
                 )
-            }) {
-                Text(stringResource(R.string.TextPasser_openSndActivity))
-            }
-
-            Button(onClick = {
-                if (!text.isPhoneNumber) {
-                    Toast.makeText(
-                        ctx,
-                        ctx.getString(R.string.TextPasser_isNotPhoneNumber).format(text),
-                        Toast.LENGTH_SHORT,
-                    ).show()
-
-                    return@Button
-                }
-
-                val intent = Intent(Intent.ACTION_DIAL)
-                    .apply { data = "tel:$text".toUri() }
-
-                if (intent.resolveActivity(ctx.packageManager) != null) {
-                    Log.d("CallFriendButton", "Starting intent")
-                    ctx.startActivity(intent)
-                } else {
-                    Toast.makeText(
-                        ctx,
-                        ctx.getString(R.string.TextPasser_noDialer),
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                }
-            }) {
-                Text(stringResource(R.string.TextPasser_callFriend))
-            }
-
-            Button(onClick = {
-                if (text.isBlank()) {
-                    Toast.makeText(
-                        ctx,
-                        ctx.getString(R.string.TextPasser_blankText),
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    return@Button
-                }
-
-                ctx.startActivity(
-                    createChooser(
-                        Intent(Intent.ACTION_SEND)
-                            .apply { type = "text/plain" }
-                            .putExtra(Intent.EXTRA_TEXT, text),
-                        ctx.getString(R.string.TextPasser_shareText),
-                    )
-                )
-            }) {
-                Text(stringResource(R.string.TextPasser_shareText))
-            }
+            )
+        }) {
+            Text(stringResource(R.string.TextPasser_shareText))
         }
     }
 }

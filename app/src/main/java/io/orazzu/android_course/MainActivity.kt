@@ -1,5 +1,6 @@
 package io.orazzu.android_course
 
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.createChooser
 import android.os.Bundle
@@ -64,12 +65,7 @@ fun TextPasser(modifier: Modifier = Modifier) {
 
         Button(onClick = {
             if (text.isBlank()) {
-                Toast.makeText(
-                    ctx,
-                    ctx.getString(R.string.TextPasser_blankText),
-                    Toast.LENGTH_SHORT
-                ).show()
-
+                showToast(ctx, ctx.getString(R.string.TextPasser_blankText))
                 return@Button
             }
 
@@ -84,40 +80,27 @@ fun TextPasser(modifier: Modifier = Modifier) {
 
         Button(onClick = {
             if (!text.isPhoneNumber) {
-                Toast.makeText(
-                    ctx,
-                    ctx.getString(R.string.TextPasser_isNotPhoneNumber).format(text),
-                    Toast.LENGTH_SHORT,
-                ).show()
-
+                showToast(ctx, ctx.getString(R.string.TextPasser_isNotPhoneNumber).format(text))
                 return@Button
             }
 
             val intent = Intent(Intent.ACTION_DIAL)
                 .apply { data = "tel:$text".toUri() }
 
-            if (intent.resolveActivity(ctx.packageManager) != null) {
-                Log.d("CallFriendButton", "Starting intent")
-                ctx.startActivity(intent)
-            } else {
-                Toast.makeText(
-                    ctx,
-                    ctx.getString(R.string.TextPasser_noDialer),
-                    Toast.LENGTH_SHORT,
-                ).show()
+            if (intent.resolveActivity(ctx.packageManager) == null) {
+                showToast(ctx, ctx.getString(R.string.TextPasser_noDialer))
+                return@Button
             }
+
+            Log.d("CallFriendButton", "Starting intent")
+            ctx.startActivity(intent)
         }) {
             Text(stringResource(R.string.TextPasser_callFriend))
         }
 
         Button(onClick = {
             if (text.isBlank()) {
-                Toast.makeText(
-                    ctx,
-                    ctx.getString(R.string.TextPasser_blankText),
-                    Toast.LENGTH_SHORT
-                ).show()
-
+                showToast(ctx, ctx.getString(R.string.TextPasser_blankText))
                 return@Button
             }
 
@@ -141,4 +124,8 @@ fun TextPasserPreview() {
     AndroidCourseTheme {
         TextPasser()
     }
+}
+
+fun showToast(ctx: Context, text: String) {
+    Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show()
 }

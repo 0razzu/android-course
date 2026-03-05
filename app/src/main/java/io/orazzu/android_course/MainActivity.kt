@@ -108,6 +108,7 @@ fun TextPasser(modifier: Modifier = Modifier) {
                 return@Button
             }
 
+            Log.d("ShareTextButton", "Starting intent")
             ctx.startActivity(
                 createChooser(
                     Intent(Intent.ACTION_SEND)

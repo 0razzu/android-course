@@ -2,6 +2,7 @@
 <resources>
     <string name="TextPasser_textForSndActivity">Текст для второй Activity</string>
     <string name="TextPasser_openSndActivity">Открыть вторую Activity</string>
+    <string name="TextPasser_blankText">Текст не может быть пустым</string>
     <string name="TextPasser_shareText">Поделиться текстом</string>
     <string name="TextPasser_callFriend">Позвонить другу</string>
     <string name="TextPasser_isNotPhoneNumber">%s — не номер телефона</string>

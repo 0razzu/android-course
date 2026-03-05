@@ -1,4 +1,4 @@
 package io.orazzu.android_course
 
 val String.isPhoneNumber: Boolean
-    get() = Regex("\\+?((\\d\\s?-?){11})").matches(this)
+    get() = android.util.Patterns.PHONE.matcher(this).matches()

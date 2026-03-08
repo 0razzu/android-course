@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">EnStore</string>
+
+    <string name="AppCategory_APP">Apps</string>
+    <string name="AppCategory_GAME">Games</string>
+    <string name="AppCategory_PRODUCTIVITY">Productivity</string>
+    <string name="AppCategory_SOCIAL">Social</string>
+    <string name="AppCategory_EDUCATION">Education</string>
+    <string name="AppCategory_ENTERTAINMENT">Entertainment</string>
+    <string name="AppCategory_MUSIC">Music</string>
+    <string name="AppCategory_VIDEO">Video</string>
+    <string name="AppCategory_PHOTOGRAPHY">Photography</string>
+    <string name="AppCategory_HEALTH">Health</string>
+    <string name="AppCategory_SPORTS">Sports</string>
+    <string name="AppCategory_NEWS">News</string>
+    <string name="AppCategory_BOOKS">Books</string>
+    <string name="AppCategory_BUSINESS">Business</string>
+    <string name="AppCategory_FINANCE">Finance</string>
+    <string name="AppCategory_TRAVEL">Travel</string>
+    <string name="AppCategory_MAPS">Maps</string>
+    <string name="AppCategory_FOOD">Food</string>
+    <string name="AppCategory_SHOPPING">Shopping</string>
+    <string name="AppCategory_UTILITIES">Utilities</string>
 </resources>

@@ -8,7 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -92,71 +91,55 @@ fun AppListScreen(
     apps: List<AppDetails>,
     onAppClick: (String) -> Unit,
 ) {
-    Column(
-        modifier = modifier
-            .background(colorResource(R.color.purple_500))
-            .fillMaxSize(),
-    ) {
-        AppListScreenHeader(modifier = modifier)
-        AppListScreenAppList(modifier = modifier, apps = apps, onAppClick = onAppClick)
-    }
+    CardLikeLayout(
+        modifier = modifier,
+        header = { AppListScreenHeader(modifier = modifier) },
+        body = { AppListScreenAppList(modifier = modifier, apps = apps, onAppClick = onAppClick) },
+    )
 }
 
 @Composable
 fun AppListScreenHeader(modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
         modifier = modifier
-            .fillMaxWidth()
-            .height(150.dp)
-            .padding(
-                start = 16.dp,
-                end = 16.dp,
-                top = 48.dp,
-                bottom = 16.dp,
-            ),
+            .height(48.dp)
+            .fillMaxWidth(),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
+        Icon(
             modifier = modifier
-                .height(48.dp)
-                .fillMaxWidth(),
-        ) {
-            Icon(
-                modifier = modifier
-                    .size(40.dp)
-                    .background(
-                        color = colorResource(R.color.white),
-                        shape = RoundedCornerShape(10.dp),
-                    ),
-                painter = painterResource(R.drawable.app_registration_40px),
-                contentDescription = null,
-                tint = colorResource(R.color.purple_500)
-            )
+                .size(40.dp)
+                .background(
+                    color = colorResource(R.color.white),
+                    shape = RoundedCornerShape(10.dp),
+                ),
+            painter = painterResource(R.drawable.app_registration_40px),
+            contentDescription = null,
+            tint = colorResource(R.color.purple_500)
+        )
 
-            Text(
-                text = stringResource(R.string.app_name),
-                color = colorResource(R.color.white),
-                fontSize = 28.sp,
-                style = MaterialTheme.typography.titleLarge,
-                overflow = TextOverflow.Ellipsis,
-                modifier = modifier.weight(1f),
-            )
+        Text(
+            text = stringResource(R.string.app_name),
+            color = colorResource(R.color.white),
+            fontSize = 28.sp,
+            style = MaterialTheme.typography.titleLarge,
+            overflow = TextOverflow.Ellipsis,
+            modifier = modifier.weight(1f),
+        )
 
-            Icon(
-                modifier = modifier
-                    .size(40.dp)
-                    .background(
-                        color = colorResource(R.color.white_25),
-                        shape = RoundedCornerShape(12.dp),
-                    )
-                    .clickable(onClick = {}),
-                painter = painterResource(R.drawable.apps_40px),
-                contentDescription = null,
-                tint = colorResource(R.color.white),
-            )
-        }
+        Icon(
+            modifier = modifier
+                .size(40.dp)
+                .background(
+                    color = colorResource(R.color.white_25),
+                    shape = RoundedCornerShape(12.dp),
+                )
+                .clickable(onClick = {}),
+            painter = painterResource(R.drawable.apps_40px),
+            contentDescription = null,
+            tint = colorResource(R.color.white),
+        )
     }
 }
 
@@ -167,17 +150,7 @@ fun AppListScreenAppList(
     onAppClick: (String) -> Unit,
 ) {
     LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .clip(
-                shape = RoundedCornerShape(
-                    topStart = 16.dp,
-                    topEnd = 16.dp,
-                    bottomStart = 0.dp,
-                    bottomEnd = 0.dp,
-                )
-            )
-            .background(color = colorResource(R.color.white)),
+        modifier = modifier.fillMaxSize(),
     ) {
         itemsIndexed(apps) { i, app ->
             AppCard(modifier = modifier, app = app, onClick = { onAppClick(app.id) })
@@ -206,7 +179,7 @@ fun AppCard(
             .height(128.dp)
             .clip(shape = RoundedCornerShape(16.dp))
             .clickable(onClick = onClick)
-            .padding(16.dp),
+            .padding(vertical = 16.dp),
     ) {
         AsyncImage(
             model = app.iconUrl,

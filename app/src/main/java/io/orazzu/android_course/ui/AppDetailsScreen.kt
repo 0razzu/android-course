@@ -6,7 +6,6 @@ import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -55,14 +53,11 @@ fun AppDetailsScreen(
     app: AppDetails,
     onBackClick: () -> Unit,
 ) {
-    Column(
-        modifier = modifier
-            .background(colorResource(R.color.purple_500))
-            .fillMaxSize(),
-    ) {
-        AppDetailsScreenHeader(modifier = modifier, onBackClick = onBackClick)
-        AppDetailsScreenAppDetails(modifier = modifier, app = app)
-    }
+    CardLikeLayout(
+        modifier = modifier,
+        header = { AppDetailsScreenHeader(modifier = modifier, onBackClick = onBackClick) },
+        body = { AppDetailsScreenAppDetails(modifier = modifier, app = app) },
+    )
 }
 
 @Composable
@@ -70,51 +65,36 @@ fun AppDetailsScreenHeader(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
 ) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
-            .fillMaxWidth()
-            .height(150.dp)
-            .padding(
-                start = 16.dp,
-                end = 16.dp,
-                top = 48.dp,
-                bottom = 16.dp,
-            ),
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier.fillMaxSize(),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+        Icon(
             modifier = modifier
-                .height(48.dp)
-                .fillMaxWidth(),
-        ) {
-            Icon(
-                modifier = modifier
-                    .size(40.dp)
-                    .clickable(onClick = onBackClick)
-                    .background(
-                        color = colorResource(R.color.none),
-                        shape = RoundedCornerShape(12.dp),
-                    ),
-                painter = painterResource(R.drawable.arrow_back_40px),
-                contentDescription = null,
-                tint = colorResource(R.color.white),
-            )
+                .size(40.dp)
+                .clickable(onClick = onBackClick)
+                .background(
+                    color = colorResource(R.color.none),
+                    shape = RoundedCornerShape(12.dp),
+                ),
+            painter = painterResource(R.drawable.arrow_back_40px),
+            contentDescription = null,
+            tint = colorResource(R.color.white),
+        )
 
-            Icon(
-                modifier = modifier
-                    .size(40.dp)
-                    .clickable(onClick = {})
-                    .background(
-                        color = colorResource(R.color.none),
-                        shape = RoundedCornerShape(12.dp),
-                    ),
-                painter = painterResource(R.drawable.share_40px),
-                contentDescription = null,
-                tint = colorResource(R.color.white),
-            )
-        }
+        Icon(
+            modifier = modifier
+                .size(40.dp)
+                .clickable(onClick = {})
+                .background(
+                    color = colorResource(R.color.none),
+                    shape = RoundedCornerShape(12.dp),
+                ),
+            painter = painterResource(R.drawable.share_40px),
+            contentDescription = null,
+            tint = colorResource(R.color.white),
+        )
     }
 }
 
@@ -122,18 +102,7 @@ fun AppDetailsScreenHeader(
 fun AppDetailsScreenAppDetails(modifier: Modifier = Modifier, app: AppDetails) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier
-            .fillMaxSize()
-            .clip(
-                shape = RoundedCornerShape(
-                    topStart = 16.dp,
-                    topEnd = 16.dp,
-                    bottomStart = 0.dp,
-                    bottomEnd = 0.dp,
-                )
-            )
-            .background(color = colorResource(R.color.white))
-            .padding(16.dp),
+        modifier = modifier.fillMaxSize()
     ) {
         item { AppDetailsHeader(modifier = modifier, app = app) }
         item {

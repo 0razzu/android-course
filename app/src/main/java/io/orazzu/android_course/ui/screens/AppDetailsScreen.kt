@@ -1,4 +1,4 @@
-package io.orazzu.android_course.ui
+package io.orazzu.android_course.ui.screens
 
 import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
@@ -44,6 +44,7 @@ import io.orazzu.android_course.R
 import io.orazzu.android_course.helpers.toString
 import io.orazzu.android_course.model.app.AppDetails
 import io.orazzu.android_course.repository.local.AppLocalRepository
+import io.orazzu.android_course.ui.layouts.CardLikeLayout
 import io.orazzu.android_course.ui.theme.AndroidCourseTheme
 import kotlin.random.Random
 

@@ -1,4 +1,4 @@
-package io.orazzu.android_course.ui
+package io.orazzu.android_course.ui.layouts
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

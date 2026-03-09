@@ -65,6 +65,5 @@ fun CardLikeLayout(
         ) {
             body()
         }
-
     }
 }

@@ -9,8 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import io.orazzu.android_course.repository.AppRepository
 import io.orazzu.android_course.repository.local.AppLocalRepository
-import io.orazzu.android_course.ui.screens.AppDetailsScreen
-import io.orazzu.android_course.ui.screens.AppListScreen
+import io.orazzu.android_course.ui.screens.app_details.AppDetailsScreen
+import io.orazzu.android_course.ui.screens.app_list.AppListScreen
 import io.orazzu.android_course.ui.theme.AndroidCourseTheme
 
 class MainActivity(

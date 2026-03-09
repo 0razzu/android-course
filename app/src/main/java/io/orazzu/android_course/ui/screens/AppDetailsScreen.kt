@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -133,7 +134,14 @@ fun AppDetailsHeader(modifier: Modifier = Modifier, app: AppDetails) {
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = modifier.fillMaxSize(),
     ) {
-        Row {
+        Row(
+            modifier = modifier.padding(
+                start = 16.dp,
+                top = 16.dp,
+                end = 16.dp,
+                bottom = 0.dp,
+            )
+        ) {
             Text(
                 text = app.name,
                 fontSize = 24.sp,
@@ -146,7 +154,8 @@ fun AppDetailsHeader(modifier: Modifier = Modifier, app: AppDetails) {
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.Top,
             modifier = modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         ) {
             AsyncImage(
                 model = app.iconUrl,
@@ -220,6 +229,7 @@ fun AppDetailsDescription(
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier.padding(horizontal = 16.dp),
     ) {
         if (expanded) {
             paragraphs.forEach { paragraph ->
@@ -260,7 +270,9 @@ fun InstallButton(modifier: Modifier = Modifier) {
         onClick = {},
         shape = RoundedCornerShape(8.dp),
         contentPadding = PaddingValues(vertical = 12.dp),
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         colors = ButtonColors(
             containerColor = colorResource(R.color.purple_700),
             contentColor = colorResource(R.color.white),
@@ -283,7 +295,9 @@ fun InstallButton(modifier: Modifier = Modifier) {
 fun AppDetailsScreenshots(modifier: Modifier = Modifier, screenshotUrls: List<String>) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
     ) {
         Text(
             text = stringResource(R.string.AppDetailsScreenshots_screenshots),

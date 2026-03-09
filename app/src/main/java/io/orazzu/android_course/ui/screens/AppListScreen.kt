@@ -133,7 +133,7 @@ fun AppCard(
             .height(128.dp)
             .clip(shape = RoundedCornerShape(16.dp))
             .clickable(onClick = onClick)
-            .padding(vertical = 16.dp),
+            .padding(16.dp),
     ) {
         AsyncImage(
             model = app.iconUrl,

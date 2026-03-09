@@ -61,8 +61,7 @@ fun CardLikeLayout(
                         bottomEnd = 0.dp,
                     )
                 )
-                .background(color = colorResource(R.color.white))
-                .padding(16.dp),
+                .background(color = colorResource(R.color.white)),
         ) {
             body()
         }

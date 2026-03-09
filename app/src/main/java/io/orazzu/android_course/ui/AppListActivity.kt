@@ -40,48 +40,19 @@ import io.orazzu.android_course.R
 import io.orazzu.android_course.helpers.toString
 import io.orazzu.android_course.model.app.AppCategory
 import io.orazzu.android_course.model.app.AppDetails
+import io.orazzu.android_course.repository.AppRepository
+import io.orazzu.android_course.repository.local.AppLocalRepository
 import io.orazzu.android_course.ui.theme.AndroidCourseTheme
 
-class AppListActivity : ComponentActivity() {
+class AppListActivity(
+    private val appRepository: AppRepository = AppLocalRepository(),
+) : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AndroidCourseTheme {
-                AppListScreen(
-                    apps = listOf(
-                        AppDetails(
-                            id = "13er23",
-                            name = "Some App",
-                            developer = "Some Bank",
-                            category = AppCategory.FINANCE,
-                            ageRating = 17,
-                            iconUrl = "https://yavuzceliker.github.io/sample-images/image-7.jpg",
-                            screenshotUrlList = listOf(),
-                            description = "Just some",
-                        ),
-                        AppDetails(
-                            id = "43fr",
-                            name = "One More App",
-                            developer = "Someone",
-                            category = AppCategory.EDUCATION,
-                            ageRating = 0,
-                            iconUrl = "https://yavuzceliker.github.io/sample-images/image-410.jpg",
-                            screenshotUrlList = listOf(),
-                            description = "Just another",
-                        ),
-                        AppDetails(
-                            id = "eg8u4a",
-                            name = "An App With a Crazy Long Name–Who in the World Ever Comes up With Such Blankets?",
-                            developer = "Some Studio That Names Its Apps Like They’re Emo Songs–and Even Names Itself That Way",
-                            category = AppCategory.ENTERTAINMENT,
-                            ageRating = 17,
-                            iconUrl = "https://yavuzceliker.github.io/sample-images/image-910.jpg",
-                            screenshotUrlList = listOf(),
-                            description = "Our descriptions are also long as hell btw. Y’all never read them anyways tho.",
-                        ),
-                    )
-                )
+                AppListScreen(apps = appRepository.getApps())
             }
         }
     }
@@ -246,39 +217,6 @@ fun AppCard(
 @Composable
 fun AppListScreenPreview() {
     AndroidCourseTheme {
-        AppListScreen(
-            apps = listOf(
-                AppDetails(
-                    id = "13er23",
-                    name = "Some App",
-                    developer = "Some Bank",
-                    category = AppCategory.FINANCE,
-                    ageRating = 17,
-                    iconUrl = "",
-                    screenshotUrlList = listOf(),
-                    description = "Just some",
-                ),
-                AppDetails(
-                    id = "43fr",
-                    name = "One More App",
-                    developer = "Someone",
-                    category = AppCategory.EDUCATION,
-                    ageRating = 0,
-                    iconUrl = "",
-                    screenshotUrlList = listOf(),
-                    description = "Just another",
-                ),
-                AppDetails(
-                    id = "eg8u4a",
-                    name = "An App With a Crazy Long Name–Who in the World Ever Comes up With Such Blankets?",
-                    developer = "Some Studio That Names Its Apps Like They’re Emo Songs–and Even Names Itself That Way",
-                    category = AppCategory.ENTERTAINMENT,
-                    ageRating = 17,
-                    iconUrl = "",
-                    screenshotUrlList = listOf(),
-                    description = "Our descriptions are also long as hell btw. Y’all never read them anyways tho.",
-                ),
-            )
-        )
+        AppListScreen(apps = AppLocalRepository().getApps())
     }
 }

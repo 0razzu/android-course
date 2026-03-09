@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,10 +36,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil3.compose.AsyncImage
 import io.orazzu.android_course.R
 import io.orazzu.android_course.helpers.toString
-import io.orazzu.android_course.model.app.AppCategory
 import io.orazzu.android_course.model.app.AppDetails
 import io.orazzu.android_course.repository.AppRepository
 import io.orazzu.android_course.repository.local.AppLocalRepository
@@ -52,7 +55,32 @@ class AppListActivity(
         enableEdgeToEdge()
         setContent {
             AndroidCourseTheme {
-                AppListScreen(apps = appRepository.getApps())
+                val navController = rememberNavController()
+                val apps = appRepository.getApps()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = "app_list",
+                ) {
+                    composable("app_list") {
+                        AppListScreen(
+                            apps = apps,
+                            onAppClick = { appId ->
+                                navController.navigate("app_details/$appId")
+                            },
+                        )
+                    }
+
+                    composable("app_details/{appId}") { backStackEntry ->
+                        val appId = backStackEntry.arguments?.getString("appId")
+                        val app = apps.first { it.id == appId }
+
+                        AppDetailsScreen(
+                            app = app,
+                            onBackClick = { navController.popBackStack() },
+                        )
+                    }
+                }
             }
         }
     }
@@ -62,6 +90,7 @@ class AppListActivity(
 fun AppListScreen(
     modifier: Modifier = Modifier,
     apps: List<AppDetails>,
+    onAppClick: (String) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -69,15 +98,14 @@ fun AppListScreen(
             .fillMaxSize(),
     ) {
         AppListScreenHeader(modifier = modifier)
-        AppListScreenAppList(modifier = modifier, apps = apps)
+        AppListScreenAppList(modifier = modifier, apps = apps, onAppClick = onAppClick)
     }
 }
 
 @Composable
 fun AppListScreenHeader(modifier: Modifier = Modifier) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
+    Box(
+        contentAlignment = Alignment.Center,
         modifier = modifier
             .fillMaxWidth()
             .height(150.dp)
@@ -91,6 +119,9 @@ fun AppListScreenHeader(modifier: Modifier = Modifier) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = modifier
+                .height(48.dp)
+                .fillMaxWidth(),
         ) {
             Icon(
                 modifier = modifier
@@ -99,7 +130,7 @@ fun AppListScreenHeader(modifier: Modifier = Modifier) {
                         color = colorResource(R.color.white),
                         shape = RoundedCornerShape(10.dp),
                     ),
-                painter = painterResource(R.drawable.app_registration_48px),
+                painter = painterResource(R.drawable.app_registration_40px),
                 contentDescription = null,
                 tint = colorResource(R.color.purple_500)
             )
@@ -109,20 +140,23 @@ fun AppListScreenHeader(modifier: Modifier = Modifier) {
                 color = colorResource(R.color.white),
                 fontSize = 28.sp,
                 style = MaterialTheme.typography.titleLarge,
+                overflow = TextOverflow.Ellipsis,
+                modifier = modifier.weight(1f),
+            )
+
+            Icon(
+                modifier = modifier
+                    .size(40.dp)
+                    .background(
+                        color = colorResource(R.color.white_25),
+                        shape = RoundedCornerShape(12.dp),
+                    )
+                    .clickable(onClick = {}),
+                painter = painterResource(R.drawable.apps_40px),
+                contentDescription = null,
+                tint = colorResource(R.color.white),
             )
         }
-
-        Icon(
-            modifier = modifier
-                .size(48.dp)
-                .background(
-                    color = colorResource(R.color.white_25),
-                    shape = RoundedCornerShape(12.dp),
-                ),
-            painter = painterResource(R.drawable.apps_48px),
-            contentDescription = null,
-            tint = colorResource(R.color.white),
-        )
     }
 }
 
@@ -130,6 +164,7 @@ fun AppListScreenHeader(modifier: Modifier = Modifier) {
 fun AppListScreenAppList(
     modifier: Modifier = Modifier,
     apps: List<AppDetails>,
+    onAppClick: (String) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier
@@ -145,7 +180,7 @@ fun AppListScreenAppList(
             .background(color = colorResource(R.color.white)),
     ) {
         itemsIndexed(apps) { i, app ->
-            AppCard(modifier = modifier, app = app)
+            AppCard(modifier = modifier, app = app, onClick = { onAppClick(app.id) })
             if (i < apps.lastIndex) {
                 HorizontalDivider(
                     modifier = Modifier.padding(horizontal = 16.dp),
@@ -161,6 +196,7 @@ fun AppListScreenAppList(
 fun AppCard(
     modifier: Modifier = Modifier,
     app: AppDetails,
+    onClick: () -> Unit,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -169,7 +205,7 @@ fun AppCard(
             .fillMaxWidth()
             .height(128.dp)
             .clip(shape = RoundedCornerShape(16.dp))
-            .clickable(onClick = {})
+            .clickable(onClick = onClick)
             .padding(16.dp),
     ) {
         AsyncImage(
@@ -196,7 +232,7 @@ fun AppCard(
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = app.description,
+                text = app.shortDescription,
                 maxLines = 1,
                 style = MaterialTheme.typography.bodyMedium,
                 overflow = TextOverflow.Ellipsis,
@@ -217,6 +253,6 @@ fun AppCard(
 @Composable
 fun AppListScreenPreview() {
     AndroidCourseTheme {
-        AppListScreen(apps = AppLocalRepository().getApps())
+        AppListScreen(apps = AppLocalRepository().getApps(), onAppClick = {})
     }
 }

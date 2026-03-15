@@ -5,9 +5,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import io.orazzu.android_course.model.app.AppDetails
 import io.orazzu.android_course.presentation.layouts.CardLikeLayout
+import io.orazzu.android_course.presentation.preview_data.getApps
 import io.orazzu.android_course.presentation.screens.app_list.body.Body
 import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
-import io.orazzu.android_course.repository.local.AppLocalRepository
 
 @Composable
 fun AppListScreen(
@@ -27,6 +27,6 @@ fun AppListScreen(
 @Composable
 fun AppListScreenPreview() {
     AndroidCourseTheme {
-        AppListScreen(apps = AppLocalRepository().getApps(), onAppClick = {}, onLogoClick = {})
+        AppListScreen(apps = getApps(), onAppClick = {}, onLogoClick = {})
     }
 }

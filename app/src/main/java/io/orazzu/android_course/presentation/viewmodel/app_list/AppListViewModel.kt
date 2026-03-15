@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_list
+package io.orazzu.android_course.presentation.viewmodel.app_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -34,8 +34,4 @@ class AppListViewModel(
             _events.emit(AppListEvent.ShowSnackbar(R.string.AppList_logoClicked))
         }
     }
-}
-
-sealed interface AppListEvent {
-    data class ShowSnackbar(val messageId: Int) : AppListEvent
 }

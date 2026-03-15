@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_list
+package io.orazzu.android_course.presentation.viewmodel.app_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

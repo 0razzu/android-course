@@ -1,4 +1,4 @@
-package io.orazzu.android_course.ui.screens.app_list
+package io.orazzu.android_course.presentation.screens.app_list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -59,6 +60,7 @@ fun AppListScreenHeader(modifier: Modifier = Modifier) {
                     color = colorResource(R.color.white_25),
                     shape = RoundedCornerShape(12.dp),
                 )
+                .clip(shape = RoundedCornerShape(12.dp))
                 .clickable(onClick = {}),
             painter = painterResource(R.drawable.apps_40px),
             contentDescription = null,

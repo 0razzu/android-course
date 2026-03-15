@@ -1,4 +1,4 @@
-package io.orazzu.android_course.ui.theme
+package io.orazzu.android_course.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

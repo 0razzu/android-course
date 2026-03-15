@@ -1,4 +1,4 @@
-package io.orazzu.android_course.ui
+package io.orazzu.android_course.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,9 +9,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import io.orazzu.android_course.repository.AppRepository
 import io.orazzu.android_course.repository.local.AppLocalRepository
-import io.orazzu.android_course.ui.screens.app_details.AppDetailsScreen
-import io.orazzu.android_course.ui.screens.app_list.AppListScreen
-import io.orazzu.android_course.ui.theme.AndroidCourseTheme
+import io.orazzu.android_course.presentation.screens.app_details.AppDetailsScreen
+import io.orazzu.android_course.presentation.screens.app_list.AppListScreen
+import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
 
 class MainActivity(
     private val appRepository: AppRepository = AppLocalRepository(),

@@ -22,6 +22,7 @@
     <string name="AppCategory_SHOPPING">Shopping</string>
     <string name="AppCategory_UTILITIES">Utilities</string>
 
+    <string name="AppList_logoClicked">Logo clicked</string>
     <string name="AppDetailsDescription_showMore">Show more</string>
     <string name="AppDetailsDescription_showLess">Show less</string>
     <string name="InstallButton_install">Install</string>

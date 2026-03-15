@@ -23,6 +23,7 @@
     <string name="AppCategory_SHOPPING">Покупки</string>
     <string name="AppCategory_UTILITIES">Утилиты</string>
 
+    <string name="AppList_logoClicked">Тык на лого</string>
     <string name="AppDetailsDescription_showMore">Развернуть</string>
     <string name="AppDetailsDescription_showLess">Свернуть</string>
     <string name="InstallButton_install">Установить</string>

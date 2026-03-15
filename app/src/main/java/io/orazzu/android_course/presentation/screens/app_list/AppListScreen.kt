@@ -14,10 +14,11 @@ fun AppListScreen(
     modifier: Modifier = Modifier,
     apps: List<AppDetails>,
     onAppClick: (String) -> Unit,
+    onLogoClick: () -> Unit,
 ) {
     CardLikeLayout(
         modifier = modifier,
-        header = { AppListScreenHeader(modifier = modifier) },
+        header = { AppListScreenHeader(modifier = modifier, onLogoClick = onLogoClick) },
         body = { Body(modifier = modifier, apps = apps, onAppClick = onAppClick) },
     )
 }
@@ -26,6 +27,6 @@ fun AppListScreen(
 @Composable
 fun AppListScreenPreview() {
     AndroidCourseTheme {
-        AppListScreen(apps = AppLocalRepository().getApps(), onAppClick = {})
+        AppListScreen(apps = AppLocalRepository().getApps(), onAppClick = {}, onLogoClick = {})
     }
 }

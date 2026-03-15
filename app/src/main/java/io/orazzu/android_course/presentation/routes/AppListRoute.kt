@@ -9,6 +9,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.orazzu.android_course.presentation.screens.app_list.AppListScreen
@@ -16,6 +17,7 @@ import io.orazzu.android_course.presentation.viewmodel.app_list.AppListEvent
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModel
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModelFactory
 import io.orazzu.android_course.repository.local.AppLocalRepository
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -27,14 +29,19 @@ fun AppListRoute(
     )
 
     val apps by viewModel.state.collectAsState()
+
+    val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
     val ctx = LocalContext.current
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(viewModel) {
         viewModel.events.collect { event ->
             when (event) {
-                is AppListEvent.ShowSnackbar ->
-                    snackbarHostState.showSnackbar(ctx.resources.getString(event.messageId))
+                is AppListEvent.ShowSnackbar -> {
+                    scope.launch {
+                        snackbarHostState.showSnackbar(ctx.resources.getString(event.messageId))
+                    }
+                }
             }
         }
     }

@@ -20,6 +20,7 @@ import io.orazzu.android_course.R
 @Composable
 fun AppDetailsScreenHeader(
     modifier: Modifier = Modifier,
+    showShareButton: Boolean = true,
     onBackClick: () -> Unit,
 ) {
     Row(
@@ -41,18 +42,20 @@ fun AppDetailsScreenHeader(
             tint = colorResource(R.color.white),
         )
 
-        Icon(
-            modifier = modifier
-                .size(40.dp)
-                .background(
-                    color = colorResource(R.color.none),
-                    shape = RoundedCornerShape(12.dp),
-                )
-                .clip(shape = RoundedCornerShape(12.dp))
-                .clickable(onClick = {}),
-            painter = painterResource(R.drawable.share_40px),
-            contentDescription = null,
-            tint = colorResource(R.color.white),
-        )
+        if (showShareButton) {
+            Icon(
+                modifier = modifier
+                    .size(40.dp)
+                    .background(
+                        color = colorResource(R.color.none),
+                        shape = RoundedCornerShape(12.dp),
+                    )
+                    .clip(shape = RoundedCornerShape(12.dp))
+                    .clickable(onClick = {}),
+                painter = painterResource(R.drawable.share_40px),
+                contentDescription = null,
+                tint = colorResource(R.color.white),
+            )
+        }
     }
 }

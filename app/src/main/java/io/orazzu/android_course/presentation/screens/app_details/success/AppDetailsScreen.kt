@@ -1,13 +1,14 @@
-package io.orazzu.android_course.presentation.screens.app_details
+package io.orazzu.android_course.presentation.screens.app_details.success
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import io.orazzu.android_course.model.app.AppDetails
-import io.orazzu.android_course.repository.local.AppLocalRepository
 import io.orazzu.android_course.presentation.layouts.CardLikeLayout
-import io.orazzu.android_course.presentation.screens.app_details.body.Body
+import io.orazzu.android_course.presentation.screens.app_details.AppDetailsScreenHeader
+import io.orazzu.android_course.presentation.screens.app_details.success.body.Body
 import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
+import io.orazzu.android_course.repository.local.AppLocalRepository
 import kotlin.random.Random
 
 @Composable

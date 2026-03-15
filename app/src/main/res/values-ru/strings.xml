@@ -29,4 +29,6 @@
     <string name="InstallButton_install">Установить</string>
     <string name="AppDetailsScreenshots_screenshots">Скриншоты</string>
     <string name="AppDetailsScreenshots_screenshot">Скриншот</string>
+
+    <string name="AppDetailsErrorScreen_appNotFound">Приложение не найдено</string>
 </resources>

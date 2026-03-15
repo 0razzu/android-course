@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.routes
+package io.orazzu.android_course.presentation.routes
 
 import android.annotation.SuppressLint
 import androidx.compose.material3.Scaffold
@@ -11,8 +11,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.orazzu.android_course.presentation.viewmodel.app_list.AppListEvent
 import io.orazzu.android_course.presentation.screens.app_list.AppListScreen
+import io.orazzu.android_course.presentation.viewmodel.app_list.AppListEvent
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModel
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModelFactory
 import io.orazzu.android_course.repository.local.AppLocalRepository

@@ -7,22 +7,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import io.orazzu.android_course.repository.AppRepository
-import io.orazzu.android_course.repository.local.AppLocalRepository
-import io.orazzu.android_course.presentation.screens.app_details.AppDetailsScreen
-import io.orazzu.android_course.presentation.screens.routes.AppListRoute
+import io.orazzu.android_course.presentation.routes.AppDetailsRoute
+import io.orazzu.android_course.presentation.routes.AppListRoute
 import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
 
-class MainActivity(
-    private val appRepository: AppRepository = AppLocalRepository(),
-) : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AndroidCourseTheme {
                 val navController = rememberNavController()
-                val apps = appRepository.getApps()
 
                 NavHost(
                     navController = navController,
@@ -37,11 +32,8 @@ class MainActivity(
                     }
 
                     composable("app_details/{appId}") { backStackEntry ->
-                        val appId = backStackEntry.arguments?.getString("appId")
-                        val app = apps.first { it.id == appId }
-
-                        AppDetailsScreen(
-                            app = app,
+                        AppDetailsRoute(
+                            appId = backStackEntry.arguments?.getString("appId"),
                             onBackClick = { navController.popBackStack() },
                         )
                     }

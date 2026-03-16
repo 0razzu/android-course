@@ -10,12 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import io.orazzu.android_course.R
-import io.orazzu.android_course.model.app.AppDetails
+import io.orazzu.android_course.domain.app.App
 
 @Composable
 fun Body(
     modifier: Modifier = Modifier,
-    apps: List<AppDetails>,
+    apps: List<App>,
     onAppClick: (String) -> Unit,
 ) {
     LazyColumn(

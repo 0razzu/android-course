@@ -1,10 +1,10 @@
-package io.orazzu.android_course.model.app
+package io.orazzu.android_course.data.app_details
 
-data class AppDetails(
+data class AppDetailsDto(
     val id: String,
     val name: String,
     val developer: String,
-    val category: AppCategory,
+    val category: String,
     val ageRating: Int,
     val iconUrl: String,
     val screenshotUrlList: List<String>,

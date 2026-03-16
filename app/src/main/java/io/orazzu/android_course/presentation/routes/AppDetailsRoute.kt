@@ -4,13 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import io.orazzu.android_course.data.app_category.AppCategoryMapper
 import io.orazzu.android_course.presentation.screens.app_details.error.AppDetailsErrorScreen
 import io.orazzu.android_course.presentation.screens.app_details.loading.AppDetailsLoadingScreen
 import io.orazzu.android_course.presentation.screens.app_details.success.AppDetailsScreen
 import io.orazzu.android_course.presentation.viewmodel.app_details.AppDetailsUiState
 import io.orazzu.android_course.presentation.viewmodel.app_details.AppDetailsViewModel
 import io.orazzu.android_course.presentation.viewmodel.app_details.AppDetailsViewModelFactory
-import io.orazzu.android_course.repository.local.AppLocalRepository
+import io.orazzu.android_course.data.app_details.AppDetailsLocalRepo
+import io.orazzu.android_course.data.app_details.AppDetailsMapper
 
 @Composable
 fun AppDetailsRoute(
@@ -19,7 +21,7 @@ fun AppDetailsRoute(
 ) {
     val viewModel: AppDetailsViewModel = viewModel(
         factory = AppDetailsViewModelFactory(
-            AppLocalRepository(),
+            AppDetailsLocalRepo(AppDetailsMapper(AppCategoryMapper())),
             appId,
         ),
     )

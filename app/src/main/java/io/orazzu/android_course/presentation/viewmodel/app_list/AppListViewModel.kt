@@ -3,8 +3,8 @@ package io.orazzu.android_course.presentation.viewmodel.app_list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.orazzu.android_course.R
-import io.orazzu.android_course.model.app.AppDetails
-import io.orazzu.android_course.repository.AppRepository
+import io.orazzu.android_course.domain.app.App
+import io.orazzu.android_course.domain.app.AppRepo
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,10 +13,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class AppListViewModel(
-    private val repository: AppRepository,
+    private val repository: AppRepo,
 ) : ViewModel() {
-    private val _state = MutableStateFlow<List<AppDetails>>(emptyList())
-    val state: StateFlow<List<AppDetails>> = _state.asStateFlow()
+    private val _state = MutableStateFlow<List<App>>(emptyList())
+    val state: StateFlow<List<App>> = _state.asStateFlow()
 
     private val _events = MutableSharedFlow<AppListEvent>()
     val events = _events.asSharedFlow()
@@ -26,7 +26,9 @@ class AppListViewModel(
     }
 
     private fun loadApps() {
-        _state.value = repository.getApps()
+        viewModelScope.launch {
+            _state.value = repository.getApps()
+        }
     }
 
     fun onLogoClick() {

@@ -1,0 +1,15 @@
+package io.orazzu.android_course.domain.app_details
+
+import io.orazzu.android_course.domain.AppCategory
+
+data class AppDetails(
+    val id: String,
+    val name: String,
+    val developer: String,
+    val category: AppCategory,
+    val ageRating: Int,
+    val iconUrl: String,
+    val screenshotUrlList: List<String>,
+    val shortDescription: String,
+    val longDescription: String?,
+)

@@ -12,11 +12,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import io.orazzu.android_course.data.app.AppLocalRepo
+import io.orazzu.android_course.data.app.AppMapper
+import io.orazzu.android_course.data.app_category.AppCategoryMapper
 import io.orazzu.android_course.presentation.screens.app_list.AppListScreen
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListEvent
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModel
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModelFactory
-import io.orazzu.android_course.repository.local.AppLocalRepository
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -25,7 +27,7 @@ fun AppListRoute(
     onAppClick: (String) -> Unit,
 ) {
     val viewModel: AppListViewModel = viewModel(
-        factory = AppListViewModelFactory(AppLocalRepository()),
+        factory = AppListViewModelFactory(AppLocalRepo(AppMapper(AppCategoryMapper()))),
     )
 
     val apps by viewModel.state.collectAsState()

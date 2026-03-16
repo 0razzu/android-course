@@ -1,4 +1,4 @@
-package io.orazzu.android_course.model.app
+package io.orazzu.android_course.domain
 
 enum class AppCategory {
     APP,

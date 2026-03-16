@@ -1,9 +1,9 @@
 package io.orazzu.android_course.presentation.preview_data
 
-import io.orazzu.android_course.model.app.AppCategory
-import io.orazzu.android_course.model.app.AppDetails
+import io.orazzu.android_course.domain.AppCategory
+import io.orazzu.android_course.domain.app_details.AppDetails
 
-fun getApps(): List<AppDetails> = listOf(
+fun getAppDetails(): List<AppDetails> = listOf(
     AppDetails(
         id = "2q34rf",
         name = "Сбербанк Онлайн — с Салютом",

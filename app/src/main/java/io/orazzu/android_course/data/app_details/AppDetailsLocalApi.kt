@@ -1,20 +1,23 @@
-package io.orazzu.android_course.repository.local
+package io.orazzu.android_course.data.app_details
 
-import android.util.Log
-import io.orazzu.android_course.model.app.AppCategory
-import io.orazzu.android_course.model.app.AppDetails
-import io.orazzu.android_course.repository.AppRepository
+import kotlinx.coroutines.delay
+import kotlin.random.Random
 
-class AppLocalRepository : AppRepository {
-    override fun getApps(): List<AppDetails> {
-        Log.d(this.javaClass.simpleName, "Getting apps")
+class AppDetailsLocalApi {
+    suspend fun getAppDetails(id: String): AppDetailsDto {
+        delay(Random.nextLong(2000))
+        return storage[id] ?: throw NotFoundException("App details with id=$id not found")
+    }
 
-        return listOf(
-            AppDetails(
+    class NotFoundException(msg: String) : RuntimeException(msg)
+
+    companion object {
+        val storage = mapOf(
+            "2q34rf" to AppDetailsDto(
                 id = "2q34rf",
                 name = "Сбербанк Онлайн — с Салютом",
                 developer = "Сбер",
-                category = AppCategory.FINANCE,
+                category = "finance",
                 ageRating = 14,
                 iconUrl = "https://cdn-app.sberdevices.ru/asset/sites_240:q80/aHR0cHM6Ly9jZG4uc2JlcmRldmljZXMucnUvc3RhdGljL3NlcnZpY2VzL3RhcmdldC81ZDliOWFlNy0zMDVmLTRkNzgtOWY0NS01ZTZiOTU5N2JlOTAvZTNhZjU5NjQtOTNjMi00ODdhLWE4ODItNGU0NTY2MWI5ZmI5LnBuZw==",
                 screenshotUrlList = listOf(
@@ -36,11 +39,11 @@ class AppLocalRepository : AppRepository {
                 А ещё интерфейс приложения можно легко настроить под свои задачи: поменять местами разделы, скрыть неактуальное или добавить то, чем важно управлять сейчас. Изменить СберБанк Онлайн под настроение тоже возможно: достаточно выбрать фон приложения, тему и установить аватар.
             """.trimIndent(),
             ),
-            AppDetails(
+            "24rа2f" to AppDetailsDto(
                 id = "24rа2f",
                 name = "Яндекс.Браузер — с Алисой",
                 developer = "Яндекс",
-                category = AppCategory.UTILITIES,
+                category = "utilities",
                 ageRating = 0,
                 iconUrl = "https://play-lh.googleusercontent.com/CNo_xqkAu1TPcO6Y02JAVIE1-1IoF6VlEnUgIv7MPby4H52Jn54Iu_-tg69Z91n0QVxDyZCwijRV2AFZwizf_Q=s96",
                 screenshotUrlList = listOf(),
@@ -71,11 +74,11 @@ class AppLocalRepository : AppRepository {
                 Загружая программу, Вы принимаете условия Лицензионного соглашения https://yandex.ru/legal/browser_agreement/
             """.trimIndent(),
             ),
-            AppDetails(
+            "klj349" to AppDetailsDto(
                 id = "klj349",
                 name = "Почта Mail.ru",
                 developer = "VK",
-                category = AppCategory.UTILITIES,
+                category = "utilities",
                 ageRating = 0,
                 iconUrl = "https://play-lh.googleusercontent.com/Q6AOumT71kEeuc_E359gdspTzWGjWP3jzmNBMRbI7drhRHCtEwYD7VLw88l0QotoboC6CrgFuXg8pr4CtASG3g",
                 screenshotUrlList = listOf(),
@@ -103,33 +106,33 @@ class AppLocalRepository : AppRepository {
                 Mail — надёжный почтовый клиент и приложение со всеми сервисами для работы. Приложение совместимо с версиями Android 7.0 и старше. Подходит для работы с почтовыми ящиками Mail, Яндекс.Почта, Rambler, Gmail от Google, Yahoo, Hotmail, Microsoft Outlook и других сервисов, поддерживающих протоколы IMAP, POP и SMTP.
             """.trimIndent(),
             ),
-            AppDetails(
+            "274rgw" to AppDetailsDto(
                 id = "274rgw",
                 name = "Яндекс.Навигатор",
                 developer = "Яндекс",
-                category = AppCategory.MAPS,
+                category = "navigation",
                 ageRating = 0,
                 iconUrl = "https://play-lh.googleusercontent.com/aROhxD1HNPLqW1ZiQzCxhDmx700j2g1VGZ0DPDualQxATkCkUEOWWCxxq0BSnZ3fynEe",
                 screenshotUrlList = listOf(),
                 shortDescription = "Парковки и заправки — по пути",
                 longDescription = null,
             ),
-            AppDetails(
+            "34ie9c" to AppDetailsDto(
                 id = "34ie9c",
                 name = "Мой МТС",
                 developer = "МТС",
-                category = AppCategory.UTILITIES,
+                category = "utilities",
                 ageRating = 0,
                 iconUrl = "https://play-lh.googleusercontent.com/oO7fsxw5F8fItT4fScnFG9JSCghkoIbOibyx8WpHN8QReoeFKHNlIfLTvDO6BD7OSw",
                 screenshotUrlList = listOf(),
                 shortDescription = "Мой МТС — центр экосистемы МТС",
                 longDescription = null,
             ),
-            AppDetails(
+            "tyft6u" to AppDetailsDto(
                 id = "tyft6u",
                 name = "Яндекс — с Алисой",
                 developer = "Яндекс",
-                category = AppCategory.UTILITIES,
+                category = "utilities",
                 ageRating = 0,
                 iconUrl = "https://play-lh.googleusercontent.com/K1yQPVuQDv3x87tPgQGPsnqdoDVWssiLb7P2sjyr2_rjjJHOKgfIaqa6LgwFaqq6lp_DOy4ACCWvn_fJwWKjpQ",
                 screenshotUrlList = listOf(
@@ -176,33 +179,33 @@ class AppLocalRepository : AppRepository {
                 Загружая программу, Вы принимаете условия Лицензионного соглашения https://yandex.ru/legal/yaalice_mobile_agreement/ru/
             """.trimIndent(),
             ),
-            AppDetails(
+            "13er23" to AppDetailsDto(
                 id = "13er23",
                 name = "Some App",
                 developer = "Some Bank",
-                category = AppCategory.FINANCE,
+                category = "finance",
                 ageRating = 17,
                 iconUrl = "https://yavuzceliker.github.io/sample-images/image-7.jpg",
                 screenshotUrlList = listOf(),
                 shortDescription = "Just some",
                 longDescription = null,
             ),
-            AppDetails(
+            "43fr" to AppDetailsDto(
                 id = "43fr",
                 name = "One More App",
                 developer = "Someone",
-                category = AppCategory.EDUCATION,
+                category = "education",
                 ageRating = 0,
                 iconUrl = "https://yavuzceliker.github.io/sample-images/image-410.jpg",
                 screenshotUrlList = listOf(),
                 shortDescription = "Just another",
                 longDescription = null,
             ),
-            AppDetails(
+            "eg8u4a" to AppDetailsDto(
                 id = "eg8u4a",
                 name = "An App With a Crazy Long Name–Who in the World Ever Comes up With Such Blankets?",
                 developer = "Some Studio That Names Its Apps Like They’re Emo Songs–and Even Names Itself That Way",
-                category = AppCategory.ENTERTAINMENT,
+                category = "entertainment",
                 ageRating = 17,
                 iconUrl = "https://yavuzceliker.github.io/sample-images/image-910.jpg",
                 screenshotUrlList = listOf(),

@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.common
+package io.orazzu.android_course.presentation.screens.common
 
 import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
@@ -28,8 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import io.orazzu.android_course.R
-import io.orazzu.android_course.helpers.toString
 import io.orazzu.android_course.domain.app_details.AppDetails
+import io.orazzu.android_course.helpers.toString
 
 @Composable
 fun Header(modifier: Modifier = Modifier, app: AppDetails) {

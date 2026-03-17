@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.error
+package io.orazzu.android_course.presentation.screens.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 import io.orazzu.android_course.R
 
 @Composable
-fun Body(modifier: Modifier = Modifier) {
+fun ErrorBody(modifier: Modifier = Modifier, error: String) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -36,7 +36,7 @@ fun Body(modifier: Modifier = Modifier) {
         )
 
         Text(
-            text = stringResource(R.string.AppDetailsErrorScreen_appNotFound),
+            text = error,
             fontSize = 24.sp,
             style = MaterialTheme.typography.titleMedium,
             modifier = modifier,
@@ -51,6 +51,6 @@ fun Body(modifier: Modifier = Modifier) {
     widthDp = 400,
 )
 @Composable
-fun BodyPreview() {
-    Body()
+fun ErrorBodyPreview() {
+    ErrorBody(error = stringResource(R.string.unknownError))
 }

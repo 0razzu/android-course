@@ -1,6 +1,5 @@
 package io.orazzu.android_course.data.app
 
-import io.orazzu.android_course.data.app.AppDto
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 

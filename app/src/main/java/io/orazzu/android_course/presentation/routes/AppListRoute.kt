@@ -16,7 +16,9 @@ import io.orazzu.android_course.data.app.AppLocalRepo
 import io.orazzu.android_course.data.app.AppMapper
 import io.orazzu.android_course.data.app_category.AppCategoryMapper
 import io.orazzu.android_course.presentation.screens.app_list.AppListScreen
+import io.orazzu.android_course.presentation.screens.app_list.BodyType
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListEvent
+import io.orazzu.android_course.presentation.viewmodel.app_list.AppListUiState
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModel
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModelFactory
 import kotlinx.coroutines.launch
@@ -30,7 +32,7 @@ fun AppListRoute(
         factory = AppListViewModelFactory(AppLocalRepo(AppMapper(AppCategoryMapper()))),
     )
 
-    val apps by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsState()
 
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -52,7 +54,11 @@ fun AppListRoute(
         snackbarHost = { SnackbarHost(snackbarHostState) },
     ) {
         AppListScreen(
-            apps = apps,
+            body = when (state) {
+                is AppListUiState.Loading -> BodyType.Loading
+                is AppListUiState.Success -> BodyType.WithApps((state as AppListUiState.Success).apps)
+                is AppListUiState.Error -> BodyType.Error((state as AppListUiState.Error).error)
+            },
             onAppClick = onAppClick,
             onLogoClick = viewModel::onLogoClick,
         )

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RuStore</string>
+    <string name="unknownError">Неизвестная Ошибка</string>
 
     <string name="AppCategory_APP">Приложения</string>
     <string name="AppCategory_GAME">Игры</string>

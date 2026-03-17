@@ -3,7 +3,8 @@ package io.orazzu.android_course.presentation.viewmodel.app_details
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.orazzu.android_course.data.app_details.AppDetailsLocalApi
+import io.orazzu.android_course.domain.DomainError
+import io.orazzu.android_course.domain.DomainException
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,7 +24,7 @@ class AppDetailsViewModel(
 
     private fun load() {
         if (appId == null) {
-            _state.value = AppDetailsUiState.Error
+            _state.value = AppDetailsUiState.Error(DomainError.UNKNOWN)
             return
         }
 
@@ -31,14 +32,14 @@ class AppDetailsViewModel(
             try {
                 val app = repository.getAppDetails(appId)
                 _state.value = AppDetailsUiState.Success(app)
-            } catch (e: AppDetailsLocalApi.NotFoundException) {
+            } catch (e: DomainException) {
                 Log.w(
                     this@AppDetailsViewModel.javaClass.simpleName,
                     "Failed getting app details",
                     e,
                 )
 
-                _state.value = AppDetailsUiState.Error
+                _state.value = AppDetailsUiState.Error(e.error)
             }
         }
     }

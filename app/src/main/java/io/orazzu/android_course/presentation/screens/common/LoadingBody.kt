@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.loading
+package io.orazzu.android_course.presentation.screens.common
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import io.orazzu.android_course.R
 
 @Composable
-fun Body(modifier: Modifier = Modifier) {
+fun LoadingBody(modifier: Modifier = Modifier) {
     val infiniteTransition = rememberInfiniteTransition(label = "rotation")
     val rotation by infiniteTransition.animateFloat(
         initialValue = 0f,
@@ -59,6 +59,6 @@ fun Body(modifier: Modifier = Modifier) {
     widthDp = 400,
 )
 @Composable
-fun BodyPreview() {
-    Body()
+fun LoadingBodyPreview() {
+    LoadingBody()
 }

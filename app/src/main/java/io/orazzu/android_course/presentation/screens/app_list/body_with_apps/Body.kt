@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_list.body
+package io.orazzu.android_course.presentation.screens.app_list.body_with_apps
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding

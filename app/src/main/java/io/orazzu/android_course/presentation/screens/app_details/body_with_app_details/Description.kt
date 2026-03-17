@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -12,7 +13,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -37,6 +37,7 @@ fun Description(
             paragraphs.forEach { paragraph ->
                 Text(
                     text = paragraph,
+                    color = colorScheme.onSurface,
                     fontSize = 16.sp,
                     style = MaterialTheme.typography.bodyMedium,
                     overflow = TextOverflow.Ellipsis,
@@ -45,6 +46,7 @@ fun Description(
         } else {
             Text(
                 text = text,
+                color = colorScheme.onSurface,
                 fontSize = 16.sp,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 5,
@@ -57,7 +59,7 @@ fun Description(
                 text = if (expanded)
                     stringResource(R.string.AppDetailsDescription_showLess) else
                     stringResource(R.string.AppDetailsDescription_showMore),
-                color = colorResource(R.color.purple_700),
+                color = colorScheme.tertiary,
                 modifier = modifier.clickable {
                     expanded = !expanded
                 }

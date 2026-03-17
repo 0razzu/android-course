@@ -1,57 +1,51 @@
 package io.orazzu.android_course.presentation.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+    primary = Color.Purple500,
     onPrimary = Color.White,
+    onPrimaryContainer = Color.White25,
+    secondary = Color.Purple700,
     onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    onSecondaryFixed = Color.Gray400,
+    tertiary = Color.Purple700,
+    surface = Color.White,
+    onSurface = Color.Black,
+    onSurfaceVariant = Color.Gray400,
+    inverseOnSurface = Color.Gray600,
+    surfaceDim = Color.Gray200,
+    onError = Color.Yellow700,
+)
+
+private val DarkColorScheme = darkColorScheme(
+    primary = Color.Purple500,
+    onPrimary = Color.White,
+    onPrimaryContainer = Color.White25,
+    secondary = Color.Purple700,
+    onSecondary = Color.White,
+    onSecondaryFixed = Color.Gray600,
+    tertiary = Color.Purple300,
+    surface = Color.Black,
+    onSurface = Color.White,
+    onSurfaceVariant = Color.Gray600,
+    inverseOnSurface = Color.Gray400,
+    surfaceDim = Color.Gray800,
+    onError = Color.Yellow700,
 )
 
 @Composable
 fun AndroidCourseTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme,
         typography = Typography,
-        content = content
+        content = content,
     )
 }

@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.common
+package io.orazzu.android_course.presentation.screens.app_details.body_with_app_details
 
 import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -47,6 +47,7 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
         ) {
             Text(
                 text = app.name,
+                color = colorScheme.onSurface,
                 fontSize = 24.sp,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = modifier.fillMaxWidth(),
@@ -66,10 +67,10 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                 modifier = Modifier
                     .size(120.dp)
                     .clip(RoundedCornerShape(28.dp))
-                    .background(colorResource(R.color.gray_400))
+                    .background(colorScheme.onSurfaceVariant)
                     .border(
                         width = .5.dp,
-                        color = colorResource(R.color.gray_400),
+                        color = colorScheme.onSurfaceVariant,
                         shape = RoundedCornerShape(28.dp),
                     ),
                 contentScale = ContentScale.Crop,
@@ -83,7 +84,7 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                     text = app.category.toString(LocalContext.current),
                     maxLines = 1,
                     style = MaterialTheme.typography.labelSmall,
-                    color = colorResource(R.color.gray_600),
+                    color = colorScheme.inverseOnSurface,
                     overflow = TextOverflow.Ellipsis,
                     modifier = modifier.fillMaxWidth(),
                 )
@@ -96,10 +97,11 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                         modifier = modifier.size(20.dp),
                         painter = painterResource(R.drawable.person_book_20px),
                         contentDescription = null,
-                        tint = colorResource(R.color.black),
+                        tint = colorScheme.onSurface,
                     )
                     Text(
                         text = app.developer,
+                        color = colorScheme.onSurface,
                         fontSize = 18.sp,
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = modifier
@@ -113,7 +115,7 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                     fontSize = 16.sp,
                     maxLines = 1,
                     style = MaterialTheme.typography.labelSmall,
-                    color = colorResource(R.color.gray_600),
+                    color = colorScheme.inverseOnSurface,
                 )
             }
         }

@@ -9,13 +9,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
-import io.orazzu.android_course.R
 
 @Composable
 fun CardLikeLayout(
@@ -25,7 +24,7 @@ fun CardLikeLayout(
 ) {
     Column(
         modifier = modifier
-            .background(colorResource(R.color.purple_500))
+            .background(colorScheme.primary)
             .fillMaxSize(),
     ) {
         Box(
@@ -61,7 +60,7 @@ fun CardLikeLayout(
                         bottomEnd = 0.dp,
                     )
                 )
-                .background(color = colorResource(R.color.white)),
+                .background(color = colorScheme.surface),
         ) {
             body()
         }

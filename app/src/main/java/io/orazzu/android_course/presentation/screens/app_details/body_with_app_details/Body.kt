@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.orazzu.android_course.domain.app_details.AppDetails
-import io.orazzu.android_course.presentation.screens.common.Header
 
 @Composable
 fun Body(modifier: Modifier = Modifier, app: AppDetails) {

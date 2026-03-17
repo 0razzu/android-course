@@ -5,11 +5,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
-import io.orazzu.android_course.R
 import io.orazzu.android_course.domain.app.App
 
 @Composable
@@ -26,7 +25,7 @@ fun Body(
             if (i < apps.lastIndex) {
                 HorizontalDivider(
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    color = colorResource(R.color.gray_200),
+                    color = colorScheme.surfaceDim,
                     thickness = 1.dp,
                 )
             }

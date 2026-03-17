@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import io.orazzu.android_course.R
 import io.orazzu.android_course.domain.app_details.AppDetails
-import io.orazzu.android_course.helpers.toString
+import io.orazzu.android_course.presentation.helpers.toString
 
 @Composable
 fun Header(modifier: Modifier = Modifier, app: AppDetails) {

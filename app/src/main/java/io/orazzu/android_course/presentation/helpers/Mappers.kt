@@ -1,4 +1,4 @@
-package io.orazzu.android_course.helpers
+package io.orazzu.android_course.presentation.helpers
 
 import android.content.Context
 import io.orazzu.android_course.domain.AppCategory

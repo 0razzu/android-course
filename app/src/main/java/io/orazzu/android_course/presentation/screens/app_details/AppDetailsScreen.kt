@@ -8,9 +8,9 @@ import io.orazzu.android_course.R
 import io.orazzu.android_course.domain.DomainError
 import io.orazzu.android_course.presentation.layouts.CardLikeLayout
 import io.orazzu.android_course.presentation.preview_data.getAppDetails
+import io.orazzu.android_course.presentation.screens.app_details.body_with_app_details.Body
 import io.orazzu.android_course.presentation.screens.common.ErrorBody
 import io.orazzu.android_course.presentation.screens.common.LoadingBody
-import io.orazzu.android_course.presentation.screens.app_details.body_with_app_details.Body
 import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
 import kotlin.random.Random
 

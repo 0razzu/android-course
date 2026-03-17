@@ -1,10 +1,10 @@
 package io.orazzu.android_course.presentation.viewmodel.app_list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.orazzu.android_course.R
-import io.orazzu.android_course.domain.DomainException
+import io.orazzu.android_course.domain.DomainResult
+import io.orazzu.android_course.domain.app.App
 import io.orazzu.android_course.domain.app.AppRepo
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,17 +28,9 @@ class AppListViewModel(
 
     private fun loadApps() {
         viewModelScope.launch {
-            try {
-                val apps = repository.getApps()
-                _state.value = AppListUiState.Success(apps)
-            } catch (e: DomainException) {
-                Log.w(
-                    this@AppListViewModel.javaClass.simpleName,
-                    "Failed getting app details",
-                    e,
-                )
-
-                _state.value = AppListUiState.Error(e.error)
+            _state.value = when (val result = repository.getApps()) {
+                is DomainResult.Success<List<App>> -> AppListUiState.Success(result.data)
+                is DomainResult.Failure -> AppListUiState.Error(result.error)
             }
         }
     }

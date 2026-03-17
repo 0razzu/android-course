@@ -1,10 +1,10 @@
 package io.orazzu.android_course.presentation.viewmodel.app_details
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.orazzu.android_course.domain.DomainError
-import io.orazzu.android_course.domain.DomainException
+import io.orazzu.android_course.domain.DomainResult
+import io.orazzu.android_course.domain.app_details.AppDetails
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,17 +29,9 @@ class AppDetailsViewModel(
         }
 
         viewModelScope.launch {
-            try {
-                val app = repository.getAppDetails(appId)
-                _state.value = AppDetailsUiState.Success(app)
-            } catch (e: DomainException) {
-                Log.w(
-                    this@AppDetailsViewModel.javaClass.simpleName,
-                    "Failed getting app details",
-                    e,
-                )
-
-                _state.value = AppDetailsUiState.Error(e.error)
+            _state.value = when (val result = repository.getAppDetails(appId)) {
+                is DomainResult.Success<AppDetails> -> AppDetailsUiState.Success(result.data)
+                is DomainResult.Failure -> AppDetailsUiState.Error(result.error)
             }
         }
     }

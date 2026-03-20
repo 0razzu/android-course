@@ -1,8 +1,9 @@
 package io.orazzu.android_course.data.app_category
 
 import io.orazzu.android_course.domain.AppCategory
+import javax.inject.Inject
 
-class AppCategoryMapper {
+class AppCategoryMapper @Inject constructor() {
     fun toDomain(dto: String): AppCategory = when (dto.lowercase()) {
         "app" -> AppCategory.APP
         "game" -> AppCategory.GAME

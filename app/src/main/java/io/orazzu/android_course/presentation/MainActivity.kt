@@ -4,13 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import io.orazzu.android_course.presentation.routes.AppDetailsRoute
 import io.orazzu.android_course.presentation.routes.AppListRoute
 import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
+import io.orazzu.android_course.presentation.viewmodel.app_details.AppDetailsViewModel
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +36,15 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable("app_details/{appId}") { backStackEntry ->
+                        val viewModel: AppDetailsViewModel = hiltViewModel()
                         AppDetailsRoute(
-                            appId = backStackEntry.arguments?.getString("appId"),
-                            onBackClick = { navController.popBackStack(route = "app_list", inclusive = false, saveState = false) },
+                            onBackClick = {
+                                navController.popBackStack(
+                                    route = "app_list",
+                                    inclusive = false,
+                                    saveState = false,
+                                )
+                            },
                         )
                     }
                 }

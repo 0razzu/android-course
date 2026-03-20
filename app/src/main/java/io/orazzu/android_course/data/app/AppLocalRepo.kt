@@ -9,9 +9,9 @@ import javax.inject.Inject
 
 class AppLocalRepo @Inject constructor(
     private val appMapper: AppMapper,
+    private val api: AppLocalApi,
 ) : AppRepo {
     private val logTag = this.javaClass.simpleName
-    private val api = AppLocalApi()
 
     override suspend fun getApps(): DomainResult<List<App>> {
         Log.d(logTag, "Getting apps")

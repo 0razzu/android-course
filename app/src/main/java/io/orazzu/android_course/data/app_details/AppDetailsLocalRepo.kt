@@ -9,9 +9,9 @@ import javax.inject.Inject
 
 class AppDetailsLocalRepo @Inject constructor(
     private val appDetailsMapper: AppDetailsMapper,
+    private val api: AppDetailsLocalApi,
 ) : AppDetailsRepo {
     private val logTag = this.javaClass.simpleName
-    private val api = AppDetailsLocalApi()
 
     override suspend fun getAppDetails(id: String): DomainResult<AppDetails> {
         Log.d(logTag, "Getting app $id")

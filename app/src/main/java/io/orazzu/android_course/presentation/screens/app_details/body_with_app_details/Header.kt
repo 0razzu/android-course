@@ -67,10 +67,10 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                 modifier = Modifier
                     .size(120.dp)
                     .clip(RoundedCornerShape(28.dp))
-                    .background(colorScheme.onSurfaceVariant)
+                    .background(colorScheme.onSecondaryContainer)
                     .border(
                         width = .5.dp,
-                        color = colorScheme.onSurfaceVariant,
+                        color = colorScheme.onSecondaryContainer,
                         shape = RoundedCornerShape(28.dp),
                     ),
                 contentScale = ContentScale.Crop,
@@ -84,7 +84,7 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                     text = app.category.toString(LocalContext.current),
                     maxLines = 1,
                     style = MaterialTheme.typography.labelSmall,
-                    color = colorScheme.inverseOnSurface,
+                    color = colorScheme.onSurfaceVariant,
                     overflow = TextOverflow.Ellipsis,
                     modifier = modifier.fillMaxWidth(),
                 )
@@ -115,7 +115,7 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                     fontSize = 16.sp,
                     maxLines = 1,
                     style = MaterialTheme.typography.labelSmall,
-                    color = colorScheme.inverseOnSurface,
+                    color = colorScheme.onSurfaceVariant,
                 )
             }
         }

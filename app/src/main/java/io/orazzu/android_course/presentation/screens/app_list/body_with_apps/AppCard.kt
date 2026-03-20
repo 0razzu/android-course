@@ -49,10 +49,10 @@ fun AppCard(
             modifier = Modifier
                 .size(72.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(colorScheme.onSurfaceVariant)
+                .background(colorScheme.onSecondaryContainer)
                 .border(
                     width = .5.dp,
-                    color = colorScheme.onSurfaceVariant,
+                    color = colorScheme.onSecondaryContainer,
                     shape = RoundedCornerShape(16.dp),
                 ),
             contentScale = ContentScale.Crop,
@@ -78,7 +78,7 @@ fun AppCard(
                 text = app.category.toString(LocalContext.current),
                 maxLines = 1,
                 style = MaterialTheme.typography.labelSmall,
-                color = colorScheme.inverseOnSurface,
+                color = colorScheme.onSurfaceVariant,
                 overflow = TextOverflow.Ellipsis,
                 modifier = modifier.padding(top = 8.dp),
             )

@@ -25,7 +25,7 @@ fun Body(
             if (i < apps.lastIndex) {
                 HorizontalDivider(
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    color = colorScheme.surfaceDim,
+                    color = colorScheme.outlineVariant,
                     thickness = 1.dp,
                 )
             }

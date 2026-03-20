@@ -27,7 +27,7 @@ fun InstallButton(modifier: Modifier = Modifier) {
         colors = ButtonColors(
             containerColor = colorScheme.secondary,
             contentColor = colorScheme.onSecondary,
-            disabledContainerColor = colorScheme.onSecondaryFixed,
+            disabledContainerColor = colorScheme.onSecondaryContainer,
             disabledContentColor = colorScheme.onSecondary,
         ),
     ) {

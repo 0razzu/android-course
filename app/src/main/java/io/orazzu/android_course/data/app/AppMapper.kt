@@ -2,8 +2,11 @@ package io.orazzu.android_course.data.app
 
 import io.orazzu.android_course.data.app_category.AppCategoryMapper
 import io.orazzu.android_course.domain.app.App
+import javax.inject.Inject
 
-class AppMapper(private val appCategoryMapper: AppCategoryMapper) {
+class AppMapper @Inject constructor(
+    private val appCategoryMapper: AppCategoryMapper,
+) {
     fun toDomain(dto: AppDto): App = App(
         id = dto.id,
         name = dto.name,

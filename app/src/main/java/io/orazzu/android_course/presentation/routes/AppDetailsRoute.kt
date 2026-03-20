@@ -4,10 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import io.orazzu.android_course.data.app_category.AppCategoryMapper
-import io.orazzu.android_course.data.app_details.AppDetailsLocalRepo
-import io.orazzu.android_course.data.app_details.AppDetailsMapper
 import io.orazzu.android_course.presentation.screens.app_details.AppDetailsScreen
 import io.orazzu.android_course.presentation.screens.app_details.BodyType
 import io.orazzu.android_course.presentation.viewmodel.app_details.AppDetailsUiState

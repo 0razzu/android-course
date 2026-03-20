@@ -11,16 +11,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
-import io.orazzu.android_course.data.app.AppLocalRepo
-import io.orazzu.android_course.data.app.AppMapper
-import io.orazzu.android_course.data.app_category.AppCategoryMapper
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import io.orazzu.android_course.presentation.screens.app_list.AppListScreen
 import io.orazzu.android_course.presentation.screens.app_list.BodyType
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListEvent
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListUiState
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModel
-import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModelFactory
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -28,9 +24,7 @@ import kotlinx.coroutines.launch
 fun AppListRoute(
     onAppClick: (String) -> Unit,
 ) {
-    val viewModel: AppListViewModel = viewModel(
-        factory = AppListViewModelFactory(AppLocalRepo(AppMapper(AppCategoryMapper()))),
-    )
+    val viewModel: AppListViewModel = hiltViewModel()
 
     val state by viewModel.state.collectAsState()
 

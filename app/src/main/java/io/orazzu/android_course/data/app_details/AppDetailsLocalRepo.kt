@@ -17,7 +17,7 @@ class AppDetailsLocalRepo(private val appDetailsMapper: AppDetailsMapper) : AppD
             val appDetailsDto = api.getAppDetails(id)
             DomainResult.Success(appDetailsMapper.toDomain(appDetailsDto))
         } catch (e: AppDetailsLocalApi.NotFoundException) {
-            Log.w(logTag, "App $id not found")
+            Log.w(logTag, "App $id not found", e)
 
             DomainResult.Failure(DomainError.NOT_FOUND)
         } catch (e: Exception) {

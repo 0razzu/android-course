@@ -7,7 +7,6 @@ import io.orazzu.android_course.domain.DomainResult
 import io.orazzu.android_course.domain.app.App
 import io.orazzu.android_course.domain.app.AppRepo
 import okio.IOException
-import java.net.ConnectException
 import javax.inject.Inject
 
 class AppEduCatalogRepo @Inject constructor(

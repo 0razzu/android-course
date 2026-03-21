@@ -3,6 +3,7 @@ package io.orazzu.android_course.presentation.screens.app_details.body_with_app_
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -41,6 +42,7 @@ fun Screenshots(modifier: Modifier = Modifier, screenshotUrls: List<String>) {
                     model = screenshotUrls[index],
                     contentDescription = "${stringResource(R.string.AppDetailsScreenshots_screenshot)} $index",
                     modifier = Modifier
+                        .defaultMinSize(minWidth = 150.dp)
                         .height(220.dp)
                         .background(colorScheme.onSecondaryContainer),
                     contentScale = ContentScale.Crop,

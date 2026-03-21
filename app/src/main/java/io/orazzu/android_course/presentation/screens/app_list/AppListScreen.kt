@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.orazzu.android_course.R
+import io.orazzu.android_course.domain.DomainError
 import io.orazzu.android_course.presentation.layouts.CardLikeLayout
 import io.orazzu.android_course.presentation.preview_data.getApps
 import io.orazzu.android_course.presentation.screens.app_list.body_with_apps.Body
@@ -35,7 +36,10 @@ fun AppListScreen(
                 is BodyType.Error -> {
                     ErrorBody(
                         modifier = modifier,
-                        error = stringResource(R.string.unknownError),
+                        error = when (body.error) {
+                            DomainError.CONNECTION_ERROR -> stringResource(R.string.connectionError)
+                            else -> stringResource(R.string.unknownError)
+                        },
                     )
                 }
             }

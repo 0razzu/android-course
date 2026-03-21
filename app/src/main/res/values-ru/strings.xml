@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RuStore</string>
+    <string name="connectionError">Ошибка соединения</string>
     <string name="unknownError">Неизвестная ошибка</string>
 
     <string name="AppCategory_APP">Приложения</string>

@@ -6,6 +6,8 @@ import io.orazzu.android_course.domain.DomainError
 import io.orazzu.android_course.domain.DomainResult
 import io.orazzu.android_course.domain.app.App
 import io.orazzu.android_course.domain.app.AppRepo
+import okio.IOException
+import java.net.ConnectException
 import javax.inject.Inject
 
 class AppEduCatalogRepo @Inject constructor(
@@ -20,6 +22,10 @@ class AppEduCatalogRepo @Inject constructor(
         return try {
             val appDtos = api.getCatalog()
             DomainResult.Success(appDtos.map { appMapper.toDomain(it) })
+        } catch (e: IOException) {
+            Log.e(logTag, "Connection error while getting apps", e)
+
+            DomainResult.Failure(DomainError.CONNECTION_ERROR)
         } catch (e: Exception) {
             Log.e(logTag, "Unexpected exception while getting apps", e)
 

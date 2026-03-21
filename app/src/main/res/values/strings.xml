@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">EnStore</string>
+    <string name="connectionError">Connection error</string>
     <string name="unknownError">Unknown error</string>
 
     <string name="AppCategory_APP">Apps</string>

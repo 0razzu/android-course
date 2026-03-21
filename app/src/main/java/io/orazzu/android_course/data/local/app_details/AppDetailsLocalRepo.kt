@@ -1,4 +1,4 @@
-package io.orazzu.android_course.data.app_details
+package io.orazzu.android_course.data.local.app_details
 
 import android.util.Log
 import io.orazzu.android_course.domain.DomainError
@@ -8,7 +8,7 @@ import io.orazzu.android_course.domain.app_details.AppDetailsRepo
 import javax.inject.Inject
 
 class AppDetailsLocalRepo @Inject constructor(
-    private val appDetailsMapper: AppDetailsMapper,
+    private val appDetailsMapper: AppDetailsLocalMapper,
     private val api: AppDetailsLocalApi,
 ) : AppDetailsRepo {
     private val logTag = this.javaClass.simpleName

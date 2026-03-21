@@ -1,6 +1,6 @@
-package io.orazzu.android_course.data.app_details
+package io.orazzu.android_course.data.local.app_details
 
-data class AppDetailsDto(
+data class AppDetailsLocalDto(
     val id: String,
     val name: String,
     val developer: String,

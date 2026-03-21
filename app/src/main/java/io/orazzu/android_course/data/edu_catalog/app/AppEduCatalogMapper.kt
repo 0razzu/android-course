@@ -1,8 +1,6 @@
 package io.orazzu.android_course.data.edu_catalog.app
 
 import io.orazzu.android_course.data.edu_catalog.app_category.AppCategoryEduCatalogMapper
-import io.orazzu.android_course.data.local.app.AppLocalDto
-import io.orazzu.android_course.data.local.app_category.AppCategoryLocalMapper
 import io.orazzu.android_course.domain.app.App
 import javax.inject.Inject
 

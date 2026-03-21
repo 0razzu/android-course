@@ -15,12 +15,13 @@ enum class AppCategory {
     MUSIC,
     NEWS,
     PHOTOGRAPHY,
-    PHOTOGRAPHY_AND_VIDEO,
+    PHOTO_AND_VIDEO,
     PRODUCTIVITY,
     SHOPPING,
     SOCIAL,
     SPORTS,
     TRAVEL,
     UTILITIES,
-    VIDEO;
+    VIDEO,
+    WEATHER;
 }

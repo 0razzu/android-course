@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.orazzu.android_course.data.local.app.AppLocalRepo
+import io.orazzu.android_course.data.edu_catalog.app.AppEduCatalogRepo
 import io.orazzu.android_course.data.local.app_details.AppDetailsLocalRepo
 import io.orazzu.android_course.domain.app.AppRepo
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
@@ -16,5 +16,5 @@ abstract class RepositoryModule {
     abstract fun bindAppDetailsRepo(impl: AppDetailsLocalRepo): AppDetailsRepo
 
     @Binds
-    abstract fun bindAppRepo(impl: AppLocalRepo): AppRepo
+    abstract fun bindAppRepo(impl: AppEduCatalogRepo): AppRepo
 }

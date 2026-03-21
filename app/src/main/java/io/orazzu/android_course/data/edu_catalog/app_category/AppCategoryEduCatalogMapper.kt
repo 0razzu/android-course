@@ -16,11 +16,12 @@ class AppCategoryEduCatalogMapper @Inject constructor() {
         "образ жизни" -> AppCategory.LIFESTYLE
         "образование" -> AppCategory.EDUCATION
         "общение" -> AppCategory.SOCIAL
+        "погода" -> AppCategory.WEATHER
         "производительность" -> AppCategory.PRODUCTIVITY
         "развлечения" -> AppCategory.ENTERTAINMENT
         "утилиты" -> AppCategory.UTILITIES
         "финансы" -> AppCategory.FINANCE
-        "фото и видео" -> AppCategory.PHOTOGRAPHY_AND_VIDEO
+        "фото и видео" -> AppCategory.PHOTO_AND_VIDEO
         "шопинг" -> AppCategory.SHOPPING
         else -> throw IllegalArgumentException("Unknown app category: $dto")
     }

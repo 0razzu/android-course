@@ -1,18 +1,18 @@
-package io.orazzu.android_course.data.local.app
+package io.orazzu.android_course.data.mock.app
 
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 import kotlin.random.Random
 
-class AppLocalApi @Inject constructor() {
-    suspend fun getApps(): List<AppLocalDto> {
+class AppMockApi @Inject constructor() {
+    suspend fun getApps(): List<AppMockDto> {
         delay(Random.nextLong(2000))
         return storage
     }
 
     companion object {
         val storage = listOf(
-            AppLocalDto(
+            AppMockDto(
                 id = "2q34rf",
                 name = "Сбербанк Онлайн — с Салютом",
                 category = "finance",
@@ -20,7 +20,7 @@ class AppLocalApi @Inject constructor() {
                 iconUrl = "https://cdn-app.sberdevices.ru/asset/sites_240:q80/aHR0cHM6Ly9jZG4uc2JlcmRldmljZXMucnUvc3RhdGljL3NlcnZpY2VzL3RhcmdldC81ZDliOWFlNy0zMDVmLTRkNzgtOWY0NS01ZTZiOTU5N2JlOTAvZTNhZjU5NjQtOTNjMi00ODdhLWE4ODItNGU0NTY2MWI5ZmI5LnBuZw==",
                 shortDescription = "Больше чем банк",
             ),
-            AppLocalDto(
+            AppMockDto(
                 id = "24rа2f",
                 name = "Яндекс.Браузер — с Алисой",
                 category = "utilities",
@@ -28,7 +28,7 @@ class AppLocalApi @Inject constructor() {
                 iconUrl = "https://play-lh.googleusercontent.com/CNo_xqkAu1TPcO6Y02JAVIE1-1IoF6VlEnUgIv7MPby4H52Jn54Iu_-tg69Z91n0QVxDyZCwijRV2AFZwizf_Q=s96",
                 shortDescription = "Быстрый и безопасный браузер",
             ),
-            AppLocalDto(
+            AppMockDto(
                 id = "klj349",
                 name = "Почта Mail.ru",
                 category = "utilities",
@@ -36,7 +36,7 @@ class AppLocalApi @Inject constructor() {
                 iconUrl = "https://play-lh.googleusercontent.com/Q6AOumT71kEeuc_E359gdspTzWGjWP3jzmNBMRbI7drhRHCtEwYD7VLw88l0QotoboC6CrgFuXg8pr4CtASG3g",
                 shortDescription = "Почтовый клиент для любых ящиков",
             ),
-            AppLocalDto(
+            AppMockDto(
                 id = "274rgw",
                 name = "Яндекс.Навигатор",
                 category = "navigation",
@@ -44,7 +44,7 @@ class AppLocalApi @Inject constructor() {
                 iconUrl = "https://play-lh.googleusercontent.com/aROhxD1HNPLqW1ZiQzCxhDmx700j2g1VGZ0DPDualQxATkCkUEOWWCxxq0BSnZ3fynEe",
                 shortDescription = "Парковки и заправки — по пути",
             ),
-            AppLocalDto(
+            AppMockDto(
                 id = "34ie9c",
                 name = "Мой МТС",
                 category = "utilities",
@@ -52,7 +52,7 @@ class AppLocalApi @Inject constructor() {
                 iconUrl = "https://play-lh.googleusercontent.com/oO7fsxw5F8fItT4fScnFG9JSCghkoIbOibyx8WpHN8QReoeFKHNlIfLTvDO6BD7OSw",
                 shortDescription = "Мой МТС — центр экосистемы МТС",
             ),
-            AppLocalDto(
+            AppMockDto(
                 id = "tyft6u",
                 name = "Яндекс — с Алисой",
                 category = "utilities",
@@ -60,7 +60,7 @@ class AppLocalApi @Inject constructor() {
                 iconUrl = "https://play-lh.googleusercontent.com/K1yQPVuQDv3x87tPgQGPsnqdoDVWssiLb7P2sjyr2_rjjJHOKgfIaqa6LgwFaqq6lp_DOy4ACCWvn_fJwWKjpQ",
                 shortDescription = "Яндекс — поиск всегда под рукой",
             ),
-            AppLocalDto(
+            AppMockDto(
                 id = "13er23",
                 name = "Some App",
                 category = "finance",
@@ -68,7 +68,7 @@ class AppLocalApi @Inject constructor() {
                 iconUrl = "https://yavuzceliker.github.io/sample-images/image-7.jpg",
                 shortDescription = "Just some",
             ),
-            AppLocalDto(
+            AppMockDto(
                 id = "43fr",
                 name = "One More App",
                 category = "education",
@@ -76,7 +76,7 @@ class AppLocalApi @Inject constructor() {
                 iconUrl = "https://yavuzceliker.github.io/sample-images/image-410.jpg",
                 shortDescription = "Just another",
             ),
-            AppLocalDto(
+            AppMockDto(
                 id = "eg8u4a",
                 name = "An App With a Crazy Long Name–Who in the World Ever Comes up With Such Blankets?",
                 category = "entertainment",

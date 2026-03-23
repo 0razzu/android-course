@@ -1,9 +1,9 @@
-package io.orazzu.android_course.data.local.app_category
+package io.orazzu.android_course.data.mock.app_category
 
 import io.orazzu.android_course.domain.AppCategory
 import javax.inject.Inject
 
-class AppCategoryLocalMapper @Inject constructor() {
+class AppCategoryMockMapper @Inject constructor() {
     fun toDomain(dto: String): AppCategory = when (dto.lowercase()) {
         "app" -> AppCategory.APP
         "game" -> AppCategory.GAME

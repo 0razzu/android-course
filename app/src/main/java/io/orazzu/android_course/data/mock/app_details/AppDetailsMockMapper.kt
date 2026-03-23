@@ -1,11 +1,11 @@
-package io.orazzu.android_course.data.local.app_details
+package io.orazzu.android_course.data.mock.app_details
 
-import io.orazzu.android_course.data.local.app_category.AppCategoryLocalMapper
+import io.orazzu.android_course.data.mock.app_category.AppCategoryMockMapper
 import io.orazzu.android_course.domain.app_details.AppDetails
 import javax.inject.Inject
 
-class AppDetailsLocalMapper @Inject constructor(private val appCategoryMapper: AppCategoryLocalMapper) {
-    fun toDomain(dto: AppDetailsLocalDto): AppDetails = AppDetails(
+class AppDetailsMockMapper @Inject constructor(private val appCategoryMapper: AppCategoryMockMapper) {
+    fun toDomain(dto: AppDetailsMockDto): AppDetails = AppDetails(
         id = dto.id,
         name = dto.name,
         developer = dto.developer,

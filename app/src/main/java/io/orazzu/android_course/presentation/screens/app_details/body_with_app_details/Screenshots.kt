@@ -42,7 +42,7 @@ fun Screenshots(modifier: Modifier = Modifier, screenshotUrls: List<String>) {
                     model = screenshotUrls[index],
                     contentDescription = "${stringResource(R.string.AppDetailsScreenshots_screenshot)} $index",
                     modifier = Modifier
-                        .defaultMinSize(minWidth = 150.dp)
+                        .defaultMinSize(minWidth = 100.dp)
                         .height(220.dp)
                         .background(colorScheme.onSecondaryContainer),
                     contentScale = ContentScale.Crop,

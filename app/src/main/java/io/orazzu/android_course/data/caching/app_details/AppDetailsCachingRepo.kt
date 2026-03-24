@@ -42,9 +42,10 @@ class AppDetailsCachingRepo @Inject constructor(
 
                 null -> when (val fresh = getAppDetailsFromRemote(id)) {
                     is DomainResult.Success -> {
-                        withContext(Dispatchers.IO) {
+                        CoroutineScope(Dispatchers.IO).launch {
                             putAppDetails(fresh.data)
                         }
+
                         fresh
                     }
 
@@ -87,11 +88,13 @@ class AppDetailsCachingRepo @Inject constructor(
         }
     }
 
-    fun putAppDetails(appDetails: AppDetails): DomainResult<Unit> {
+    suspend fun putAppDetails(appDetails: AppDetails): DomainResult<Unit> {
         Log.d(logTag, "Putting app $appDetails")
 
         return try {
-            dao.putAppDetails(appDetailsLocalMapper.toEntity(appDetails))
+            withContext(Dispatchers.IO) {
+                dao.putAppDetails(appDetailsLocalMapper.toEntity(appDetails))
+            }
             DomainResult.Success(Unit)
         } catch (e: IOException) {
             Log.e(logTag, "Connection error while putting app $appDetails", e)

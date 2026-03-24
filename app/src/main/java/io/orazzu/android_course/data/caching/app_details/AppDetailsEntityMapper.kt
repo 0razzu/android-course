@@ -1,8 +1,9 @@
-package io.orazzu.android_course.data.local.app_details
+package io.orazzu.android_course.data.caching.app_details
 
 import io.orazzu.android_course.domain.app_details.AppDetails
+import javax.inject.Inject
 
-class AppDetailsEntityMapper {
+class AppDetailsEntityMapper @Inject constructor() {
     fun toEntity(domain: AppDetails): AppDetailsEntity = AppDetailsEntity(
         id = domain.id,
         name = domain.name,

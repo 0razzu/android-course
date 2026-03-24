@@ -1,15 +1,14 @@
-package io.orazzu.android_course.data.local.app_details
+package io.orazzu.android_course.data.caching.app_details
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AppDetailsDao {
     @Query("select * from app_details where id = :id")
-    fun getAppDetails(id: String): Flow<AppDetailsEntity?>
+    fun getAppDetails(id: String): AppDetailsEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun putAppDetails(appDetails: AppDetailsEntity)

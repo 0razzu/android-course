@@ -1,4 +1,4 @@
-package io.orazzu.android_course.data.local
+package io.orazzu.android_course.data.caching
 
 import androidx.room.TypeConverter
 import io.orazzu.android_course.domain.AppCategory

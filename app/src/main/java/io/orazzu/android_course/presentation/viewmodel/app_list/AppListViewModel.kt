@@ -26,15 +26,14 @@ class AppListViewModel @Inject constructor(
     val events = _events.asSharedFlow()
 
     init {
-        loadApps()
+        viewModelScope.launch {
+            load()
+        }
     }
 
-    private fun loadApps() {
+    fun onRefresh() {
         viewModelScope.launch {
-            _state.value = when (val result = repository.getApps()) {
-                is DomainResult.Success<List<App>> -> AppListUiState.Success(result.data)
-                is DomainResult.Failure -> AppListUiState.Error(result.error)
-            }
+            refresh()
         }
     }
 
@@ -44,13 +43,15 @@ class AppListViewModel @Inject constructor(
         }
     }
 
-    fun refresh() {
-        viewModelScope.launch {
-            _state.value = AppListUiState.Loading
-            _state.value = when (val result = repository.getApps()) {
-                is DomainResult.Success<List<App>> -> AppListUiState.Success(result.data)
-                is DomainResult.Failure -> AppListUiState.Error(result.error)
-            }
+    private suspend fun load() {
+        _state.value = when (val result = repository.getApps()) {
+            is DomainResult.Success<List<App>> -> AppListUiState.Success(result.data)
+            is DomainResult.Failure -> AppListUiState.Error(result.error)
         }
+    }
+
+    private suspend fun refresh() {
+        _state.value = AppListUiState.Loading
+        load()
     }
 }

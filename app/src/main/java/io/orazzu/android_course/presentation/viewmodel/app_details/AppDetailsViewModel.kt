@@ -41,4 +41,19 @@ class AppDetailsViewModel @Inject constructor(
             }
         }
     }
+
+    fun refresh() {
+        if (appId == null) {
+            _state.value = AppDetailsUiState.Error(DomainError.UNKNOWN)
+            return
+        }
+
+        viewModelScope.launch {
+            _state.value = AppDetailsUiState.Loading
+            _state.value = when (val result = repository.refreshAppDetails(appId)) {
+                is DomainResult.Success -> AppDetailsUiState.Success(result.data)
+                is DomainResult.Failure -> AppDetailsUiState.Error(result.error)
+            }
+        }
+    }
 }

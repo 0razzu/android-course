@@ -43,4 +43,14 @@ class AppListViewModel @Inject constructor(
             _events.emit(AppListEvent.ShowSnackbar(R.string.AppList_logoClicked))
         }
     }
+
+    fun refresh() {
+        viewModelScope.launch {
+            _state.value = AppListUiState.Loading
+            _state.value = when (val result = repository.getApps()) {
+                is DomainResult.Success<List<App>> -> AppListUiState.Success(result.data)
+                is DomainResult.Failure -> AppListUiState.Error(result.error)
+            }
+        }
+    }
 }

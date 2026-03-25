@@ -25,41 +25,29 @@ class AppDetailsCachingRepo @Inject constructor(
     private val logTag = this.javaClass.simpleName
 
     override suspend fun getAppDetails(id: String): DomainResult<AppDetails> {
-        Log.d(logTag, "Getting app $id")
+        Log.d(logTag, "Getting app $id from db")
 
-        return try {
-            when (val cached = withContext(Dispatchers.IO) { dao.getAppDetails(id) }) {
-                is AppDetailsEntity -> {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        val fresh = getAppDetailsFromRemote(id)
-                        if (fresh is DomainResult.Success) {
-                            putAppDetails(fresh.data)
-                        }
-                    }
+        return when (val cached = withContext(Dispatchers.IO) { dao.getAppDetails(id) }) {
+            is AppDetailsEntity -> DomainResult.Success(appDetailsLocalMapper.toDomain(cached))
+            null -> refreshAppDetails(id)
+        }
+    }
 
-                    DomainResult.Success(appDetailsLocalMapper.toDomain(cached))
+    override suspend fun refreshAppDetails(id: String): DomainResult<AppDetails> {
+        Log.d(logTag, "Refreshing app $id")
+
+        return when (val appDetailsResp = withContext(Dispatchers.IO) {
+            getAppDetailsFromRemote(id)
+        }) {
+            is DomainResult.Success -> {
+                CoroutineScope(Dispatchers.IO).launch {
+                    putAppDetails(appDetailsResp.data)
                 }
 
-                null -> when (val fresh = getAppDetailsFromRemote(id)) {
-                    is DomainResult.Success -> {
-                        CoroutineScope(Dispatchers.IO).launch {
-                            putAppDetails(fresh.data)
-                        }
-
-                        fresh
-                    }
-
-                    is DomainResult.Failure -> fresh
-                }
+                appDetailsResp
             }
-        } catch (e: IOException) {
-            Log.e(logTag, "DB IO exception while getting app $id", e)
 
-            DomainResult.Failure(DomainError.UNKNOWN)
-        } catch (e: Exception) {
-            Log.e(logTag, "Unexpected exception while getting app $id", e)
-
-            DomainResult.Failure(DomainError.UNKNOWN)
+            is DomainResult.Failure -> appDetailsResp
         }
     }
 

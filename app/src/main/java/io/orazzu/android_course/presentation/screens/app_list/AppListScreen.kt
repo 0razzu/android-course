@@ -19,7 +19,7 @@ fun AppListScreen(
     body: BodyType,
     onAppClick: (String) -> Unit,
     onLogoClick: () -> Unit,
-    onRefresh : () -> Unit,
+    onRefresh: () -> Unit,
 ) {
     CardLikeLayout(
         modifier = modifier,
@@ -31,7 +31,12 @@ fun AppListScreen(
                 }
 
                 is BodyType.WithApps -> {
-                    Body(modifier = modifier, apps = body.apps, onAppClick = onAppClick)
+                    Body(
+                        modifier = modifier,
+                        apps = body.apps,
+                        onAppClick = onAppClick,
+                        onRefresh = onRefresh,
+                    )
                 }
 
                 is BodyType.Error -> {

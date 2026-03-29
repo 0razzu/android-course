@@ -69,7 +69,9 @@ class AppDetailsCachingRepo @Inject constructor(
         return when (val appDetailsResp = getAppDetails(id)) {
             is DomainResult.Success -> {
                 try {
-                    dao.updateWishlistStatus(id, !appDetailsResp.data.isInWishlist)
+                    withContext(Dispatchers.IO) {
+                        dao.updateWishlistStatus(id, !appDetailsResp.data.isInWishlist)
+                    }
                     DomainResult.Success(Unit)
                 } catch (e: IOException) {
                     Log.e(logTag, "Connection error while updating wishlist status for app $id", e)

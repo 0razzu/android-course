@@ -36,6 +36,15 @@ class AppDetailsCachingRepo @Inject constructor(
         }
     }
 
+    override fun observeAppDetails(id: String): Flow<DomainResult<AppDetails>> {
+        return dao.getAppDetails(id).map {
+            when (it) {
+                is AppDetailsEntity -> DomainResult.Success(appDetailsLocalMapper.toDomain(it))
+                null -> DomainResult.Failure(DomainError.NOT_FOUND)
+            }
+        }
+    }
+
     override suspend fun refreshAppDetails(id: String): DomainResult<AppDetails> {
         Log.d(logTag, "Refreshing app $id")
 
@@ -78,15 +87,6 @@ class AppDetailsCachingRepo @Inject constructor(
             }
 
             is DomainResult.Failure -> appDetailsResp
-        }
-    }
-
-    override fun observeAppDetails(id: String): Flow<DomainResult<AppDetails>> {
-        return dao.getAppDetails(id).map {
-            when (it) {
-                is AppDetailsEntity -> DomainResult.Success(appDetailsLocalMapper.toDomain(it))
-                null -> DomainResult.Failure(DomainError.NOT_FOUND)
-            }
         }
     }
 

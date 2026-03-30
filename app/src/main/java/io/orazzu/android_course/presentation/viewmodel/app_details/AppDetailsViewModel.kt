@@ -28,7 +28,7 @@ class AppDetailsViewModel @Inject constructor(
         if (appId == null) {
             _state.value = AppDetailsUiState.Error(DomainError.UNKNOWN)
         } else {
-            getAppDetails(appId)  // initial load in case we don’t have it in db
+            loadAppDetails(appId)  // initial load in case we don’t have it in db
             observeAppDetails(appId)
         }
     }
@@ -55,7 +55,7 @@ class AppDetailsViewModel @Inject constructor(
         }
     }
 
-    private fun getAppDetails(appId: String) {
+    private fun loadAppDetails(appId: String) {
         viewModelScope.launch {
             val result = repository.getAppDetails(appId)
             // no state update unless there is an error, observeAppDetails() will perform it anyways

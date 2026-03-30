@@ -26,24 +26,22 @@ class MainActivity(
 
                 NavHost(
                     navController = navController,
-                    startDestination = "app_list",
+                    startDestination = Screen.AppList.route,
                 ) {
-                    composable("app_list") {
+                    composable(Screen.AppList.route) {
                         AppListScreen(
                             apps = apps,
-                            onAppClick = { appId ->
-                                navController.navigate("app_details/$appId")
-                            },
+                            onAppClick = Screen.AppList.navigateToAppDetails(navController),
                         )
                     }
 
-                    composable("app_details/{appId}") { backStackEntry ->
+                    composable(Screen.AppDetails.route) { backStackEntry ->
                         val appId = backStackEntry.arguments?.getString("appId")
                         val app = apps.first { it.id == appId }
 
                         AppDetailsScreen(
                             app = app,
-                            onBackClick = { navController.popBackStack() },
+                            onBackClick = Screen.AppDetails.navigateBack(navController),
                         )
                     }
                 }

@@ -38,7 +38,10 @@ fun Screenshots(modifier: Modifier = Modifier, screenshotUrls: List<String>) {
             items(screenshotUrls.size) { index ->
                 AsyncImage(
                     model = screenshotUrls[index],
-                    contentDescription = "${stringResource(R.string.AppDetailsScreenshots_screenshot)} $index",
+                    contentDescription = stringResource(
+                        R.string.AppDetailsScreenshots_screenshot,
+                        index,
+                    ),
                     modifier = Modifier
                         .height(220.dp)
                         .background(colorResource(R.color.gray_400)),

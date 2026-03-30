@@ -35,7 +35,7 @@ import io.orazzu.android_course.model.app.AppDetails
 fun Header(modifier: Modifier = Modifier, app: AppDetails) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier,
     ) {
         Row(
             modifier = modifier.padding(

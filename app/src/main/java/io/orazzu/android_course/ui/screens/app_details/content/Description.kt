@@ -22,12 +22,11 @@ import io.orazzu.android_course.R
 @Composable
 fun Description(
     modifier: Modifier = Modifier,
-    shortDescription: String,
-    longDescription: String?,
+    text: String,
 ) {
-    val text = longDescription ?: shortDescription
     val paragraphs = text.split("\n")
     var expanded by rememberSaveable { mutableStateOf(false) }
+    var overflown by rememberSaveable { mutableStateOf(false) }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -49,10 +48,13 @@ fun Description(
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 5,
                 overflow = TextOverflow.Ellipsis,
+                onTextLayout = {
+                    overflown = it.didOverflowHeight
+                },
             )
         }
 
-        if (text.length > shortDescription.length) {
+        if (overflown) {
             Text(
                 text = if (expanded)
                     stringResource(R.string.AppDetailsDescription_showLess) else
@@ -60,7 +62,7 @@ fun Description(
                 color = colorResource(R.color.purple_700),
                 modifier = modifier.clickable {
                     expanded = !expanded
-                }
+                },
             )
         }
     }

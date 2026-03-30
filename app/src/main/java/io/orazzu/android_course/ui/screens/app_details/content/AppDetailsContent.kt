@@ -23,8 +23,7 @@ fun AppDetailsContent(modifier: Modifier = Modifier, app: AppDetails) {
         Header(modifier = modifier, app = app)
         Description(
             modifier = modifier,
-            shortDescription = app.shortDescription,
-            longDescription = app.longDescription,
+            text = app.longDescription ?: app.shortDescription,
         )
         InstallButton(modifier = modifier)
 

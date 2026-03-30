@@ -28,6 +28,11 @@
     <string name="AppCategory_WEATHER">Weather</string>
 
     <string name="AppList_logoClicked">Logo clicked</string>
+
+    <string name="AppDetailsScreenHeader_back">Back to the app list</string>
+    <string name="AppDetailsScreenHeader_appIsInWishlist">The app is in your wishlist</string>
+    <string name="AppDetailsScreenHeader_appIsNotInWishlist">The app is not in your wishlist</string>
+
     <string name="AppDetailsDescription_showMore">Show more</string>
     <string name="AppDetailsDescription_showLess">Show less</string>
     <string name="InstallButton_install">Install</string>

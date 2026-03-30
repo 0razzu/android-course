@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.orazzu.android_course.R
 import io.orazzu.android_course.presentation.theme.Color
@@ -21,8 +22,9 @@ import io.orazzu.android_course.presentation.theme.Color
 @Composable
 fun AppDetailsScreenHeader(
     modifier: Modifier = Modifier,
-    showShareButton: Boolean = true,
+    isInWishlist: Boolean,
     onBackClick: () -> Unit,
+    onToggleWishlistStatusClick: () -> Unit,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -43,7 +45,26 @@ fun AppDetailsScreenHeader(
             tint = colorScheme.onPrimary,
         )
 
-        if (showShareButton) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Icon(
+                modifier = modifier
+                    .size(40.dp)
+                    .background(
+                        color = Color.None,
+                        shape = RoundedCornerShape(12.dp),
+                    )
+                    .clip(shape = RoundedCornerShape(12.dp))
+                    .clickable(onClick = onToggleWishlistStatusClick),
+                painter = if (isInWishlist)
+                    painterResource(R.drawable.favorite_filled_40px) else
+                    painterResource(R.drawable.favorite_40px),
+                contentDescription = null,
+                tint = colorScheme.onPrimary,
+            )
+
             Icon(
                 modifier = modifier
                     .size(40.dp)
@@ -59,4 +80,17 @@ fun AppDetailsScreenHeader(
             )
         }
     }
+}
+
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFF6200EE,
+)
+@Composable
+fun AppDetailsScreenHeaderPreview() {
+    AppDetailsScreenHeader(
+        isInWishlist = false,
+        onBackClick = {},
+        onToggleWishlistStatusClick = {},
+    )
 }

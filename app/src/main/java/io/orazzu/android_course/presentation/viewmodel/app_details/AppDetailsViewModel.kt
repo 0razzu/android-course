@@ -39,7 +39,7 @@ class AppDetailsViewModel @Inject constructor(
         }
     }
 
-    fun onToggleWishlist() {
+    fun onToggleWishlistStatus() {
         if (appId == null) {
             _state.value = AppDetailsUiState.Error(DomainError.UNKNOWN)
             return

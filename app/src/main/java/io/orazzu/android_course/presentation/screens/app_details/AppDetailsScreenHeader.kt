@@ -22,7 +22,7 @@ import io.orazzu.android_course.presentation.theme.Color
 @Composable
 fun AppDetailsScreenHeader(
     modifier: Modifier = Modifier,
-    isInWishlist: Boolean,
+    isInWishlist: Boolean?,
     onBackClick: () -> Unit,
     onToggleWishlistStatusClick: () -> Unit,
 ) {
@@ -49,21 +49,23 @@ fun AppDetailsScreenHeader(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Icon(
-                modifier = modifier
-                    .size(40.dp)
-                    .background(
-                        color = Color.None,
-                        shape = RoundedCornerShape(12.dp),
-                    )
-                    .clip(shape = RoundedCornerShape(12.dp))
-                    .clickable(onClick = onToggleWishlistStatusClick),
-                painter = if (isInWishlist)
-                    painterResource(R.drawable.favorite_filled_40px) else
-                    painterResource(R.drawable.favorite_40px),
-                contentDescription = null,
-                tint = colorScheme.onPrimary,
-            )
+            if (isInWishlist != null) {
+                Icon(
+                    modifier = modifier
+                        .size(40.dp)
+                        .background(
+                            color = Color.None,
+                            shape = RoundedCornerShape(12.dp),
+                        )
+                        .clip(shape = RoundedCornerShape(12.dp))
+                        .clickable(onClick = onToggleWishlistStatusClick),
+                    painter = if (isInWishlist)
+                        painterResource(R.drawable.favorite_filled_40px) else
+                        painterResource(R.drawable.favorite_40px),
+                    contentDescription = null,
+                    tint = colorScheme.onPrimary,
+                )
+            }
 
             Icon(
                 modifier = modifier

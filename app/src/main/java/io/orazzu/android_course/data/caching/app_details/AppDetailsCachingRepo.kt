@@ -122,7 +122,15 @@ class AppDetailsCachingRepo @Inject constructor(
 
         return try {
             withContext(Dispatchers.IO) {
-                dao.putAppDetails(appDetailsLocalMapper.toEntity(appDetails))
+                val isInWishlist = dao.getIsInWishlist(appDetails.id)
+                Log.d(logTag, "App ${appDetails.id} is in wishlist: $isInWishlist")
+                dao.putAppDetails(
+                    appDetailsLocalMapper.toEntity(
+                        appDetails.copy(
+                            isInWishlist = isInWishlist ?: false,
+                        ),
+                    ),
+                )
             }
             DomainResult.Success(Unit)
         } catch (e: IOException) {

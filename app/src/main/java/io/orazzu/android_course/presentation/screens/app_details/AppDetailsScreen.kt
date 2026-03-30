@@ -30,7 +30,7 @@ fun AppDetailsScreen(
                 isInWishlist =
                     if (body is BodyType.WithAppDetails)
                         body.appDetails.isInWishlist else
-                        false,
+                        null,
                 onBackClick = onBackClick,
                 onToggleWishlistStatusClick = onToggleWishlistStatusClick,
             )

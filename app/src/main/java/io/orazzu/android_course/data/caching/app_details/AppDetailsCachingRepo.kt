@@ -38,7 +38,7 @@ class AppDetailsCachingRepo @Inject constructor(
 
     override fun observeAppDetails(id: String): Flow<DomainResult<AppDetails>> {
         return dao.getAppDetails(id).map {
-            Log.d(logTag, "Got app $id while observing")
+            Log.d(logTag, "Getting app $id while observing")
 
             when (it) {
                 is AppDetailsEntity -> DomainResult.Success(appDetailsLocalMapper.toDomain(it))

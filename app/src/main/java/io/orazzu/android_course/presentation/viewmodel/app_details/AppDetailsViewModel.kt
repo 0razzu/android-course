@@ -25,7 +25,12 @@ class AppDetailsViewModel @Inject constructor(
     private val appId: String? = savedStateHandle["appId"]
 
     init {
-        observeAppDetails()
+        if (appId == null) {
+            _state.value = AppDetailsUiState.Error(DomainError.UNKNOWN)
+        } else {
+            getAppDetails(appId)  // initial load in case we don’t have it in db
+            observeAppDetails(appId)
+        }
     }
 
     fun onRefresh() {
@@ -50,12 +55,17 @@ class AppDetailsViewModel @Inject constructor(
         }
     }
 
-    private fun observeAppDetails() {
-        if (appId == null) {
-            _state.value = AppDetailsUiState.Error(DomainError.UNKNOWN)
-            return
+    private fun getAppDetails(appId: String) {
+        viewModelScope.launch {
+            val result = repository.getAppDetails(appId)
+            // no state update unless there is an error, observeAppDetails() will perform it anyways
+            if (result is DomainResult.Failure) {
+                _state.value = AppDetailsUiState.Error(result.error)
+            }
         }
+    }
 
+    private fun observeAppDetails(appId: String) {
         viewModelScope.launch {
             repository.observeAppDetails(appId)
                 .collect {

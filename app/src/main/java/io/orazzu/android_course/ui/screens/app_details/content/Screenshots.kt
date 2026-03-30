@@ -1,4 +1,4 @@
-package io.orazzu.android_course.ui.screens.app_details.body
+package io.orazzu.android_course.ui.screens.app_details.content
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

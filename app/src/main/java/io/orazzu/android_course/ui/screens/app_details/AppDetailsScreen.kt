@@ -6,7 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import io.orazzu.android_course.model.app.AppDetails
 import io.orazzu.android_course.repository.local.AppLocalRepository
 import io.orazzu.android_course.ui.layouts.CardLikeLayout
-import io.orazzu.android_course.ui.screens.app_details.body.Body
+import io.orazzu.android_course.ui.screens.app_details.content.AppDetailsContent
 import io.orazzu.android_course.ui.theme.AndroidCourseTheme
 import kotlin.random.Random
 
@@ -19,7 +19,7 @@ fun AppDetailsScreen(
     CardLikeLayout(
         modifier = modifier,
         header = { AppDetailsScreenHeader(modifier = modifier, onBackClick = onBackClick) },
-        body = { Body(modifier = modifier, app = app) },
+        content = { AppDetailsContent(modifier = modifier, app = app) },
     )
 }
 

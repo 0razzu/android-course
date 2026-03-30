@@ -38,6 +38,8 @@ class AppDetailsCachingRepo @Inject constructor(
 
     override fun observeAppDetails(id: String): Flow<DomainResult<AppDetails>> {
         return dao.getAppDetails(id).map {
+            Log.d(logTag, "Got app $id while observing")
+
             when (it) {
                 is AppDetailsEntity -> DomainResult.Success(appDetailsLocalMapper.toDomain(it))
                 null -> DomainResult.Failure(DomainError.NOT_FOUND)
@@ -64,31 +66,23 @@ class AppDetailsCachingRepo @Inject constructor(
     }
 
     override suspend fun toggleWishlistStatus(id: String): DomainResult<Unit> {
-        Log.d(logTag, "Updating wishlist status for app $id")
+        Log.d(logTag, "Toggling wishlist status for app $id")
 
-        return when (val appDetailsResp = getAppDetails(id)) {
-            is DomainResult.Success -> {
-                try {
-                    withContext(Dispatchers.IO) {
-                        dao.updateWishlistStatus(id, !appDetailsResp.data.isInWishlist)
-                    }
-                    DomainResult.Success(Unit)
-                } catch (e: IOException) {
-                    Log.e(logTag, "Connection error while updating wishlist status for app $id", e)
-
-                    DomainResult.Failure(DomainError.CONNECTION_ERROR)
-                } catch (e: Exception) {
-                    Log.e(
-                        logTag,
-                        "Unexpected exception while updating wishlist status for app $id",
-                        e,
-                    )
-
-                    DomainResult.Failure(DomainError.UNKNOWN)
-                }
+        return try {
+            withContext(Dispatchers.IO) {
+                val isInWishlist = dao.getIsInWishlist(id)!!
+                dao.updateWishlistStatus(id, !isInWishlist)
             }
 
-            is DomainResult.Failure -> appDetailsResp
+            DomainResult.Success(Unit)
+        } catch (e: IOException) {
+            Log.e(logTag, "Connection error while toggling wishlist status for app $id", e)
+
+            DomainResult.Failure(DomainError.CONNECTION_ERROR)
+        } catch (e: Exception) {
+            Log.e(logTag, "Unexpected exception while toggling wishlist status for app $id", e)
+
+            DomainResult.Failure(DomainError.UNKNOWN)
         }
     }
 

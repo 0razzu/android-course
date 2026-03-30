@@ -3,7 +3,6 @@ package io.orazzu.android_course.data.caching.app_details
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
-import io.orazzu.android_course.domain.AppCategory
 import kotlinx.coroutines.flow.Flow
 
 @Dao

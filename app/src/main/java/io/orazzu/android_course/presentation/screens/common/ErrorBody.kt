@@ -24,7 +24,7 @@ fun ErrorBody(modifier: Modifier = Modifier, error: String) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
     ) {
         Icon(
             modifier = modifier

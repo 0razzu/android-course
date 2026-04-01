@@ -43,7 +43,7 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                 top = 16.dp,
                 end = 16.dp,
                 bottom = 0.dp,
-            )
+            ),
         ) {
             Text(
                 text = app.name,

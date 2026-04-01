@@ -14,7 +14,7 @@ import io.orazzu.android_course.domain.app_details.AppDetails
 fun Body(modifier: Modifier = Modifier, app: AppDetails) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
     ) {
         item { Header(modifier = modifier, app = app) }
         item {

@@ -30,11 +30,11 @@ fun LoadingBody(modifier: Modifier = Modifier) {
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = 1000,
-                easing = LinearEasing
+                easing = LinearEasing,
             ),
-            repeatMode = RepeatMode.Restart
+            repeatMode = RepeatMode.Restart,
         ),
-        label = "rotationAnim"
+        label = "rotationAnim",
     )
 
     Box(

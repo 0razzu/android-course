@@ -8,5 +8,5 @@ fun AppCategory.toString(ctx: Context): String = ctx.getString(
         "AppCategory_${this.name}",
         "string",
         ctx.packageName,
-    )
+    ),
 )

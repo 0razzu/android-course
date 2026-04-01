@@ -34,7 +34,13 @@ class MainActivity : ComponentActivity() {
                     composable("app_details/{appId}") { backStackEntry ->
                         AppDetailsRoute(
                             appId = backStackEntry.arguments?.getString("appId"),
-                            onBackClick = { navController.popBackStack(route = "app_list", inclusive = false, saveState = false) },
+                            onBackClick = {
+                                navController.popBackStack(
+                                    route = "app_list",
+                                    inclusive = false,
+                                    saveState = false,
+                                )
+                            },
                         )
                     }
                 }

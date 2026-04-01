@@ -62,7 +62,7 @@ fun Description(
                 color = colorScheme.tertiary,
                 modifier = modifier.clickable {
                     expanded = !expanded
-                }
+                },
             )
         }
     }

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import io.orazzu.android_course.presentation.layouts.CardLikeLayout
-import io.orazzu.android_course.presentation.screens.app_details.AppDetailsScreenHeader
+import io.orazzu.android_course.presentation.screens.app_details.common.AppDetailsScreenHeader
 
 @Composable
 fun AppDetailsLoadingScreen(
@@ -20,8 +20,8 @@ fun AppDetailsLoadingScreen(
                 onBackClick = onBackClick,
             )
         },
-        body = {
-            Body(modifier = modifier)
+        content = {
+            AppDetailsLoadingContent(modifier = modifier)
         },
     )
 }

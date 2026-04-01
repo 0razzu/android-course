@@ -20,11 +20,11 @@ import androidx.compose.ui.unit.sp
 import io.orazzu.android_course.R
 
 @Composable
-fun Body(modifier: Modifier = Modifier) {
+fun AppDetailsErrorContent(modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
     ) {
         Icon(
             modifier = modifier
@@ -51,6 +51,6 @@ fun Body(modifier: Modifier = Modifier) {
     widthDp = 400,
 )
 @Composable
-fun BodyPreview() {
-    Body()
+fun AppDetailsErrorContentPreview() {
+    AppDetailsErrorContent()
 }

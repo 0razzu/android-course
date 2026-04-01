@@ -6,7 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import io.orazzu.android_course.model.app.AppDetails
 import io.orazzu.android_course.presentation.layouts.CardLikeLayout
 import io.orazzu.android_course.presentation.preview_data.getApps
-import io.orazzu.android_course.presentation.screens.app_list.body.Body
+import io.orazzu.android_course.presentation.screens.app_list.content.AppListContent
 import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
 
 @Composable
@@ -19,7 +19,7 @@ fun AppListScreen(
     CardLikeLayout(
         modifier = modifier,
         header = { AppListScreenHeader(modifier = modifier, onLogoClick = onLogoClick) },
-        body = { Body(modifier = modifier, apps = apps, onAppClick = onAppClick) },
+        content = { AppListContent(modifier = modifier, apps = apps, onAppClick = onAppClick) },
     )
 }
 

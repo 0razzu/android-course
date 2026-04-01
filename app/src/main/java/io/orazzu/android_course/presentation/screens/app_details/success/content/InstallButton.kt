@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.success.body
+package io.orazzu.android_course.presentation.screens.app_details.success.content
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth

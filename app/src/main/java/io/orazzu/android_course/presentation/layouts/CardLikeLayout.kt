@@ -21,7 +21,7 @@ import io.orazzu.android_course.R
 fun CardLikeLayout(
     modifier: Modifier = Modifier,
     header: @Composable BoxScope.() -> Unit,
-    body: @Composable BoxScope.() -> Unit,
+    content: @Composable BoxScope.() -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -59,11 +59,11 @@ fun CardLikeLayout(
                         topEnd = 16.dp,
                         bottomStart = 0.dp,
                         bottomEnd = 0.dp,
-                    )
+                    ),
                 )
                 .background(color = colorResource(R.color.white)),
         ) {
-            body()
+            content()
         }
     }
 }

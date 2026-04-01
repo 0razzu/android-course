@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_list.body
+package io.orazzu.android_course.presentation.screens.app_list.content
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,7 +13,7 @@ import io.orazzu.android_course.R
 import io.orazzu.android_course.model.app.AppDetails
 
 @Composable
-fun Body(
+fun AppListContent(
     modifier: Modifier = Modifier,
     apps: List<AppDetails>,
     onAppClick: (String) -> Unit,

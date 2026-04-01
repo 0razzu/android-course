@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details
+package io.orazzu.android_course.presentation.screens.app_details.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

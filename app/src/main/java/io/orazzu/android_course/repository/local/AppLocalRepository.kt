@@ -18,7 +18,7 @@ class AppLocalRepository : AppRepository {
                 "https://static.rustore.ru/imgproxy/ueOMCvH3fqGWDCmSF009YQq_6JMq7UMhSWbAcOEwZBA/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/2/19/e8/apk/462271/content/SCREENSHOT/fd8a50aa-7485-4d53-abb4-753098690a0a.png@webp",
                 "https://static.rustore.ru/imgproxy/PQYAfC-o3rQRJIZ-yLHT-e326EgH0k7eKAP9KcMV6vI/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/2/19/f9/apk/462271/content/SCREENSHOT/29ad8437-5651-40fa-9f06-a4ec77b7da71.png@webp",
                 "https://static.rustore.ru/imgproxy/0Ah_0lEHsExVLrIoZ4aNxke42571sz8zUX7cMRB9auE/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/2/19/8a/apk/462271/content/SCREENSHOT/cf3fb659-7731-424e-b1ed-f0bdfeacf6d0.png@webp",
-                "https://static.rustore.ru/imgproxy/eh5B9KBNqM7yH8ZN_eFD7_ikRosRDAIQXMAYBb2pfb4/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/2/19/aa/apk/462271/content/SCREENSHOT/0b18de10-2815-4f8e-9964-dae711b82898.png@webp"
+                "https://static.rustore.ru/imgproxy/eh5B9KBNqM7yH8ZN_eFD7_ikRosRDAIQXMAYBb2pfb4/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/2/19/aa/apk/462271/content/SCREENSHOT/0b18de10-2815-4f8e-9964-dae711b82898.png@webp",
             ),
             shortDescription = "Больше чем банк",
             longDescription = """
@@ -30,7 +30,7 @@ class AppLocalRepository : AppRepository {
                 В разделе «Кредиты» есть всё, что поможет стать на шаг ближе к цели: управление действующими кредитами, предстоящие платежи, возможности для получения дополнительных денег от банка и проверка кредитной истории.
                 С помощью поиска легко найти любой сервис, а если запрос сложный, можно обратиться к ИИ-помощнику GigaChat. Он ответит на вопросы о финансах, даст советы по планированию или структурирует сложную информацию.
                 А ещё интерфейс приложения можно легко настроить под свои задачи: поменять местами разделы, скрыть неактуальное или добавить то, чем важно управлять сейчас. Изменить СберБанк Онлайн под настроение тоже возможно: достаточно выбрать фон приложения, тему и установить аватар.
-            """.trimIndent()
+            """.trimIndent(),
         ),
         AppDetails(
             id = "24rа2f",
@@ -97,7 +97,7 @@ class AppLocalRepository : AppRepository {
                 Мы это любим. Расскажите, как вам приложение Mail. Воспользуйтесь разделом «Написать разработчику» или напишите письмо на адрес mailapps@corp.mail.ru.
                 ЕЩЁ ПАРА СТРОК
                 Mail — надёжный почтовый клиент и приложение со всеми сервисами для работы. Приложение совместимо с версиями Android 7.0 и старше. Подходит для работы с почтовыми ящиками Mail, Яндекс.Почта, Rambler, Gmail от Google, Yahoo, Hotmail, Microsoft Outlook и других сервисов, поддерживающих протоколы IMAP, POP и SMTP.
-            """.trimIndent()
+            """.trimIndent(),
         ),
         AppDetails(
             id = "274rgw",

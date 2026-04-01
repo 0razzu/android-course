@@ -59,7 +59,7 @@ fun CardLikeLayout(
                         topEnd = 16.dp,
                         bottomStart = 0.dp,
                         bottomEnd = 0.dp,
-                    )
+                    ),
                 )
                 .background(color = colorResource(R.color.white)),
         ) {

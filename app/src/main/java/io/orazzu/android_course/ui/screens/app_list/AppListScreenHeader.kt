@@ -40,7 +40,7 @@ fun AppListScreenHeader(modifier: Modifier = Modifier) {
                 ),
             painter = painterResource(R.drawable.app_registration_40px),
             contentDescription = null,
-            tint = colorResource(R.color.purple_500)
+            tint = colorResource(R.color.purple_500),
         )
 
         Text(

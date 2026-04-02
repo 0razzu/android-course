@@ -7,8 +7,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.orazzu.android_course.data.app_category.AppCategoryMapper
 import io.orazzu.android_course.data.app_details.AppDetailsLocalRepo
 import io.orazzu.android_course.data.app_details.AppDetailsMapper
-import io.orazzu.android_course.presentation.screens.app_details.AppDetailsScreen
 import io.orazzu.android_course.presentation.screens.app_details.AppDetailsContentType
+import io.orazzu.android_course.presentation.screens.app_details.AppDetailsScreen
 import io.orazzu.android_course.presentation.viewmodel.app_details.AppDetailsUiState
 import io.orazzu.android_course.presentation.viewmodel.app_details.AppDetailsViewModel
 import io.orazzu.android_course.presentation.viewmodel.app_details.AppDetailsViewModelFactory

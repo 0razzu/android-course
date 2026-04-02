@@ -15,8 +15,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.orazzu.android_course.data.app.AppLocalRepo
 import io.orazzu.android_course.data.app.AppMapper
 import io.orazzu.android_course.data.app_category.AppCategoryMapper
-import io.orazzu.android_course.presentation.screens.app_list.AppListScreen
 import io.orazzu.android_course.presentation.screens.app_list.AppListContentType
+import io.orazzu.android_course.presentation.screens.app_list.AppListScreen
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListEvent
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListUiState
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModel

@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.body_with_app_details
+package io.orazzu.android_course.presentation.screens.app_details.content_with_app_details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import io.orazzu.android_course.domain.app_details.AppDetails
 
 @Composable
-fun Body(modifier: Modifier = Modifier, app: AppDetails) {
+fun AppDetailsContent(modifier: Modifier = Modifier, app: AppDetails) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = modifier.fillMaxSize(),

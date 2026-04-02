@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 fun CardLikeLayout(
     modifier: Modifier = Modifier,
     header: @Composable BoxScope.() -> Unit,
-    body: @Composable BoxScope.() -> Unit,
+    content: @Composable BoxScope.() -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -62,7 +62,7 @@ fun CardLikeLayout(
                 )
                 .background(color = colorScheme.surface),
         ) {
-            body()
+            content()
         }
     }
 }

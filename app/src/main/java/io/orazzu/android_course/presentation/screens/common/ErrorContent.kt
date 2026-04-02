@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 import io.orazzu.android_course.R
 
 @Composable
-fun ErrorBody(modifier: Modifier = Modifier, error: String) {
+fun ErrorContent(modifier: Modifier = Modifier, error: String) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -52,6 +52,6 @@ fun ErrorBody(modifier: Modifier = Modifier, error: String) {
     widthDp = 400,
 )
 @Composable
-fun ErrorBodyPreview() {
-    ErrorBody(error = stringResource(R.string.unknownError))
+fun ErrorContentPreview() {
+    ErrorContent(error = stringResource(R.string.unknownError))
 }

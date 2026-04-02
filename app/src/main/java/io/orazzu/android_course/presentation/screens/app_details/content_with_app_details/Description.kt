@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.body_with_app_details
+package io.orazzu.android_course.presentation.screens.app_details.content_with_app_details
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,12 +22,11 @@ import io.orazzu.android_course.R
 @Composable
 fun Description(
     modifier: Modifier = Modifier,
-    shortDescription: String,
-    longDescription: String?,
+    text: String,
 ) {
-    val text = longDescription ?: shortDescription
     val paragraphs = text.split("\n")
     var expanded by rememberSaveable { mutableStateOf(false) }
+    var overflown by rememberSaveable { mutableStateOf(false) }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -51,10 +50,13 @@ fun Description(
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 5,
                 overflow = TextOverflow.Ellipsis,
+                onTextLayout = {
+                    overflown = it.didOverflowHeight
+                },
             )
         }
 
-        if (text.length > shortDescription.length) {
+        if (overflown) {
             Text(
                 text = if (expanded)
                     stringResource(R.string.AppDetailsDescription_showLess) else
@@ -62,7 +64,7 @@ fun Description(
                 color = colorScheme.tertiary,
                 modifier = modifier.clickable {
                     expanded = !expanded
-                }
+                },
             )
         }
     }

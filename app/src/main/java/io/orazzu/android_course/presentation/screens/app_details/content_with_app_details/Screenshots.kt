@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.body_with_app_details
+package io.orazzu.android_course.presentation.screens.app_details.content_with_app_details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -39,7 +39,10 @@ fun Screenshots(modifier: Modifier = Modifier, screenshotUrls: List<String>) {
             items(screenshotUrls.size) { index ->
                 AsyncImage(
                     model = screenshotUrls[index],
-                    contentDescription = "${stringResource(R.string.AppDetailsScreenshots_screenshot)} $index",
+                    contentDescription = stringResource(
+                        R.string.AppDetailsScreenshots_screenshot,
+                        index,
+                    ),
                     modifier = Modifier
                         .height(220.dp)
                         .background(colorScheme.onSecondaryContainer),

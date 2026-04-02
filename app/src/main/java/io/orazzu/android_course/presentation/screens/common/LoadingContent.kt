@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import io.orazzu.android_course.R
 
 @Composable
-fun LoadingBody(modifier: Modifier = Modifier) {
+fun LoadingContent(modifier: Modifier = Modifier) {
     val infiniteTransition = rememberInfiniteTransition(label = "rotation")
     val rotation by infiniteTransition.animateFloat(
         initialValue = 0f,
@@ -30,11 +30,11 @@ fun LoadingBody(modifier: Modifier = Modifier) {
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = 1000,
-                easing = LinearEasing
+                easing = LinearEasing,
             ),
-            repeatMode = RepeatMode.Restart
+            repeatMode = RepeatMode.Restart,
         ),
-        label = "rotationAnim"
+        label = "rotationAnim",
     )
 
     Box(
@@ -59,6 +59,6 @@ fun LoadingBody(modifier: Modifier = Modifier) {
     widthDp = 400,
 )
 @Composable
-fun LoadingBodyPreview() {
-    LoadingBody()
+fun LoadingContentPreview() {
+    LoadingContent()
 }

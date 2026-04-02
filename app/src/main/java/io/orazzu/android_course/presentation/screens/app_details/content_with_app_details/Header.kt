@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.body_with_app_details
+package io.orazzu.android_course.presentation.screens.app_details.content_with_app_details
 
 import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
@@ -7,7 +7,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -35,7 +34,7 @@ import io.orazzu.android_course.presentation.helpers.toString
 fun Header(modifier: Modifier = Modifier, app: AppDetails) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier,
     ) {
         Row(
             modifier = modifier.padding(
@@ -43,7 +42,7 @@ fun Header(modifier: Modifier = Modifier, app: AppDetails) {
                 top = 16.dp,
                 end = 16.dp,
                 bottom = 0.dp,
-            )
+            ),
         ) {
             Text(
                 text = app.name,

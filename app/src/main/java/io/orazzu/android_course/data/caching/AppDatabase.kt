@@ -10,7 +10,7 @@ import io.orazzu.android_course.data.caching.app_details.ScreenshotsConverter
 
 @Database(
     entities = [AppDetailsEntity::class],
-    version = 1,
+    version = 2,
 )
 @TypeConverters(AppCategoryConverter::class, ScreenshotsConverter::class)
 abstract class AppDatabase : RoomDatabase() {

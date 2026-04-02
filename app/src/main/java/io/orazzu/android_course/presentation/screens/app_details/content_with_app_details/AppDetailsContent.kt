@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_details.body_with_app_details
+package io.orazzu.android_course.presentation.screens.app_details.content_with_app_details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import io.orazzu.android_course.domain.app_details.AppDetails
 
 @Composable
-fun Body(modifier: Modifier = Modifier, app: AppDetails, onRefresh: () -> Unit) {
+fun AppDetailsContent(modifier: Modifier = Modifier, app: AppDetails, onRefresh: () -> Unit) {
     PullToRefreshBox(
         isRefreshing = false,
         onRefresh = onRefresh,
@@ -26,8 +26,7 @@ fun Body(modifier: Modifier = Modifier, app: AppDetails, onRefresh: () -> Unit) 
             item {
                 Description(
                     modifier = modifier,
-                    shortDescription = app.shortDescription,
-                    longDescription = app.longDescription,
+                    text = app.longDescription ?: app.shortDescription ?: "",
                 )
             }
             item { InstallButton(modifier = modifier) }

@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import io.orazzu.android_course.R
 
 @Composable
-fun ErrorBody(modifier: Modifier = Modifier, error: String, onRefresh: () -> Unit) {
+fun ErrorContent(modifier: Modifier = Modifier, error: String, onRefresh: () -> Unit) {
     PullToRefreshBox(
         isRefreshing = false,
         onRefresh = onRefresh,
@@ -63,8 +63,8 @@ fun ErrorBody(modifier: Modifier = Modifier, error: String, onRefresh: () -> Uni
     widthDp = 400,
 )
 @Composable
-fun ErrorBodyPreview() {
-    ErrorBody(
+fun ErrorContentPreview() {
+    ErrorContent(
         error = stringResource(R.string.unknownError),
         onRefresh = {},
     )

@@ -8,15 +8,15 @@ import io.orazzu.android_course.R
 import io.orazzu.android_course.domain.DomainError
 import io.orazzu.android_course.presentation.layouts.CardLikeLayout
 import io.orazzu.android_course.presentation.preview_data.getApps
-import io.orazzu.android_course.presentation.screens.app_list.body_with_apps.Body
-import io.orazzu.android_course.presentation.screens.common.ErrorBody
-import io.orazzu.android_course.presentation.screens.common.LoadingBody
+import io.orazzu.android_course.presentation.screens.app_list.content_with_apps.AppListContent
+import io.orazzu.android_course.presentation.screens.common.ErrorContent
+import io.orazzu.android_course.presentation.screens.common.LoadingContent
 import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
 
 @Composable
 fun AppListScreen(
     modifier: Modifier = Modifier,
-    body: BodyType,
+    content: AppListContentType,
     onAppClick: (String) -> Unit,
     onLogoClick: () -> Unit,
     onRefresh: () -> Unit,
@@ -24,25 +24,25 @@ fun AppListScreen(
     CardLikeLayout(
         modifier = modifier,
         header = { AppListScreenHeader(modifier = modifier, onLogoClick = onLogoClick) },
-        body = {
-            when (body) {
-                is BodyType.Loading -> {
-                    LoadingBody(modifier = modifier)
+        content = {
+            when (content) {
+                is AppListContentType.Loading -> {
+                    LoadingContent(modifier = modifier)
                 }
 
-                is BodyType.WithApps -> {
-                    Body(
+                is AppListContentType.WithApps -> {
+                    AppListContent(
                         modifier = modifier,
-                        apps = body.apps,
+                        apps = content.apps,
                         onAppClick = onAppClick,
                         onRefresh = onRefresh,
                     )
                 }
 
-                is BodyType.Error -> {
-                    ErrorBody(
+                is AppListContentType.Error -> {
+                    ErrorContent(
                         modifier = modifier,
-                        error = when (body.error) {
+                        error = when (content.error) {
                             DomainError.CONNECTION_ERROR -> stringResource(R.string.connectionError)
                             else -> stringResource(R.string.unknownError)
                         },
@@ -59,7 +59,7 @@ fun AppListScreen(
 fun AppListScreenPreview() {
     AndroidCourseTheme {
         AppListScreen(
-            body = BodyType.WithApps(getApps()),
+            content = AppListContentType.WithApps(getApps()),
             onAppClick = {},
             onLogoClick = {},
             onRefresh = {},

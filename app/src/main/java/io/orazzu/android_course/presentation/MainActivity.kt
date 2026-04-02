@@ -23,25 +23,17 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = "app_list",
+                    startDestination = Route.AppList.route,
                 ) {
-                    composable("app_list") {
+                    composable(Route.AppList.route) {
                         AppListRoute(
-                            onAppClick = { appId ->
-                                navController.navigate("app_details/$appId")
-                            },
+                            onAppClick = Route.AppList.navigateToAppDetails(navController),
                         )
                     }
 
-                    composable("app_details/{appId}") { backStackEntry ->
+                    composable(Route.AppDetails.route) { backStackEntry ->
                         AppDetailsRoute(
-                            onBackClick = {
-                                navController.popBackStack(
-                                    route = "app_list",
-                                    inclusive = false,
-                                    saveState = false,
-                                )
-                            },
+                            onBackClick = Route.AppDetails.navigateBack(navController),
                         )
                     }
                 }

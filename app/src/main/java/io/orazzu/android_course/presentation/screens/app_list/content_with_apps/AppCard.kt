@@ -1,4 +1,4 @@
-package io.orazzu.android_course.presentation.screens.app_list.body_with_apps
+package io.orazzu.android_course.presentation.screens.app_list.content_with_apps
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

@@ -32,7 +32,7 @@
     <string name="AppDetailsDescription_showLess">Show less</string>
     <string name="InstallButton_install">Install</string>
     <string name="AppDetailsScreenshots_screenshots">Screenshots</string>
-    <string name="AppDetailsScreenshots_screenshot">Screenshot</string>
+    <string name="AppDetailsScreenshots_screenshot">Screenshot %1$d</string>
 
     <string name="AppDetailsErrorScreen_appNotFound">App not found</string>
 </resources>

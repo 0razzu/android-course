@@ -16,6 +16,6 @@ interface AppDetailsDao {
     @Upsert
     fun putAppDetails(appDetails: AppDetailsEntity)
 
-    @Query("update app_details set isInWishlist = :isInWishlist where id = :id")
-    fun updateWishlistStatus(id: String, isInWishlist: Boolean)
+    @Query("update app_details set isInWishlist = not isInWishlist where id = :id")
+    fun toggleWishlistStatus(id: String)
 }

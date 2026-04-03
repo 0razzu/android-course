@@ -70,8 +70,7 @@ class AppDetailsCachingRepo @Inject constructor(
 
         return try {
             withContext(Dispatchers.IO) {
-                val isInWishlist = dao.getIsInWishlist(id)!!
-                dao.updateWishlistStatus(id, !isInWishlist)
+                dao.toggleWishlistStatus(id)
             }
 
             DomainResult.Success(Unit)

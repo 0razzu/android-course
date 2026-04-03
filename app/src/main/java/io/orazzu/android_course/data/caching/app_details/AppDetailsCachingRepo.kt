@@ -71,20 +71,8 @@ class AppDetailsCachingRepo @Inject constructor(
     override suspend fun toggleWishlistStatus(id: String): DomainResult<Unit> {
         Log.d(logTag, "Toggling wishlist status for app $id")
 
-        return try {
-            withContext(Dispatchers.IO) {
-                dao.toggleWishlistStatus(id)
-            }
-
-            DomainResult.Success(Unit)
-        } catch (e: IOException) {
-            Log.e(logTag, "Connection error while toggling wishlist status for app $id", e)
-
-            DomainResult.Failure(DomainError.CONNECTION_ERROR)
-        } catch (e: Exception) {
-            Log.e(logTag, "Unexpected exception while toggling wishlist status for app $id", e)
-
-            DomainResult.Failure(DomainError.UNKNOWN)
+        return safeDbRequest("toggling wishlist status for app $id") {
+            dao.toggleWishlistStatus(id)
         }
     }
 
@@ -116,27 +104,30 @@ class AppDetailsCachingRepo @Inject constructor(
     suspend fun putAppDetails(appDetails: AppDetails): DomainResult<Unit> {
         Log.d(logTag, "Putting app $appDetails")
 
-        return try {
-            withContext(Dispatchers.IO) {
-                val isInWishlist = dao.getIsInWishlist(appDetails.id)
-                Log.d(logTag, "App ${appDetails.id} is in wishlist: $isInWishlist")
-                dao.putAppDetails(
-                    appDetailsLocalMapper.toEntity(
-                        appDetails.copy(
-                            isInWishlist = isInWishlist ?: false,
-                        ),
+        return safeDbRequest("putting app $appDetails") {
+            val isInWishlist = dao.getIsInWishlist(appDetails.id)
+            Log.d(logTag, "App ${appDetails.id} is in wishlist: $isInWishlist")
+            dao.putAppDetails(
+                appDetailsLocalMapper.toEntity(
+                    appDetails.copy(
+                        isInWishlist = isInWishlist ?: false,
                     ),
-                )
+                ),
+            )
+        }
+    }
+
+    private suspend inline fun <T> safeDbRequest(
+        opDescription: String,
+        crossinline op: () -> T,
+    ): DomainResult<T> {
+        return withContext(Dispatchers.IO) {
+            try {
+                DomainResult.Success(op())
+            } catch (e: Exception) {
+                Log.e(logTag, "Unexpected exception while $opDescription", e)
+                DomainResult.Failure(DomainError.UNKNOWN)
             }
-            DomainResult.Success(Unit)
-        } catch (e: IOException) {
-            Log.e(logTag, "Connection error while putting app $appDetails", e)
-
-            DomainResult.Failure(DomainError.CONNECTION_ERROR)
-        } catch (e: Exception) {
-            Log.e(logTag, "Unexpected exception while putting app $appDetails", e)
-
-            DomainResult.Failure(DomainError.UNKNOWN)
         }
     }
 }

@@ -30,19 +30,22 @@ class AppDetailsCachingRepo @Inject constructor(
     override suspend fun getAppDetails(id: String): DomainResult<AppDetails> {
         Log.d(logTag, "Getting app $id from db")
 
-        return when (val cached = withContext(Dispatchers.IO) { dao.getAppDetails(id) }.first()) {
-            is AppDetailsEntity -> DomainResult.Success(appDetailsLocalMapper.toDomain(cached))
-            null -> refreshAppDetails(id)
+        val cached = withContext(Dispatchers.IO) { dao.getAppDetails(id) }.first()
+        return if (cached != null) {
+            DomainResult.Success(appDetailsLocalMapper.toDomain(cached))
+        } else {
+            refreshAppDetails(id)
         }
     }
 
     override fun observeAppDetails(id: String): Flow<DomainResult<AppDetails>> {
-        return dao.getAppDetails(id).map {
+        return dao.getAppDetails(id).map { appDetails ->
             Log.d(logTag, "Getting app $id while observing")
 
-            when (it) {
-                is AppDetailsEntity -> DomainResult.Success(appDetailsLocalMapper.toDomain(it))
-                null -> DomainResult.Failure(DomainError.NOT_FOUND)
+            if (appDetails != null) {
+                DomainResult.Success(appDetailsLocalMapper.toDomain(appDetails))
+            } else {
+                DomainResult.Failure(DomainError.NOT_FOUND)
             }
         }
     }

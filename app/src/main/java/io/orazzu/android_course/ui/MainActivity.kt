@@ -1,0 +1,51 @@
+package io.orazzu.android_course.ui
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import io.orazzu.android_course.repository.AppRepository
+import io.orazzu.android_course.repository.local.AppLocalRepository
+import io.orazzu.android_course.ui.screens.app_details.AppDetailsScreen
+import io.orazzu.android_course.ui.screens.app_list.AppListScreen
+import io.orazzu.android_course.ui.theme.AndroidCourseTheme
+
+class MainActivity(
+    private val appRepository: AppRepository = AppLocalRepository(),
+) : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AndroidCourseTheme {
+                val navController = rememberNavController()
+                val apps = appRepository.getApps()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = Screen.AppList.route,
+                ) {
+                    composable(Screen.AppList.route) {
+                        AppListScreen(
+                            apps = apps,
+                            onAppClick = Screen.AppList.navigateToAppDetails(navController),
+                        )
+                    }
+
+                    composable(Screen.AppDetails.route) { backStackEntry ->
+                        val appId = backStackEntry.arguments?.getString("appId")
+                        val app = apps.first { it.id == appId }
+
+                        AppDetailsScreen(
+                            app = app,
+                            onBackClick = Screen.AppDetails.navigateBack(navController),
+                        )
+                    }
+                }
+            }
+        }
+    }
+}

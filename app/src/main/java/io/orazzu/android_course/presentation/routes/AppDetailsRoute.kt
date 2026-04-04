@@ -17,10 +17,10 @@ fun AppDetailsRoute(
 
     val state by viewModel.state.collectAsState()
     AppDetailsScreen(
-        content = when (state) {
+        content = when (val curState = state) {
             is AppDetailsUiState.Loading -> AppDetailsContentType.Loading
-            is AppDetailsUiState.Success -> AppDetailsContentType.WithAppDetails((state as AppDetailsUiState.Success).appDetails)
-            is AppDetailsUiState.Error -> AppDetailsContentType.Error((state as AppDetailsUiState.Error).error)
+            is AppDetailsUiState.Success -> AppDetailsContentType.WithAppDetails(curState.appDetails)
+            is AppDetailsUiState.Error -> AppDetailsContentType.Error(curState.error)
         },
         onBackClick = onBackClick,
     )

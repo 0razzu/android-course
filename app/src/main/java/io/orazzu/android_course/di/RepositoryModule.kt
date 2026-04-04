@@ -8,13 +8,16 @@ import io.orazzu.android_course.data.caching.app_details.AppDetailsCachingRepo
 import io.orazzu.android_course.data.edu_catalog.app.AppEduCatalogRepo
 import io.orazzu.android_course.domain.app.AppRepo
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
     @Binds
+    @Singleton
     abstract fun bindAppDetailsRepo(impl: AppDetailsCachingRepo): AppDetailsRepo
 
     @Binds
+    @Singleton
     abstract fun bindAppRepo(impl: AppEduCatalogRepo): AppRepo
 }

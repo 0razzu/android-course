@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import io.orazzu.android_course.data.edu_catalog.EduCatalogApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -14,6 +15,7 @@ object NetworkModule {
     private const val EDU_CATALOG_BASE_URL = "http://185.103.109.134/"
 
     @Provides
+    @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(EDU_CATALOG_BASE_URL)
@@ -22,6 +24,7 @@ object NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun provideEduCatalogApi(retrofit: Retrofit): EduCatalogApi {
         return retrofit.create(EduCatalogApi::class.java)
     }

@@ -29,6 +29,7 @@ fun getAppDetails(): List<AppDetails> = listOf(
                 С помощью поиска легко найти любой сервис, а если запрос сложный, можно обратиться к ИИ-помощнику GigaChat. Он ответит на вопросы о финансах, даст советы по планированию или структурирует сложную информацию.
                 А ещё интерфейс приложения можно легко настроить под свои задачи: поменять местами разделы, скрыть неактуальное или добавить то, чем важно управлять сейчас. Изменить СберБанк Онлайн под настроение тоже возможно: достаточно выбрать фон приложения, тему и установить аватар.
             """.trimIndent(),
+        isInWishlist = false,
     ),
     AppDetails(
         id = "24rа2f",
@@ -64,6 +65,7 @@ fun getAppDetails(): List<AppDetails> = listOf(
                 Если у вас есть предложения или пожелания по функциональности и работе браузера, напишите нам прямо из приложения (Настройки → Обратная связь) или со страницы поддержки: https://yandex.ru/support/browser-mobile-iphone/feedback/feedback.xml.
                 Загружая программу, Вы принимаете условия Лицензионного соглашения https://yandex.ru/legal/browser_agreement/
             """.trimIndent(),
+        isInWishlist = false,
     ),
     AppDetails(
         id = "klj349",
@@ -96,6 +98,7 @@ fun getAppDetails(): List<AppDetails> = listOf(
                 ЕЩЁ ПАРА СТРОК
                 Mail — надёжный почтовый клиент и приложение со всеми сервисами для работы. Приложение совместимо с версиями Android 7.0 и старше. Подходит для работы с почтовыми ящиками Mail, Яндекс.Почта, Rambler, Gmail от Google, Yahoo, Hotmail, Microsoft Outlook и других сервисов, поддерживающих протоколы IMAP, POP и SMTP.
             """.trimIndent(),
+        isInWishlist = false,
     ),
     AppDetails(
         id = "274rgw",
@@ -107,6 +110,7 @@ fun getAppDetails(): List<AppDetails> = listOf(
         screenshotUrlList = listOf(),
         shortDescription = "Парковки и заправки — по пути",
         longDescription = null,
+        isInWishlist = false,
     ),
     AppDetails(
         id = "34ie9c",
@@ -118,6 +122,7 @@ fun getAppDetails(): List<AppDetails> = listOf(
         screenshotUrlList = listOf(),
         shortDescription = "Мой МТС — центр экосистемы МТС",
         longDescription = null,
+        isInWishlist = false,
     ),
     AppDetails(
         id = "tyft6u",
@@ -169,6 +174,7 @@ fun getAppDetails(): List<AppDetails> = listOf(
                 Погода с точностью до района. Подробный почасовой прогноз на текущий день с динамической картой осадков, ветров, температуры и давления. И ежедневный — на неделю вперёд с детальной информацией о скорости ветра, атмосферном давлении и уровне влажности. А ещё — специальные режимы с полезной погодной информацией для рыбаков, садоводов и не только.
                 Загружая программу, Вы принимаете условия Лицензионного соглашения https://yandex.ru/legal/yaalice_mobile_agreement/ru/
             """.trimIndent(),
+        isInWishlist = false,
     ),
     AppDetails(
         id = "13er23",
@@ -180,6 +186,7 @@ fun getAppDetails(): List<AppDetails> = listOf(
         screenshotUrlList = listOf(),
         shortDescription = "Just some",
         longDescription = null,
+        isInWishlist = false,
     ),
     AppDetails(
         id = "43fr",
@@ -191,6 +198,7 @@ fun getAppDetails(): List<AppDetails> = listOf(
         screenshotUrlList = listOf(),
         shortDescription = "Just another",
         longDescription = null,
+        isInWishlist = false,
     ),
     AppDetails(
         id = "eg8u4a",
@@ -202,5 +210,6 @@ fun getAppDetails(): List<AppDetails> = listOf(
         screenshotUrlList = listOf(),
         shortDescription = "Our descriptions are also long as hell btw. Y’all never read them anyways tho.",
         longDescription = null,
+        isInWishlist = false,
     ),
 )

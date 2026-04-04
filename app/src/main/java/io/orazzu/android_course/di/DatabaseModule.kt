@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.orazzu.android_course.data.caching.AppDatabase
+import io.orazzu.android_course.data.caching.MIGRATION_1_2
 import io.orazzu.android_course.data.caching.app_details.AppDetailsDao
 import javax.inject.Singleton
 
@@ -20,7 +21,9 @@ object DatabaseModule {
             app,
             AppDatabase::class.java,
             AppDatabase.DATABASE_NAME,
-        ).build()
+        )
+            .addMigrations(MIGRATION_1_2)
+            .build()
     }
 
     @Provides

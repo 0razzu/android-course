@@ -9,6 +9,9 @@ import io.orazzu.android_course.domain.app_details.AppDetails
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -27,9 +30,23 @@ class AppDetailsCachingRepo @Inject constructor(
     override suspend fun getAppDetails(id: String): DomainResult<AppDetails> {
         Log.d(logTag, "Getting app $id from db")
 
-        return when (val cached = withContext(Dispatchers.IO) { dao.getAppDetails(id) }) {
-            is AppDetailsEntity -> DomainResult.Success(appDetailsLocalMapper.toDomain(cached))
-            null -> refreshAppDetails(id)
+        val cached = withContext(Dispatchers.IO) { dao.getAppDetails(id) }.first()
+        return if (cached != null) {
+            DomainResult.Success(appDetailsLocalMapper.toDomain(cached))
+        } else {
+            refreshAppDetails(id)
+        }
+    }
+
+    override fun observeAppDetails(id: String): Flow<DomainResult<AppDetails>> {
+        return dao.getAppDetails(id).map { appDetails ->
+            Log.d(logTag, "Getting app $id while observing")
+
+            if (appDetails != null) {
+                DomainResult.Success(appDetailsLocalMapper.toDomain(appDetails))
+            } else {
+                DomainResult.Failure(DomainError.NOT_FOUND)
+            }
         }
     }
 
@@ -48,6 +65,14 @@ class AppDetailsCachingRepo @Inject constructor(
             }
 
             is DomainResult.Failure -> appDetailsResp
+        }
+    }
+
+    override suspend fun toggleWishlistStatus(id: String): DomainResult<Unit> {
+        Log.d(logTag, "Toggling wishlist status for app $id")
+
+        return safeDbRequest("toggling wishlist status for app $id") {
+            dao.toggleWishlistStatus(id)
         }
     }
 
@@ -79,19 +104,30 @@ class AppDetailsCachingRepo @Inject constructor(
     suspend fun putAppDetails(appDetails: AppDetails): DomainResult<Unit> {
         Log.d(logTag, "Putting app $appDetails")
 
-        return try {
-            withContext(Dispatchers.IO) {
-                dao.putAppDetails(appDetailsLocalMapper.toEntity(appDetails))
+        return safeDbRequest("putting app $appDetails") {
+            val isInWishlist = dao.getIsInWishlist(appDetails.id)
+            Log.d(logTag, "App ${appDetails.id} is in wishlist: $isInWishlist")
+            dao.putAppDetails(
+                appDetailsLocalMapper.toEntity(
+                    appDetails.copy(
+                        isInWishlist = isInWishlist ?: false,
+                    ),
+                ),
+            )
+        }
+    }
+
+    private suspend inline fun <T> safeDbRequest(
+        opDescription: String,
+        crossinline op: () -> T,
+    ): DomainResult<T> {
+        return withContext(Dispatchers.IO) {
+            try {
+                DomainResult.Success(op())
+            } catch (e: Exception) {
+                Log.e(logTag, "Unexpected exception while $opDescription", e)
+                DomainResult.Failure(DomainError.UNKNOWN)
             }
-            DomainResult.Success(Unit)
-        } catch (e: IOException) {
-            Log.e(logTag, "Connection error while putting app $appDetails", e)
-
-            DomainResult.Failure(DomainError.CONNECTION_ERROR)
-        } catch (e: Exception) {
-            Log.e(logTag, "Unexpected exception while putting app $appDetails", e)
-
-            DomainResult.Failure(DomainError.UNKNOWN)
         }
     }
 }

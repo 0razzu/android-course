@@ -17,5 +17,6 @@ class AppDetailsEduCatalogMapper @Inject constructor(
         developer = dto.developer,
         screenshotUrlList = dto.screenshotUrlList,
         longDescription = dto.description,
+        isInWishlist = false,
     )
 }

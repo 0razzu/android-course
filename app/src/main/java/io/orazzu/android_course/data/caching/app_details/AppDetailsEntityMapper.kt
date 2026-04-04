@@ -12,7 +12,8 @@ class AppDetailsEntityMapper @Inject constructor() {
         ageRating = domain.ageRating,
         iconUrl = domain.iconUrl,
         screenshots = domain.screenshotUrlList,
-        description = domain.longDescription ?: domain.shortDescription!!,
+        description = domain.longDescription ?: domain.shortDescription ?: "",
+        isInWishlist = domain.isInWishlist,
     )
 
     fun toDomain(entity: AppDetailsEntity): AppDetails = AppDetails(
@@ -25,5 +26,6 @@ class AppDetailsEntityMapper @Inject constructor() {
         screenshotUrlList = entity.screenshots,
         shortDescription = null,
         longDescription = entity.description,
+        isInWishlist = entity.isInWishlist,
     )
 }

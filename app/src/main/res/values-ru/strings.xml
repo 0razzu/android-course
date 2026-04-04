@@ -29,6 +29,11 @@
     <string name="AppCategory_WEATHER">Погода</string>
 
     <string name="AppList_logoClicked">Тык на лого</string>
+
+    <string name="AppDetailsScreenHeader_back">Назад к списку приложений</string>
+    <string name="AppDetailsScreenHeader_appIsInWishlist">Приложение в вишлисте</string>
+    <string name="AppDetailsScreenHeader_appIsNotInWishlist">Приложение не в вишлисте</string>
+
     <string name="AppDetailsDescription_showMore">Развернуть</string>
     <string name="AppDetailsDescription_showLess">Свернуть</string>
     <string name="InstallButton_install">Установить</string>

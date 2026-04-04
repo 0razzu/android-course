@@ -15,5 +15,6 @@ class AppDetailsMockMapper @Inject constructor(private val appCategoryMapper: Ap
         screenshotUrlList = dto.screenshotUrlList,
         shortDescription = dto.shortDescription,
         longDescription = dto.longDescription,
+        isInWishlist = false,
     )
 }

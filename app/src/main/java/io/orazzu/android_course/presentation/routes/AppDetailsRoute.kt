@@ -23,6 +23,7 @@ fun AppDetailsRoute(
             is AppDetailsUiState.Error -> AppDetailsContentType.Error(curState.error)
         },
         onBackClick = onBackClick,
+        onToggleWishlistStatusClick = viewModel::onToggleWishlistStatus,
         onRefresh = viewModel::onRefresh,
     )
 }

@@ -1,5 +1,6 @@
 package io.orazzu.android_course.data.caching.app_details
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import io.orazzu.android_course.domain.AppCategory
@@ -14,5 +15,7 @@ data class AppDetailsEntity(
     val iconUrl: String,
     val screenshots: List<String>,
     val description: String,
+    @ColumnInfo(defaultValue = "0")
+    val isInWishlist: Boolean = false,
     val lastUpdated: Long = System.currentTimeMillis(),
 )

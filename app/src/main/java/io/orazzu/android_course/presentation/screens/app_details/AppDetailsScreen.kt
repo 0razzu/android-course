@@ -19,11 +19,22 @@ fun AppDetailsScreen(
     modifier: Modifier = Modifier,
     content: AppDetailsContentType,
     onBackClick: () -> Unit,
+    onToggleWishlistStatusClick: () -> Unit,
     onRefresh: () -> Unit,
 ) {
     CardLikeLayout(
         modifier = modifier,
-        header = { AppDetailsScreenHeader(modifier = modifier, onBackClick = onBackClick) },
+        header = {
+            AppDetailsScreenHeader(
+                modifier = modifier,
+                isInWishlist =
+                    if (content is AppDetailsContentType.WithAppDetails)
+                        content.appDetails.isInWishlist else
+                        null,
+                onBackClick = onBackClick,
+                onToggleWishlistStatusClick = onToggleWishlistStatusClick,
+            )
+        },
         content = {
             when (content) {
                 is AppDetailsContentType.Loading -> LoadingContent(modifier = modifier)
@@ -56,6 +67,7 @@ fun AppDetailsScreenPreview() {
         AppDetailsScreen(
             content = AppDetailsContentType.WithAppDetails(appDetails[Random.nextInt(appDetails.size)]),
             onBackClick = {},
+            onToggleWishlistStatusClick = {},
             onRefresh = {},
         )
     }

@@ -12,4 +12,5 @@ data class AppDetails(
     val screenshotUrlList: List<String>,
     val shortDescription: String?,
     val longDescription: String?,
+    val isInWishlist: Boolean,
 )

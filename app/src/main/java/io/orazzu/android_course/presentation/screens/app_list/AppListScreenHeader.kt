@@ -11,12 +11,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -55,17 +55,17 @@ fun AppListScreenHeader(
                     modifier = modifier
                         .size(40.dp)
                         .background(
-                            color = colorResource(R.color.white),
+                            color = colorScheme.onPrimary,
                             shape = RoundedCornerShape(10.dp),
                         ),
                     painter = painterResource(R.drawable.app_registration_40px),
                     contentDescription = null,
-                    tint = colorResource(R.color.purple_500),
+                    tint = colorScheme.primary,
                 )
 
                 Text(
                     text = stringResource(R.string.app_name),
-                    color = colorResource(R.color.white),
+                    color = colorScheme.onPrimary,
                     fontSize = 28.sp,
                     style = MaterialTheme.typography.titleLarge,
                     overflow = TextOverflow.Ellipsis,
@@ -79,14 +79,14 @@ fun AppListScreenHeader(
             modifier = modifier
                 .size(40.dp)
                 .background(
-                    color = colorResource(R.color.white_25),
+                    color = colorScheme.onPrimaryContainer,
                     shape = RoundedCornerShape(12.dp),
                 )
                 .clip(shape = RoundedCornerShape(12.dp))
                 .clickable(onClick = {}),
             painter = painterResource(R.drawable.apps_40px),
             contentDescription = null,
-            tint = colorResource(R.color.white),
+            tint = colorScheme.onPrimary,
         )
     }
 }

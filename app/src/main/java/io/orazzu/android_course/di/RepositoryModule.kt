@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.orazzu.android_course.data.caching.app_details.AppDetailsCachingRepo
 import io.orazzu.android_course.data.edu_catalog.app.AppEduCatalogRepo
-import io.orazzu.android_course.data.edu_catalog.app_details.AppDetailsEduCatalogRepo
 import io.orazzu.android_course.domain.app.AppRepo
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
 import javax.inject.Singleton
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindAppDetailsRepo(impl: AppDetailsEduCatalogRepo): AppDetailsRepo
+    abstract fun bindAppDetailsRepo(impl: AppDetailsCachingRepo): AppDetailsRepo
 
     @Binds
     @Singleton

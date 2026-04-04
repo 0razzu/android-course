@@ -19,6 +19,7 @@ fun AppListScreen(
     content: AppListContentType,
     onAppClick: (String) -> Unit,
     onLogoClick: () -> Unit,
+    onRefresh: () -> Unit,
 ) {
     CardLikeLayout(
         modifier = modifier,
@@ -34,6 +35,7 @@ fun AppListScreen(
                         modifier = modifier,
                         apps = content.apps,
                         onAppClick = onAppClick,
+                        onRefresh = onRefresh,
                     )
                 }
 
@@ -44,6 +46,7 @@ fun AppListScreen(
                             DomainError.CONNECTION_ERROR -> stringResource(R.string.connectionError)
                             else -> stringResource(R.string.unknownError)
                         },
+                        onRefresh = onRefresh,
                     )
                 }
             }
@@ -59,6 +62,7 @@ fun AppListScreenPreview() {
             content = AppListContentType.WithApps(getApps()),
             onAppClick = {},
             onLogoClick = {},
+            onRefresh = {},
         )
     }
 }

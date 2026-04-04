@@ -50,6 +50,7 @@ fun AppListRoute(
             },
             onAppClick = onAppClick,
             onLogoClick = viewModel::onLogoClick,
+            onRefresh = viewModel::onRefresh,
         )
     }
 }

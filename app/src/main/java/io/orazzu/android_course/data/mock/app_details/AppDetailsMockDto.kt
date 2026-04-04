@@ -1,6 +1,6 @@
-package io.orazzu.android_course.data.local.app_details
+package io.orazzu.android_course.data.mock.app_details
 
-data class AppDetailsLocalDto(
+data class AppDetailsMockDto(
     val id: String,
     val name: String,
     val developer: String,

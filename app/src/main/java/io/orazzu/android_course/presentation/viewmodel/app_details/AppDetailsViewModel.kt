@@ -25,20 +25,38 @@ class AppDetailsViewModel @Inject constructor(
     private val appId: String? = savedStateHandle["appId"]
 
     init {
-        load()
+        if (appId == null) {
+            _state.value = AppDetailsUiState.Error(DomainError.UNKNOWN)
+        } else {
+            viewModelScope.launch {
+                load(appId)
+            }
+        }
     }
 
-    private fun load() {
+    fun onRefresh() {
         if (appId == null) {
             _state.value = AppDetailsUiState.Error(DomainError.UNKNOWN)
             return
         }
 
         viewModelScope.launch {
-            _state.value = when (val result = repository.getAppDetails(appId)) {
-                is DomainResult.Success<AppDetails> -> AppDetailsUiState.Success(result.data)
-                is DomainResult.Failure -> AppDetailsUiState.Error(result.error)
-            }
+            refresh(appId)
+        }
+    }
+
+    private suspend fun load(appId: String) {
+        _state.value = when (val result = repository.getAppDetails(appId)) {
+            is DomainResult.Success<AppDetails> -> AppDetailsUiState.Success(result.data)
+            is DomainResult.Failure -> AppDetailsUiState.Error(result.error)
+        }
+    }
+
+    private suspend fun refresh(appId: String) {
+        _state.value = AppDetailsUiState.Loading
+        _state.value = when (val result = repository.refreshAppDetails(appId)) {
+            is DomainResult.Success -> AppDetailsUiState.Success(result.data)
+            is DomainResult.Failure -> AppDetailsUiState.Error(result.error)
         }
     }
 }

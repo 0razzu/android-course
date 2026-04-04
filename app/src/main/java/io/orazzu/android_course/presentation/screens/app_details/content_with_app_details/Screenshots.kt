@@ -45,7 +45,7 @@ fun Screenshots(modifier: Modifier = Modifier, screenshotUrls: List<String>) {
                         index,
                     ),
                     modifier = Modifier
-                        .defaultMinSize(minWidth = 150.dp)
+                        .defaultMinSize(minWidth = 100.dp)
                         .height(220.dp)
                         .background(colorScheme.onSecondaryContainer),
                     contentScale = ContentScale.Crop,

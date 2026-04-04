@@ -1,11 +1,11 @@
-package io.orazzu.android_course.data.local.app_details
+package io.orazzu.android_course.data.mock.app_details
 
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 import kotlin.random.Random
 
-class AppDetailsLocalApi @Inject constructor() {
-    suspend fun getAppDetails(id: String): AppDetailsLocalDto {
+class AppDetailsMockApi @Inject constructor() {
+    suspend fun getAppDetails(id: String): AppDetailsMockDto {
         delay(Random.nextLong(2000))
         return storage[id] ?: throw NotFoundException("App details with id=$id not found")
     }
@@ -14,7 +14,7 @@ class AppDetailsLocalApi @Inject constructor() {
 
     companion object {
         val storage = mapOf(
-            "2q34rf" to AppDetailsLocalDto(
+            "2q34rf" to AppDetailsMockDto(
                 id = "2q34rf",
                 name = "Сбербанк Онлайн — с Салютом",
                 developer = "Сбер",
@@ -40,7 +40,7 @@ class AppDetailsLocalApi @Inject constructor() {
                 А ещё интерфейс приложения можно легко настроить под свои задачи: поменять местами разделы, скрыть неактуальное или добавить то, чем важно управлять сейчас. Изменить СберБанк Онлайн под настроение тоже возможно: достаточно выбрать фон приложения, тему и установить аватар.
             """.trimIndent(),
             ),
-            "24rа2f" to AppDetailsLocalDto(
+            "24rа2f" to AppDetailsMockDto(
                 id = "24rа2f",
                 name = "Яндекс.Браузер — с Алисой",
                 developer = "Яндекс",
@@ -75,7 +75,7 @@ class AppDetailsLocalApi @Inject constructor() {
                 Загружая программу, Вы принимаете условия Лицензионного соглашения https://yandex.ru/legal/browser_agreement/
             """.trimIndent(),
             ),
-            "klj349" to AppDetailsLocalDto(
+            "klj349" to AppDetailsMockDto(
                 id = "klj349",
                 name = "Почта Mail.ru",
                 developer = "VK",
@@ -107,7 +107,7 @@ class AppDetailsLocalApi @Inject constructor() {
                 Mail — надёжный почтовый клиент и приложение со всеми сервисами для работы. Приложение совместимо с версиями Android 7.0 и старше. Подходит для работы с почтовыми ящиками Mail, Яндекс.Почта, Rambler, Gmail от Google, Yahoo, Hotmail, Microsoft Outlook и других сервисов, поддерживающих протоколы IMAP, POP и SMTP.
             """.trimIndent(),
             ),
-            "274rgw" to AppDetailsLocalDto(
+            "274rgw" to AppDetailsMockDto(
                 id = "274rgw",
                 name = "Яндекс.Навигатор",
                 developer = "Яндекс",
@@ -118,7 +118,7 @@ class AppDetailsLocalApi @Inject constructor() {
                 shortDescription = "Парковки и заправки — по пути",
                 longDescription = null,
             ),
-            "34ie9c" to AppDetailsLocalDto(
+            "34ie9c" to AppDetailsMockDto(
                 id = "34ie9c",
                 name = "Мой МТС",
                 developer = "МТС",
@@ -129,7 +129,7 @@ class AppDetailsLocalApi @Inject constructor() {
                 shortDescription = "Мой МТС — центр экосистемы МТС",
                 longDescription = null,
             ),
-            "tyft6u" to AppDetailsLocalDto(
+            "tyft6u" to AppDetailsMockDto(
                 id = "tyft6u",
                 name = "Яндекс — с Алисой",
                 developer = "Яндекс",
@@ -180,7 +180,7 @@ class AppDetailsLocalApi @Inject constructor() {
                 Загружая программу, Вы принимаете условия Лицензионного соглашения https://yandex.ru/legal/yaalice_mobile_agreement/ru/
             """.trimIndent(),
             ),
-            "13er23" to AppDetailsLocalDto(
+            "13er23" to AppDetailsMockDto(
                 id = "13er23",
                 name = "Some App",
                 developer = "Some Bank",
@@ -191,7 +191,7 @@ class AppDetailsLocalApi @Inject constructor() {
                 shortDescription = "Just some",
                 longDescription = null,
             ),
-            "43fr" to AppDetailsLocalDto(
+            "43fr" to AppDetailsMockDto(
                 id = "43fr",
                 name = "One More App",
                 developer = "Someone",
@@ -202,7 +202,7 @@ class AppDetailsLocalApi @Inject constructor() {
                 shortDescription = "Just another",
                 longDescription = null,
             ),
-            "eg8u4a" to AppDetailsLocalDto(
+            "eg8u4a" to AppDetailsMockDto(
                 id = "eg8u4a",
                 name = "An App With a Crazy Long Name–Who in the World Ever Comes up With Such Blankets?",
                 developer = "Some Studio That Names Its Apps Like They’re Emo Songs–and Even Names Itself That Way",

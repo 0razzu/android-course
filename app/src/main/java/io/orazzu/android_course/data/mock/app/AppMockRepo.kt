@@ -1,4 +1,4 @@
-package io.orazzu.android_course.data.local.app
+package io.orazzu.android_course.data.mock.app
 
 import android.util.Log
 import io.orazzu.android_course.domain.DomainError
@@ -7,9 +7,9 @@ import io.orazzu.android_course.domain.app.App
 import io.orazzu.android_course.domain.app.AppRepo
 import javax.inject.Inject
 
-class AppLocalRepo @Inject constructor(
-    private val appMapper: AppLocalMapper,
-    private val api: AppLocalApi,
+class AppMockRepo @Inject constructor(
+    private val appMapper: AppMockMapper,
+    private val api: AppMockApi,
 ) : AppRepo {
     private val logTag = this.javaClass.simpleName
 

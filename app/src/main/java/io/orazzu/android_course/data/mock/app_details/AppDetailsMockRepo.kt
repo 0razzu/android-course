@@ -1,4 +1,4 @@
-package io.orazzu.android_course.data.local.app_details
+package io.orazzu.android_course.data.mock.app_details
 
 import android.util.Log
 import io.orazzu.android_course.domain.DomainError
@@ -7,9 +7,9 @@ import io.orazzu.android_course.domain.app_details.AppDetails
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
 import javax.inject.Inject
 
-class AppDetailsLocalRepo @Inject constructor(
-    private val appDetailsMapper: AppDetailsLocalMapper,
-    private val api: AppDetailsLocalApi,
+class AppDetailsMockRepo @Inject constructor(
+    private val appDetailsMapper: AppDetailsMockMapper,
+    private val api: AppDetailsMockApi,
 ) : AppDetailsRepo {
     private val logTag = this.javaClass.simpleName
 
@@ -19,7 +19,7 @@ class AppDetailsLocalRepo @Inject constructor(
         return try {
             val appDetailsDto = api.getAppDetails(id)
             DomainResult.Success(appDetailsMapper.toDomain(appDetailsDto))
-        } catch (e: AppDetailsLocalApi.NotFoundException) {
+        } catch (e: AppDetailsMockApi.NotFoundException) {
             Log.w(logTag, "App $id not found", e)
 
             DomainResult.Failure(DomainError.NOT_FOUND)

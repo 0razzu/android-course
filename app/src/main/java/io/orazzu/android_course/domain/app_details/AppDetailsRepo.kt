@@ -4,4 +4,5 @@ import io.orazzu.android_course.domain.DomainResult
 
 interface AppDetailsRepo {
     suspend fun getAppDetails(id: String): DomainResult<AppDetails>
+    suspend fun refreshAppDetails(id: String): DomainResult<AppDetails> = getAppDetails(id)
 }

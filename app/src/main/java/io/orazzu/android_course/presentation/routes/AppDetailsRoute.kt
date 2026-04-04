@@ -23,5 +23,6 @@ fun AppDetailsRoute(
             is AppDetailsUiState.Error -> AppDetailsContentType.Error(curState.error)
         },
         onBackClick = onBackClick,
+        onRefresh = viewModel::onRefresh,
     )
 }

@@ -19,6 +19,7 @@ fun AppDetailsScreen(
     modifier: Modifier = Modifier,
     content: AppDetailsContentType,
     onBackClick: () -> Unit,
+    onRefresh: () -> Unit,
 ) {
     CardLikeLayout(
         modifier = modifier,
@@ -26,9 +27,11 @@ fun AppDetailsScreen(
         content = {
             when (content) {
                 is AppDetailsContentType.Loading -> LoadingContent(modifier = modifier)
+
                 is AppDetailsContentType.WithAppDetails -> AppDetailsContent(
                     modifier = modifier,
                     app = content.appDetails,
+                    onRefresh = onRefresh,
                 )
 
                 is AppDetailsContentType.Error -> ErrorContent(
@@ -38,6 +41,7 @@ fun AppDetailsScreen(
                         DomainError.NOT_FOUND -> stringResource(R.string.AppDetailsErrorScreen_appNotFound)
                         else -> stringResource(R.string.unknownError)
                     },
+                    onRefresh = onRefresh,
                 )
             }
         },
@@ -52,6 +56,7 @@ fun AppDetailsScreenPreview() {
         AppDetailsScreen(
             content = AppDetailsContentType.WithAppDetails(appDetails[Random.nextInt(appDetails.size)]),
             onBackClick = {},
+            onRefresh = {},
         )
     }
 }

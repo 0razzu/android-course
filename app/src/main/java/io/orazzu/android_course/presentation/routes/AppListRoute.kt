@@ -32,7 +32,7 @@ fun AppListRoute(
     val snackbarHostState = remember { SnackbarHostState() }
     val ctx = LocalContext.current
 
-    LaunchedEffect(viewModel) {
+    LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
             when (event) {
                 is AppListEvent.ShowSnackbar -> {

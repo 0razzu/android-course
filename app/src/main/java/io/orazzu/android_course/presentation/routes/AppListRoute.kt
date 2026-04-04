@@ -17,7 +17,6 @@ import io.orazzu.android_course.presentation.viewmodel.app_list.AppListEvent
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModel
 import io.orazzu.android_course.presentation.viewmodel.app_list.AppListViewModelFactory
 import io.orazzu.android_course.repository.local.AppLocalRepository
-import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -30,7 +29,6 @@ fun AppListRoute(
 
     val apps by viewModel.state.collectAsState()
 
-    val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
     val ctx = LocalContext.current
 
@@ -38,9 +36,7 @@ fun AppListRoute(
         viewModel.events.collect { event ->
             when (event) {
                 is AppListEvent.ShowSnackbar -> {
-                    scope.launch {
-                        snackbarHostState.showSnackbar(ctx.resources.getString(event.messageId))
-                    }
+                    snackbarHostState.showSnackbar(ctx.resources.getString(event.messageId))
                 }
             }
         }

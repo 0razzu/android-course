@@ -4,6 +4,7 @@ import io.orazzu.android_course.TestCase
 import io.orazzu.android_course.data.edu_catalog.app_category.AppCategoryEduCatalogMapper
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNull
 import org.junit.jupiter.api.assertThrows
@@ -30,8 +31,9 @@ class TestAppDetailsEduCatalogMapper {
             { assertEquals(dto.ageRating, domain.ageRating) },
             { assertEquals(dto.iconUrl, domain.iconUrl) },
             { assertEquals(dto.screenshotUrlList, domain.screenshotUrlList) },
-            { assertEquals(dto.description, domain.longDescription) },
             { assertNull(domain.shortDescription) },
+            { assertEquals(dto.description, domain.longDescription) },
+            { assertFalse(domain.isInWishlist) },
         )
     }
 
@@ -62,7 +64,7 @@ class TestAppDetailsEduCatalogMapper {
 
     companion object {
         @JvmStatic
-        fun `simple cases`() = listOf(
+        fun `simple cases`(): List<TestCase<AppDetailsEduCatalogDto>> = listOf(
             TestCase(
                 name = "simple 1",
                 value = AppDetailsEduCatalogDto(
@@ -87,7 +89,7 @@ class TestAppDetailsEduCatalogMapper {
                     developer = "54321",
                     category = "Фото и видео",
                     ageRating = 5,
-                    iconUrl = "http://somewhere.",
+                    iconUrl = "http://somewhere.net",
                     screenshotUrlList = listOf("url"),
                     description = "A b c! j@n*;",
                 ),
@@ -95,7 +97,7 @@ class TestAppDetailsEduCatalogMapper {
         )
 
         @JvmStatic
-        fun `corner cases`() = listOf(
+        fun `corner cases`(): List<TestCase<AppDetailsEduCatalogDto>> = listOf(
             TestCase(
                 name = "utf",
                 value = AppDetailsEduCatalogDto(

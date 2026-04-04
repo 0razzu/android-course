@@ -1,5 +1,6 @@
 package io.orazzu.android_course.data.edu_catalog.app_details
 
+import io.orazzu.android_course.TestCase
 import io.orazzu.android_course.data.edu_catalog.app_category.AppCategoryEduCatalogMapper
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -14,23 +15,23 @@ class TestAppDetailsEduCatalogMapper {
     @ParameterizedTest(name = "{0}")
     @MethodSource("simple cases")
     @MethodSource("corner cases")
-    fun `dto to domain mapping fills all fields`(case: TestCase) {
+    fun `dto to domain mapping fills all fields`(case: TestCase<AppDetailsEduCatalogDto>) {
         val categoryMapper = AppCategoryEduCatalogMapper()
         val mapper = AppDetailsEduCatalogMapper(categoryMapper)
 
-        val dto = case.dto
-        val actual = mapper.toDomain(dto)
+        val dto = case.value
+        val domain = mapper.toDomain(dto)
 
         assertAll(
-            { assertEquals(dto.id, actual.id) },
-            { assertEquals(dto.name, actual.name) },
-            { assertEquals(dto.developer, actual.developer) },
-            { assertEquals(categoryMapper.toDomain(dto.category), actual.category) },
-            { assertEquals(dto.ageRating, actual.ageRating) },
-            { assertEquals(dto.iconUrl, actual.iconUrl) },
-            { assertEquals(dto.screenshotUrlList, actual.screenshotUrlList) },
-            { assertEquals(dto.description, actual.longDescription) },
-            { assertNull(actual.shortDescription) },
+            { assertEquals(dto.id, domain.id) },
+            { assertEquals(dto.name, domain.name) },
+            { assertEquals(dto.developer, domain.developer) },
+            { assertEquals(categoryMapper.toDomain(dto.category), domain.category) },
+            { assertEquals(dto.ageRating, domain.ageRating) },
+            { assertEquals(dto.iconUrl, domain.iconUrl) },
+            { assertEquals(dto.screenshotUrlList, domain.screenshotUrlList) },
+            { assertEquals(dto.description, domain.longDescription) },
+            { assertNull(domain.shortDescription) },
         )
     }
 
@@ -59,20 +60,12 @@ class TestAppDetailsEduCatalogMapper {
     }
 
 
-    data class TestCase(
-        val name: String,
-        val dto: AppDetailsEduCatalogDto,
-    ) {
-        override fun toString(): String = name
-    }
-
-
     companion object {
         @JvmStatic
         fun `simple cases`() = listOf(
             TestCase(
                 name = "simple 1",
-                dto = AppDetailsEduCatalogDto(
+                value = AppDetailsEduCatalogDto(
                     id = "349reii4ur8r",
                     name = "Name",
                     developer = "Dev",
@@ -88,7 +81,7 @@ class TestAppDetailsEduCatalogMapper {
             ),
             TestCase(
                 name = "simple 2",
-                dto = AppDetailsEduCatalogDto(
+                value = AppDetailsEduCatalogDto(
                     id = "123",
                     name = "12345",
                     developer = "54321",
@@ -105,7 +98,7 @@ class TestAppDetailsEduCatalogMapper {
         fun `corner cases`() = listOf(
             TestCase(
                 name = "utf",
-                dto = AppDetailsEduCatalogDto(
+                value = AppDetailsEduCatalogDto(
                     id = "5",
                     name = "Тест 🚀 漢字",
                     developer = "Разраб 👨‍💻",
@@ -118,7 +111,7 @@ class TestAppDetailsEduCatalogMapper {
             ),
             TestCase(
                 name = "url duplicates",
-                dto = AppDetailsEduCatalogDto(
+                value = AppDetailsEduCatalogDto(
                     id = "6",
                     name = "Url Duplicates",
                     developer = "Dev",
@@ -131,7 +124,7 @@ class TestAppDetailsEduCatalogMapper {
             ),
             TestCase(
                 name = "empty",
-                dto = AppDetailsEduCatalogDto(
+                value = AppDetailsEduCatalogDto(
                     id = "",
                     name = "",
                     developer = "",
@@ -144,7 +137,7 @@ class TestAppDetailsEduCatalogMapper {
             ),
             TestCase(
                 name = "large",
-                dto = AppDetailsEduCatalogDto(
+                value = AppDetailsEduCatalogDto(
                     id = "a".repeat(1000),
                     name = "b".repeat(1000),
                     developer = "c".repeat(1000),

@@ -34,7 +34,6 @@ class TestAppDetailsEduCatalogMapper {
         )
     }
 
-
     @Test
     fun `dto to domain mapping fails when app category mapping fails`() {
         val dto = AppDetailsEduCatalogDto(
@@ -57,6 +56,14 @@ class TestAppDetailsEduCatalogMapper {
         } catch (expectedE: IllegalArgumentException) {
             assertEquals(expectedE.message, e.message)
         }
+    }
+
+
+    data class TestCase(
+        val name: String,
+        val dto: AppDetailsEduCatalogDto,
+    ) {
+        override fun toString(): String = name
     }
 
 
@@ -150,12 +157,4 @@ class TestAppDetailsEduCatalogMapper {
             ),
         )
     }
-}
-
-
-data class TestCase(
-    val name: String,
-    val dto: AppDetailsEduCatalogDto,
-) {
-    override fun toString(): String = name
 }

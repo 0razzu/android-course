@@ -26,7 +26,11 @@ fun AppDetailsScreen(
         content = {
             when (content) {
                 is AppDetailsContentType.Loading -> LoadingContent(modifier = modifier)
-                is AppDetailsContentType.WithAppDetails -> AppDetailsContent(modifier = modifier, app = content.appDetails)
+                is AppDetailsContentType.WithAppDetails -> AppDetailsContent(
+                    modifier = modifier,
+                    app = content.appDetails,
+                )
+
                 is AppDetailsContentType.Error -> ErrorContent(
                     modifier = modifier,
                     error = when (content.error) {

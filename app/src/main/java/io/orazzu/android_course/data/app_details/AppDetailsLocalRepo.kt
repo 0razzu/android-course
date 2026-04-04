@@ -5,10 +5,13 @@ import io.orazzu.android_course.domain.DomainError
 import io.orazzu.android_course.domain.DomainResult
 import io.orazzu.android_course.domain.app_details.AppDetails
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
+import javax.inject.Inject
 
-class AppDetailsLocalRepo(private val appDetailsMapper: AppDetailsMapper) : AppDetailsRepo {
+class AppDetailsLocalRepo @Inject constructor(
+    private val appDetailsMapper: AppDetailsMapper,
+    private val api: AppDetailsLocalApi,
+) : AppDetailsRepo {
     private val logTag = this.javaClass.simpleName
-    private val api = AppDetailsLocalApi()
 
     override suspend fun getAppDetails(id: String): DomainResult<AppDetails> {
         Log.d(logTag, "Getting app $id")

@@ -7,10 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import io.orazzu.android_course.presentation.routes.AppDetailsRoute
 import io.orazzu.android_course.presentation.routes.AppListRoute
 import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,6 @@ class MainActivity : ComponentActivity() {
 
                     composable(Route.AppDetails.route) { backStackEntry ->
                         AppDetailsRoute(
-                            appId = Route.AppDetails.appId(backStackEntry),
                             onBackClick = Route.AppDetails.navigateBack(navController),
                         )
                     }

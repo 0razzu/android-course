@@ -1,9 +1,10 @@
 package io.orazzu.android_course.data.app_details
 
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 import kotlin.random.Random
 
-class AppDetailsLocalApi {
+class AppDetailsLocalApi @Inject constructor() {
     suspend fun getAppDetails(id: String): AppDetailsDto {
         delay(Random.nextLong(2000))
         return storage[id] ?: throw NotFoundException("App details with id=$id not found")

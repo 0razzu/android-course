@@ -1,9 +1,10 @@
 package io.orazzu.android_course.data.app
 
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 import kotlin.random.Random
 
-class AppLocalApi {
+class AppLocalApi @Inject constructor() {
     suspend fun getApps(): List<AppDto> {
         delay(Random.nextLong(2000))
         return storage

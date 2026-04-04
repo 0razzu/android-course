@@ -1,6 +1,5 @@
 package io.orazzu.android_course.presentation
 
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 
 sealed class Route(val route: String) {
@@ -13,7 +12,6 @@ sealed class Route(val route: String) {
     }
 
     data object AppDetails : Route("app_details/{appId}") {
-        val appId: (NavBackStackEntry) -> String? = { it.arguments?.getString("appId") }
         val navigateBack: (NavController) -> () -> Unit = { navController ->
             {
                 navController.popBackStack(route = "app_list", inclusive = false, saveState = false)

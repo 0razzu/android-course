@@ -2,6 +2,7 @@ package io.orazzu.android_course.presentation.viewmodel.app_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.orazzu.android_course.R
 import io.orazzu.android_course.domain.DomainResult
 import io.orazzu.android_course.domain.app.App
@@ -12,8 +13,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AppListViewModel(
+@HiltViewModel
+class AppListViewModel @Inject constructor(
     private val repository: AppRepo,
 ) : ViewModel() {
     private val _state = MutableStateFlow<AppListUiState>(AppListUiState.Loading)

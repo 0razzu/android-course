@@ -29,7 +29,11 @@ fun AppListScreen(
                 }
 
                 is AppListContentType.WithApps -> {
-                    AppListContent(modifier = modifier, apps = content.apps, onAppClick = onAppClick)
+                    AppListContent(
+                        modifier = modifier,
+                        apps = content.apps,
+                        onAppClick = onAppClick,
+                    )
                 }
 
                 is AppListContentType.Error -> {

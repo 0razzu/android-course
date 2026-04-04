@@ -25,13 +25,13 @@ fun AppDetailsRoute(
     )
 
     val state by viewModel.state.collectAsState()
-    when (state) {
+    when (val curState = state) {
         is AppDetailsUiState.Loading -> AppDetailsLoadingScreen(
             onBackClick = onBackClick,
         )
 
         is AppDetailsUiState.Success -> AppDetailsScreen(
-            app = (state as AppDetailsUiState.Success).app,
+            app = curState.app,
             onBackClick = onBackClick,
         )
 

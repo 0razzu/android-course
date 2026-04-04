@@ -12,7 +12,7 @@ class AppDetailsEntityMapper @Inject constructor() {
         ageRating = domain.ageRating,
         iconUrl = domain.iconUrl,
         screenshots = domain.screenshotUrlList,
-        description = domain.longDescription ?: domain.shortDescription!!,
+        description = domain.longDescription ?: domain.shortDescription ?: "",
         isInWishlist = domain.isInWishlist,
     )
 

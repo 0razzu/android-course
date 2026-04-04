@@ -34,6 +34,7 @@ fun AppDetailsScreen(
                 is AppDetailsContentType.Error -> ErrorContent(
                     modifier = modifier,
                     error = when (content.error) {
+                        DomainError.CONNECTION_ERROR -> stringResource(R.string.connectionError)
                         DomainError.NOT_FOUND -> stringResource(R.string.AppDetailsErrorScreen_appNotFound)
                         else -> stringResource(R.string.unknownError)
                     },

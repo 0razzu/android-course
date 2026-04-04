@@ -1,6 +1,6 @@
-package io.orazzu.android_course.data.app
+package io.orazzu.android_course.data.local.app
 
-data class AppDto(
+data class AppLocalDto(
     val id: String,
     val name: String,
     val category: String,

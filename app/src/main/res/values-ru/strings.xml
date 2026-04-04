@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RuStore</string>
+    <string name="connectionError">Ошибка соединения</string>
     <string name="unknownError">Неизвестная ошибка</string>
 
     <string name="AppCategory_APP">Приложения</string>
-    <string name="AppCategory_GAME">Игры</string>
-    <string name="AppCategory_PRODUCTIVITY">Производительность</string>
-    <string name="AppCategory_SOCIAL">Социальные сети</string>
-    <string name="AppCategory_EDUCATION">Образование</string>
-    <string name="AppCategory_ENTERTAINMENT">Развлечения</string>
-    <string name="AppCategory_MUSIC">Музыка</string>
-    <string name="AppCategory_VIDEO">Видео</string>
-    <string name="AppCategory_PHOTOGRAPHY">Фотография</string>
-    <string name="AppCategory_HEALTH">Здоровье</string>
-    <string name="AppCategory_SPORTS">Спорт</string>
-    <string name="AppCategory_NEWS">Новости</string>
     <string name="AppCategory_BOOKS">Книги</string>
     <string name="AppCategory_BUSINESS">Бизнес</string>
+    <string name="AppCategory_EDUCATION">Образование</string>
+    <string name="AppCategory_ENTERTAINMENT">Развлечения</string>
     <string name="AppCategory_FINANCE">Финансы</string>
-    <string name="AppCategory_TRAVEL">Путешествия</string>
-    <string name="AppCategory_MAPS">Карты</string>
     <string name="AppCategory_FOOD">Еда</string>
+    <string name="AppCategory_GAME">Игры</string>
+    <string name="AppCategory_HEALTH">Здоровье</string>
+    <string name="AppCategory_LIFESTYLE">Образ жизни</string>
+    <string name="AppCategory_MAPS">Карты</string>
+    <string name="AppCategory_MUSIC">Музыка</string>
+    <string name="AppCategory_NEWS">Новости</string>
+    <string name="AppCategory_PHOTOGRAPHY">Фотография</string>
+    <string name="AppCategory_PHOTO_AND_VIDEO">Фото и видео</string>
+    <string name="AppCategory_PRODUCTIVITY">Производительность</string>
     <string name="AppCategory_SHOPPING">Покупки</string>
+    <string name="AppCategory_SOCIAL">Социальные сети</string>
+    <string name="AppCategory_SPORTS">Спорт</string>
+    <string name="AppCategory_TRAVEL">Путешествия</string>
     <string name="AppCategory_UTILITIES">Утилиты</string>
+    <string name="AppCategory_VIDEO">Видео</string>
+    <string name="AppCategory_WEATHER">Погода</string>
 
     <string name="AppList_logoClicked">Тык на лого</string>
     <string name="AppDetailsDescription_showMore">Развернуть</string>

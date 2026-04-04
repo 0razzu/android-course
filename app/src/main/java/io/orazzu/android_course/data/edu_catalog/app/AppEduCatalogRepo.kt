@@ -1,15 +1,17 @@
-package io.orazzu.android_course.data.app
+package io.orazzu.android_course.data.edu_catalog.app
 
 import android.util.Log
+import io.orazzu.android_course.data.edu_catalog.EduCatalogApi
 import io.orazzu.android_course.domain.DomainError
 import io.orazzu.android_course.domain.DomainResult
 import io.orazzu.android_course.domain.app.App
 import io.orazzu.android_course.domain.app.AppRepo
+import okio.IOException
 import javax.inject.Inject
 
-class AppLocalRepo @Inject constructor(
-    private val appMapper: AppMapper,
-    private val api: AppLocalApi,
+class AppEduCatalogRepo @Inject constructor(
+    private val appMapper: AppEduCatalogMapper,
+    private val api: EduCatalogApi,
 ) : AppRepo {
     private val logTag = this.javaClass.simpleName
 
@@ -17,8 +19,12 @@ class AppLocalRepo @Inject constructor(
         Log.d(logTag, "Getting apps")
 
         return try {
-            val appDtos = api.getApps()
+            val appDtos = api.getCatalog()
             DomainResult.Success(appDtos.map { appMapper.toDomain(it) })
+        } catch (e: IOException) {
+            Log.e(logTag, "Connection error while getting apps", e)
+
+            DomainResult.Failure(DomainError.CONNECTION_ERROR)
         } catch (e: Exception) {
             Log.e(logTag, "Unexpected exception while getting apps", e)
 

@@ -1,15 +1,13 @@
-package io.orazzu.android_course.domain.app_details
+package io.orazzu.android_course.data.local.app_details
 
-import io.orazzu.android_course.domain.AppCategory
-
-data class AppDetails(
+data class AppDetailsLocalDto(
     val id: String,
     val name: String,
     val developer: String,
-    val category: AppCategory,
+    val category: String,
     val ageRating: Int,
     val iconUrl: String,
     val screenshotUrlList: List<String>,
-    val shortDescription: String?,
+    val shortDescription: String,
     val longDescription: String?,
 )

@@ -1,0 +1,32 @@
+package io.orazzu.android_course.presentation.screens.app_list
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import io.orazzu.android_course.model.app.AppDetails
+import io.orazzu.android_course.presentation.layouts.CardLikeLayout
+import io.orazzu.android_course.presentation.preview_data.getApps
+import io.orazzu.android_course.presentation.screens.app_list.content.AppListContent
+import io.orazzu.android_course.presentation.theme.AndroidCourseTheme
+
+@Composable
+fun AppListScreen(
+    modifier: Modifier = Modifier,
+    apps: List<AppDetails>,
+    onAppClick: (String) -> Unit,
+    onLogoClick: () -> Unit,
+) {
+    CardLikeLayout(
+        modifier = modifier,
+        header = { AppListScreenHeader(modifier = modifier, onLogoClick = onLogoClick) },
+        content = { AppListContent(modifier = modifier, apps = apps, onAppClick = onAppClick) },
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AppListScreenPreview() {
+    AndroidCourseTheme {
+        AppListScreen(apps = getApps(), onAppClick = {}, onLogoClick = {})
+    }
+}

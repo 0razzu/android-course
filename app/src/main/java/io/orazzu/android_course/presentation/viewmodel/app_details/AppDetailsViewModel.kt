@@ -8,6 +8,7 @@ import io.orazzu.android_course.domain.DomainError
 import io.orazzu.android_course.domain.DomainResult
 import io.orazzu.android_course.domain.app_details.AppDetails
 import io.orazzu.android_course.domain.app_details.AppDetailsRepo
+import io.orazzu.android_course.domain.app_details.usecase.GetAppDetailsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AppDetailsViewModel @Inject constructor(
     private val repository: AppDetailsRepo,
+    private val getAppDetails: GetAppDetailsUseCase,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     private val _state = MutableStateFlow<AppDetailsUiState>(AppDetailsUiState.Loading)
@@ -57,7 +59,7 @@ class AppDetailsViewModel @Inject constructor(
 
     private fun loadAppDetails(appId: String) {
         viewModelScope.launch {
-            val result = repository.getAppDetails(appId)
+            val result = getAppDetails(appId)
             // no state update unless there is an error, observeAppDetails() will perform it anyways
             if (result is DomainResult.Failure) {
                 _state.value = AppDetailsUiState.Error(result.error)
